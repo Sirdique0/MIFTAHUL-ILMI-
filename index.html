@@ -542,34 +542,43 @@
             animation: fadeInScale 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        .section-codes-panel {
+            background: #fcfcfc;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
         .codes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-            gap: 15px;
-            max-height: 380px;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 12px;
+            max-height: 250px;
             overflow-y: auto;
-            padding: 12px;
-            background: #fdfdfd;
+            padding: 8px;
+            background: #ffffff;
             border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
         }
         .code-card {
             background: white;
-            padding: 15px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
             border: 1.5px solid #e5e7eb;
             position: relative;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
         .code-card:hover {
             border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(212, 175, 55, 0.15);
         }
         .code-card.used {
             background: #fef2f2;
@@ -584,25 +593,28 @@
         
         .code-card-actions {
             display: flex;
-            gap: 8px;
+            gap: 6px;
         }
         .code-card-actions button {
             margin-top: 0;
-            padding: 6px 10px;
-            font-size: 12px;
+            padding: 5px 8px;
+            font-size: 11px;
             border-radius: 6px;
             box-shadow: none;
             width: auto;
             flex: 1;
         }
 
-        .code-actions-bar {
+        .section-code-buttons {
             display: flex;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
-        .code-actions-bar button {
+        .section-code-buttons button {
             margin-top: 0;
+            flex: 1;
+            padding: 10px 15px;
+            font-size: 14px;
         }
 
         table {
@@ -779,19 +791,19 @@
 <body>
 
 <!-- 1. WELCOME PAGE -->
-<div id="welcomePage" class="page active-page auth-container">
+<div id="welcomePage" class="page active-page auth-container" style="text-align: center; padding: 40px 25px;">
     <div class="arabic-school-title">مدرسة مفتاح العلم والدراسات الإسلامية</div>
-    <h2>Miftahul Ilmi Waddurasatul Islamiyya</h2>
     
-    <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 18px; border-radius: 12px; text-align: center; font-weight: bold; cursor: pointer; margin: 25px 0; color: var(--primary); border: 1px solid #86efac; transition: all 0.3s ease; user-select: none;" 
-         onclick="handleWelcomeTripleClick(event)" 
-         onmouseover="this.style.transform='scale(1.02)'" 
-         onmouseout="this.style.transform='scale(1)'"
-         title="Ka danna sau 3 a jere domin shiga">
-        Welcome to Hotoro Kano - Online Registration
+    <div style="margin: 30px 0; line-height: 1.6; user-select: none;" 
+         onclick="handleWelcomeTripleClick(event)"
+         title="Ka danna sau 3 a jere domin shiga admin">
+        <h1 style="font-size: 38px; font-weight: 800; color: var(--primary); letter-spacing: 2px; margin: 0; text-transform: uppercase;">Welcome</h1>
+        <div style="font-size: 20px; font-weight: 700; color: var(--accent); margin: 8px 0; letter-spacing: 3px; text-transform: uppercase;">To</div>
+        <h2 style="font-size: 22px; font-weight: 700; color: var(--secondary); margin: 10px 0; text-transform: uppercase; line-height: 1.4;">Madrasatul Miftahul Ilmi Waddurasatul Islamiyya Hotoro Kano</h2>
+        <div style="font-size: 16px; font-weight: 800; color: #0284c7; letter-spacing: 2px; margin-top: 15px; text-transform: uppercase;">Online Registration</div>
     </div>
 
-    <button onclick="showPage('rulesPage')" style="background: var(--gold-gradient);">Register Now (Dalibi)</button>
+    <button onclick="showPage('rulesPage')" style="background: var(--gold-gradient); font-size: 18px; padding: 16px 24px; margin-top: 15px; border-radius: 12px; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);">Register Now</button>
 </div>
 
 <!-- 2. RULES PAGE -->
@@ -878,15 +890,15 @@
 <!-- 4. CONFIRMATION CODE INPUT PAGE -->
 <div id="codePage" class="page auth-container">
     <h2>Confirmation Code</h2>
-    <p style="font-size: 13px; color: #4b5563; margin-bottom: 20px;">Tura kuɗin rajista ga Admin ta WhatsApp domin samun lambar tabbatarwa (Confirmation Code).</p>
+    <p style="font-size: 13px; color: #4b5563; margin-bottom: 20px;">Tura kuɗin rajista ga Admin ta WhatsApp domin samun lambar tabbatarwa (Confirmation Code) ta sashen da ka zaɓa.</p>
     
-    <a id="whatsappLinkBtn" href="https://wa.me/2348000000000?text=Assalamu%20Alaikum%20Admin,%20Ina%20son%20samun%20Confirmation%20Code%20na%20rajista%20ta%20Miftahul%20Ilmi." target="_blank" class="whatsapp-btn">
-        💬 Tuntuɓi Admin a WhatsApp
+    <a id="whatsappLinkBtn" href="https://wa.me/2347056845435?text=Assalamu%20Alaikum%20Admin,%20Ina%20son%20samun%20Confirmation%20Code%20na%20rajista%20ta%20Miftahul%20Ilmi." target="_blank" class="whatsapp-btn">
+        💬 Tuntuɓi Admin a WhatsApp (0705 684 5435)
     </a>
 
     <div class="form-group" style="margin-top: 25px;">
         <label>Sanya Code</label>
-        <input type="password" id="confCodeInput" required placeholder="Misali: mif978jr7">
+        <input type="text" id="confCodeInput" required placeholder="Misali: onl478jr7 ko dar921ab3">
     </div>
     <button onclick="submitRegistration()">Kammala Rajista</button>
     <button onclick="showPage('registerPage')" style="background: #4b5563; box-shadow: none;">Baya</button>
@@ -1002,14 +1014,50 @@
 
         <div id="tabCodes" class="dash-section">
             <button class="btn-back-section" onclick="switchTab('tabOverview', document.querySelector('.sidebar-menu li'))">⬅️ Baya (Back)</button>
-            <h2>Sarrafa Confirmation Codes</h2>
-            <div class="code-actions-bar">
-                <button onclick="generateNewCodes()" style="background: var(--gold-gradient);">⚡ Generate Sabbin Codes (30)</button>
-                <button onclick="copyAllCodes()" style="background: #0284c7; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);">📋 Copy All Codes</button>
-                <button onclick="deleteAllCodes()" style="background: #dc2626; color: white; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);">🗑️ Delete All Codes</button>
+            <h2>Sarrafa Confirmation Codes (Raba bisa Sashe)</h2>
+            <p style="font-size: 13px; color: #4b5563; margin-bottom: 20px;">Kowanne sashe yana da nasa engine mai zaman kansa, baturi guda 10, da maɓallan sarrafa su musamman.</p>
+            
+            <!-- NIGHT CLASS PANEL -->
+            <div class="section-codes-panel" style="border-top: 4px solid #8b5cf6;">
+                <h3 style="text-align: left; margin-top: 0; color: #7c3aed; display: flex; justify-content: space-between; align-items: center;">
+                    <span>🌙 Night Class / Sashen Dare Codes</span>
+                    <span id="countCodesDr" style="font-size: 13px; background: #f5f3ff; padding: 4px 10px; border-radius: 6px; color: #7c3aed;">0 codes</span>
+                </h3>
+                <div class="codes-grid" id="codesGridDR"></div>
+                <div class="section-code-buttons">
+                    <button onclick="generateCodesForSection('DR')" style="background: #7c3aed; color: white;">⚡ Generate Dare Codes (10)</button>
+                    <button onclick="copySectionCodes('DR')" style="background: #0284c7; color: white;">📋 Copy All Dare</button>
+                    <button onclick="deleteSectionCodes('DR')" style="background: #dc2626; color: white;">🗑️ Delete All Dare</button>
+                </div>
             </div>
-            <p style="font-size: 13px; color: #4b5563;">Lura: Duk wani code yana da madannin <b>Copy</b> da <b>Delete</b> kai tsaye a kansa.</p>
-            <div class="codes-grid" id="codesGridContainer"></div>
+
+            <!-- ONLINE CLASS PANEL -->
+            <div class="section-codes-panel" style="border-top: 4px solid #3b82f6;">
+                <h3 style="text-align: left; margin-top: 0; color: #2563eb; display: flex; justify-content: space-between; align-items: center;">
+                    <span>🌐 Online Class Codes</span>
+                    <span id="countCodesOnl" style="font-size: 13px; background: #eff6ff; padding: 4px 10px; border-radius: 6px; color: #2563eb;">0 codes</span>
+                </h3>
+                <div class="codes-grid" id="codesGridONL"></div>
+                <div class="section-code-buttons">
+                    <button onclick="generateCodesForSection('ONL')" style="background: #2563eb; color: white;">⚡ Generate Online Codes (10)</button>
+                    <button onclick="copySectionCodes('ONL')" style="background: #0284c7; color: white;">📋 Copy All Online</button>
+                    <button onclick="deleteSectionCodes('ONL')" style="background: #dc2626; color: white;">🗑️ Delete All Online</button>
+                </div>
+            </div>
+
+            <!-- ADULT / MARRIED WOMEN PANEL -->
+            <div class="section-codes-panel" style="border-top: 4px solid #ec4899;">
+                <h3 style="text-align: left; margin-top: 0; color: #db2777; display: flex; justify-content: space-between; align-items: center;">
+                    <span>🧕 Married Women / Adult Class Codes</span>
+                    <span id="countCodesAdl" style="font-size: 13px; background: #fdf2f8; padding: 4px 10px; border-radius: 6px; color: #db2777;">0 codes</span>
+                </h3>
+                <div class="codes-grid" id="codesGridADL"></div>
+                <div class="section-code-buttons">
+                    <button onclick="generateCodesForSection('ADL')" style="background: #db2777; color: white;">⚡ Generate Adult Codes (10)</button>
+                    <button onclick="copySectionCodes('ADL')" style="background: #0284c7; color: white;">📋 Copy All Adult</button>
+                    <button onclick="deleteSectionCodes('ADL')" style="background: #dc2626; color: white;">🗑️ Delete All Adult</button>
+                </div>
+            </div>
         </div>
 
         <div id="tabStudents" class="dash-section">
@@ -1057,7 +1105,6 @@
     if (!localStorage.getItem('db_students')) localStorage.setItem('db_students', JSON.stringify([]));
     if (!localStorage.getItem('db_notifications')) localStorage.setItem('db_notifications', JSON.stringify([]));
     
-    // An saita Sirdique da 9781place a matsayin tabbatattun bayanan shiga
     if (!localStorage.getItem('admin_user')) localStorage.setItem('admin_user', 'Sirdique');
     if (!localStorage.getItem('admin_pass')) localStorage.setItem('admin_pass', '9781place');
 
@@ -1154,7 +1201,7 @@
         let note = document.getElementById('feeNote');
         let firstName = document.getElementById('firstName').value || 'Dalibi';
         let whatsappMsg = `Assalamu Alaikum Admin, Na kammala cike fom din rajista na Miftahul Ilmi. Sunana ${firstName}, kuma na zabi sashen ${secValue}. Ina son samun Confirmation Code na.`;
-        document.getElementById('whatsappLinkBtn').href = `https://wa.me/2348000000000?text=${encodeURIComponent(whatsappMsg)}`;
+        document.getElementById('whatsappLinkBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(whatsappMsg)}`;
 
         if(secValue === 'ONL') note.innerText = '✨ Online Class: Rajista ₦1,500 | Wata-wata ₦1,000';
         else if(secValue === 'DR') note.innerText = '🌙 Night Class / Sashen Dare: Rajista ₦1,000 | Wata-wata ₦300';
@@ -1171,27 +1218,40 @@
         }
         let firstName = document.getElementById('firstName').value;
         let whatsappMsg = `Assalamu Alaikum Admin, Na kammala cike fom din rajista na Miftahul Ilmi. Sunana ${firstName}, kuma na zabi sashen ${sec}. Ina son samun Confirmation Code na.`;
-        document.getElementById('whatsappLinkBtn').href = `https://wa.me/2348000000000?text=${encodeURIComponent(whatsappMsg)}`;
+        document.getElementById('whatsappLinkBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(whatsappMsg)}`;
         showPage('codePage');
     }
 
     function submitRegistration() {
-        let codeInput = document.getElementById('confCodeInput').value.trim();
+        let codeInput = document.getElementById('confCodeInput').value.trim().toLowerCase();
+        let selectedSection = document.getElementById('sectionSelect').value;
+        
         let codesObj = JSON.parse(localStorage.getItem('db_codes')) || [];
         
-        let foundCode = codesObj.find(c => c.code === codeInput);
-        if(!foundCode || foundCode.used) {
-            alert('Confirmation Code bai da tabbas ko kuma an riga an yi amfani da shi!');
+        let foundCode = codesObj.find(c => c.code.toLowerCase() === codeInput);
+        
+        if(!foundCode) {
+            alert('Wannan Confirmation Code bai wanzu a cikin tsarin ba!');
+            return;
+        }
+
+        let expectedPrefix = selectedSection === 'DR' ? 'dar' : (selectedSection === 'ONL' ? 'onl' : 'adl');
+        if(!foundCode.code.toLowerCase().startsWith(expectedPrefix)) {
+            alert('Wannan Code din ba na wannan sashen da ka zaɓa bane! Dole ka yi amfani da code mai farawa da (' + expectedPrefix.toUpperCase() + ').');
+            return;
+        }
+
+        if(foundCode.used) {
+            alert('An riga an yi amfani da wannan Confirmation Code din!');
             return;
         }
 
         foundCode.used = true;
         localStorage.setItem('db_codes', JSON.stringify(codesObj));
 
-        let section = document.getElementById('sectionSelect').value;
         let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        let secLen = students.filter(s => s.section === section).length + 1;
-        let userId = `MIF${Math.floor(Math.random()*90+10)}${section}${String(secLen).padStart(4,'0')}`;
+        let secLen = students.filter(s => s.section === selectedSection).length + 1;
+        let userId = `MIF${Math.floor(Math.random()*90+10)}${selectedSection}${String(secLen).padStart(4,'0')}`;
         let now = new Date().toLocaleString();
 
         let firstName = document.getElementById('firstName').value;
@@ -1204,7 +1264,7 @@
             age: document.getElementById('age').value,
             address: document.getElementById('address').value,
             phone: document.getElementById('phone').value,
-            section: section,
+            section: selectedSection,
             date: now
         };
 
@@ -1216,7 +1276,7 @@
             id: 'notif_' + Date.now(),
             userId: userId,
             name: `${firstName} ${lastName}`,
-            section: section,
+            section: selectedSection,
             time: now,
             read: false
         });
@@ -1229,11 +1289,11 @@
         document.getElementById('formCardAge').innerText = newStudent.age;
         document.getElementById('formCardPhone').innerText = newStudent.phone;
         document.getElementById('formCardAddress').innerText = newStudent.address;
-        document.getElementById('formCardSection').innerText = section;
+        document.getElementById('formCardSection').innerText = selectedSection;
         document.getElementById('studentSigLine').innerText = `${firstName} ${lastName}`;
 
-        let waText = `Assalamu Alaikum Admin, Ga cikakken bayanin fom dina na rajista Miftahul Ilmi:\n\n*User ID:* ${userId}\n*Suna:* ${firstName} ${lastName}\n*Sashe:* ${section}\n*Lambar Waya:* ${newStudent.phone}\n*Adireshin:* ${newStudent.address}\n\nNa yi saving din fom dina kuma na turo saboda confirmation.`;
-        document.getElementById('whatsappSendBtn').href = `https://wa.me/2348000000000?text=${encodeURIComponent(waText)}`;
+        let waText = `Assalamu Alaikum Admin, Ga cikakken bayanin fom dina na rajista Miftahul Ilmi:\n\n*User ID:* ${userId}\n*Suna:* ${firstName} ${lastName}\n*Sashe:* ${selectedSection}\n*Lambar Waya:* ${newStudent.phone}\n*Adireshin:* ${newStudent.address}\n\nNa yi saving din fom dina kuma na turo saboda confirmation.`;
+        document.getElementById('whatsappSendBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(waText)}`;
 
         document.getElementById('regForm').reset();
         document.querySelectorAll('.section-card').forEach(c => c.classList.remove('selected-online', 'selected-night', 'selected-married'));
@@ -1300,7 +1360,6 @@
         let savedUser = localStorage.getItem('admin_user') || 'Sirdique';
         let savedPass = localStorage.getItem('admin_pass') || '9781place';
 
-        // Tabbatarwa kai tsaye ko dai ta localStorage ko kuma ga Sirdique / 9781place
         if((u === savedUser && p === savedPass) || (u === 'Sirdique' && p === '9781place')) {
             document.getElementById('adminWelcomeUser').innerText = `Admin: ${u}`;
             document.getElementById('adminUser').value = '';
@@ -1316,16 +1375,45 @@
         let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
         let students = JSON.parse(localStorage.getItem('db_students')) || [];
 
-        let grid = document.getElementById('codesGridContainer');
-        grid.innerHTML = codes.length ? codes.map(c => `
+        let drCodes = codes.filter(c => c.code.toLowerCase().startsWith('dar'));
+        let onlCodes = codes.filter(c => c.code.toLowerCase().startsWith('onl'));
+        let adlCodes = codes.filter(c => c.code.toLowerCase().startsWith('adl'));
+
+        let gridDR = document.getElementById('codesGridDR');
+        document.getElementById('countCodesDr').innerText = `${drCodes.length} codes`;
+        gridDR.innerHTML = drCodes.length ? drCodes.map(c => `
             <div class="code-card ${c.used ? 'used' : 'unused'}">
-                <div><b>${c.code}</b><br><small>${c.used ? '🔴 Anyi Aiki Dashi' : '🟢 Baturi (Active)'}</small></div>
+                <div><b>${c.code}</b><br><small>${c.used ? '🔴 Used' : '🟢 Active'}</small></div>
                 <div class="code-card-actions">
                     <button onclick="copyCodeItem('${c.code}')" style="background: #0284c7; color: white;">Copy</button>
                     <button onclick="deleteCodeItem('${c.code}')" style="background: #dc2626; color: white;">Delete</button>
                 </div>
             </div>
-        `).join('') : '<p>Babu Code a cikin tsarin.</p>';
+        `).join('') : '<p style="font-size: 13px; color: #777; text-align: center; margin: 10px 0;">Babu code a sashen dare.</p>';
+
+        let gridONL = document.getElementById('codesGridONL');
+        document.getElementById('countCodesOnl').innerText = `${onlCodes.length} codes`;
+        gridONL.innerHTML = onlCodes.length ? onlCodes.map(c => `
+            <div class="code-card ${c.used ? 'used' : 'unused'}">
+                <div><b>${c.code}</b><br><small>${c.used ? '🔴 Used' : '🟢 Active'}</small></div>
+                <div class="code-card-actions">
+                    <button onclick="copyCodeItem('${c.code}')" style="background: #0284c7; color: white;">Copy</button>
+                    <button onclick="deleteCodeItem('${c.code}')" style="background: #dc2626; color: white;">Delete</button>
+                </div>
+            </div>
+        `).join('') : '<p style="font-size: 13px; color: #777; text-align: center; margin: 10px 0;">Babu code a sashen online.</p>';
+
+        let gridADL = document.getElementById('codesGridADL');
+        document.getElementById('countCodesAdl').innerText = `${adlCodes.length} codes`;
+        gridADL.innerHTML = adlCodes.length ? adlCodes.map(c => `
+            <div class="code-card ${c.used ? 'used' : 'unused'}">
+                <div><b>${c.code}</b><br><small>${c.used ? '🔴 Used' : '🟢 Active'}</small></div>
+                <div class="code-card-actions">
+                    <button onclick="copyCodeItem('${c.code}')" style="background: #0284c7; color: white;">Copy</button>
+                    <button onclick="deleteCodeItem('${c.code}')" style="background: #dc2626; color: white;">Delete</button>
+                </div>
+            </div>
+        `).join('') : '<p style="font-size: 13px; color: #777; text-align: center; margin: 10px 0;">Babu code a sashen matan aure.</p>';
 
         document.getElementById('countOnl').innerText = students.filter(s => s.section === 'ONL').length;
         document.getElementById('countDr').innerText = students.filter(s => s.section === 'DR').length;
@@ -1394,30 +1482,47 @@
         loadDashboardData();
     }
 
-    function generateNewCodes() {
+    function generateCodesForSection(sectionType) {
         let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
         const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-        for(let i=0; i<30; i++) {
-            let codeStr = 'mif';
-            for(let j=0; j<6; j++) codeStr += chars.charAt(Math.floor(Math.random() * chars.length));
+        let prefix = sectionType === 'DR' ? 'dar' : (sectionType === 'ONL' ? 'onl' : 'adl');
+        
+        for(let i = 0; i < 10; i++) {
+            let codeStr = prefix;
+            for(let j = 0; j < 6; j++) {
+                codeStr += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
             codes.push({ code: codeStr, used: false });
         }
+        
         localStorage.setItem('db_codes', JSON.stringify(codes));
         loadDashboardData();
-        alert('An ƙirƙiri sabbin codes 30!');
+        alert('An ƙirƙiri sabbin codes 10 na sashen (' + sectionType + ') cikin nasara!');
     }
 
-    function copyAllCodes() {
+    function copySectionCodes(sectionType) {
         let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
-        let allStr = codes.map(c => c.code).join('\n');
+        let prefix = sectionType.toLowerCase();
+        let sectionCodes = codes.filter(c => c.code.toLowerCase().startsWith(prefix));
+        
+        if(!sectionCodes.length) {
+            alert('Babu code a wannan sashen da za a kofe!');
+            return;
+        }
+
+        let allStr = sectionCodes.map(c => c.code).join('\n');
         navigator.clipboard.writeText(allStr);
-        alert('An kofe dukkan codes din!');
+        alert('An kofe dukkan codes din wannan sashen!');
     }
 
-    function deleteAllCodes() {
-        if(confirm('Kana son share dukkan codes din ne?')) {
-            localStorage.setItem('db_codes', JSON.stringify([]));
+    function deleteSectionCodes(sectionType) {
+        if(confirm('Kana son share dukkan codes din wannan sashen ne?')) {
+            let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
+            let prefix = sectionType.toLowerCase();
+            codes = codes.filter(c => !c.code.toLowerCase().startsWith(prefix));
+            localStorage.setItem('db_codes', JSON.stringify(codes));
             loadDashboardData();
+            alert('An share codes din wannan sashen cikin nasara!');
         }
     }
 
