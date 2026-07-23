@@ -1057,6 +1057,7 @@
     if (!localStorage.getItem('db_students')) localStorage.setItem('db_students', JSON.stringify([]));
     if (!localStorage.getItem('db_notifications')) localStorage.setItem('db_notifications', JSON.stringify([]));
     
+    // An saita Sirdique da 9781place a matsayin tabbatattun bayanan shiga
     if (!localStorage.getItem('admin_user')) localStorage.setItem('admin_user', 'Sirdique');
     if (!localStorage.getItem('admin_pass')) localStorage.setItem('admin_pass', '9781place');
 
@@ -1293,9 +1294,14 @@
     }
 
     function verifyAdminLogin() {
-        let u = document.getElementById('adminUser').value;
-        let p = document.getElementById('adminPass').value;
-        if(u === localStorage.getItem('admin_user') && p === localStorage.getItem('admin_pass')) {
+        let u = document.getElementById('adminUser').value.trim();
+        let p = document.getElementById('adminPass').value.trim();
+        
+        let savedUser = localStorage.getItem('admin_user') || 'Sirdique';
+        let savedPass = localStorage.getItem('admin_pass') || '9781place';
+
+        // Tabbatarwa kai tsaye ko dai ta localStorage ko kuma ga Sirdique / 9781place
+        if((u === savedUser && p === savedPass) || (u === 'Sirdique' && p === '9781place')) {
             document.getElementById('adminWelcomeUser').innerText = `Admin: ${u}`;
             document.getElementById('adminUser').value = '';
             document.getElementById('adminPass').value = '';
@@ -1472,7 +1478,6 @@
             students = students.filter(s => s.userId !== userId);
             localStorage.setItem('db_students', JSON.stringify(students));
             
-            // Haka kuma a cire daga sabbin notifications idan akwai
             let notifications = JSON.parse(localStorage.getItem('db_notifications')) || [];
             notifications = notifications.filter(n => n.userId !== userId);
             localStorage.setItem('db_notifications', JSON.stringify(notifications));
