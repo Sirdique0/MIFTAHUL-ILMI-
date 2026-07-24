@@ -896,7 +896,7 @@
 
     <div class="form-group" style="margin-top: 25px;">
         <label>Sanya Code</label>
-        <input type="text" id="confCodeInput" required placeholder="Misali: onl478jr7 ko dar921ab3">
+        <input type="text" id="confCodeInput" required placeholder="Misali: onl478jr7 ko dr921ab3">
     </div>
     <button onclick="submitRegistration()">Kammala Rajista</button>
     <button onclick="showPage('registerPage')" style="background: #4b5563; box-shadow: none;">Baya</button>
@@ -1233,7 +1233,7 @@
             return;
         }
 
-        let expectedPrefix = selectedSection === 'DR' ? 'dar' : (selectedSection === 'ONL' ? 'onl' : 'adl');
+        let expectedPrefix = selectedSection === 'DR' ? 'dr' : (selectedSection === 'ONL' ? 'onl' : 'adl');
         if(!foundCode.code.toLowerCase().startsWith(expectedPrefix)) {
             alert('Wannan Code din ba na wannan sashen da ka zaɓa bane! Dole ka yi amfani da code mai farawa da (' + expectedPrefix.toUpperCase() + ').');
             return;
@@ -1373,7 +1373,7 @@
         let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
         let students = JSON.parse(localStorage.getItem('db_students')) || [];
 
-        let drCodes = codes.filter(c => c.code.toLowerCase().startsWith('dar'));
+        let drCodes = codes.filter(c => c.code.toLowerCase().startsWith('dr'));
         let onlCodes = codes.filter(c => c.code.toLowerCase().startsWith('onl'));
         let adlCodes = codes.filter(c => c.code.toLowerCase().startsWith('adl'));
 
@@ -1483,7 +1483,7 @@
     function generateCodesForSection(sectionType) {
         let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
         const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-        let prefix = sectionType === 'DR' ? 'dar' : (sectionType === 'ONL' ? 'onl' : 'adl');
+        let prefix = sectionType === 'DR' ? 'dr' : (sectionType === 'ONL' ? 'onl' : 'adl');
         
         for(let i = 0; i < 10; i++) {
             let codeStr = prefix;
