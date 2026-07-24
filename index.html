@@ -792,11 +792,9 @@
 
 <!-- 1. WELCOME PAGE -->
 <div id="welcomePage" class="page active-page auth-container" style="text-align: center; padding: 40px 25px;">
-    <div class="arabic-school-title">مدرسة مفتاح العلم والدراسات الإسلامية</div>
+    <div class="arabic-school-title" id="arabicTitleTrigger" onclick="handleArabicTitleTap(event)" title="Ka danna sau 5 a jere domin shiga admin">مدرسة مفتاح العلم والدراسات الإسلامية</div>
     
-    <div style="margin: 30px 0; line-height: 1.6; user-select: none;" 
-         onclick="handleWelcomeTripleClick(event)"
-         title="Ka danna sau 3 a jere domin shiga admin">
+    <div style="margin: 30px 0; line-height: 1.6;">
         <h1 style="font-size: 38px; font-weight: 800; color: var(--primary); letter-spacing: 2px; margin: 0; text-transform: uppercase;">Welcome</h1>
         <div style="font-size: 20px; font-weight: 700; color: var(--accent); margin: 8px 0; letter-spacing: 3px; text-transform: uppercase;">To</div>
         <h2 style="font-size: 22px; font-weight: 700; color: var(--secondary); margin: 10px 0; text-transform: uppercase; line-height: 1.4;">Madrasatul Miftahul Ilmi Waddurasatul Islamiyya Hotoro Kano</h2>
@@ -1108,19 +1106,19 @@
     if (!localStorage.getItem('admin_user')) localStorage.setItem('admin_user', 'Sirdique');
     if (!localStorage.getItem('admin_pass')) localStorage.setItem('admin_pass', '9781place');
 
-    let welcomeClickCount = 0;
-    let welcomeClickTimer = null;
+    let arabicTapCount = 0;
+    let arabicTapTimer = null;
 
-    function handleWelcomeTripleClick(event) {
-        welcomeClickCount++;
-        if (welcomeClickTimer) clearTimeout(welcomeClickTimer);
+    function handleArabicTitleTap(event) {
+        arabicTapCount++;
+        if (arabicTapTimer) clearTimeout(arabicTapTimer);
 
-        if (welcomeClickCount === 3) {
-            welcomeClickCount = 0;
+        if (arabicTapCount === 5) {
+            arabicTapCount = 0;
             document.getElementById('adminPin').value = '';
             showPage('pinPage');
         } else {
-            welcomeClickTimer = setTimeout(() => { welcomeClickCount = 0; }, 600);
+            arabicTapTimer = setTimeout(() => { arabicTapCount = 0; }, 800);
         }
     }
 
@@ -1612,7 +1610,7 @@
         resArea.innerHTML = `
             <table>
                 <tr><th>User ID</th><th>Suna</th><th>Sashe</th><th>Actions</th></tr>
-                ${matches.map(s => `
+                ${matches.model ? '' : matches.map(s => `
                     <tr>
                         <td>${s.userId}</td>
                         <td>${s.firstName} ${s.lastName}</td>
