@@ -11,7 +11,6 @@
             --primary: #061a14;
             --secondary: #0b2e23;
             --accent: #d4af37;
-            --accent-hover: #f3e5ab;
             --dark: #111827;
             --gold-gradient: linear-gradient(135deg, #d4af37 0%, #aa7c11 100%);
             --sidebar-width: 270px;
@@ -22,38 +21,10 @@
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        @keyframes floatEffect {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
         @keyframes pulseGlow {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
             70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        @keyframes floatBalloon {
-            0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
-            50% { transform: translateY(-200px) rotate(5deg); opacity: 0.8; }
-            100% { transform: translateY(-400px) rotate(-5deg); opacity: 0; }
-        }
-
-        @keyframes swingConfetti {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(500px) rotate(720deg); opacity: 0; }
-        }
-
-        @keyframes colorShift {
-            0% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
-            33% { border-color: #8b5cf6; box-shadow: 0 0 15px rgba(139, 92, 246, 0.3); }
-            66% { border-color: #ec4899; box-shadow: 0 0 15px rgba(236, 72, 153, 0.3); }
-            100% { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
-        }
-
-        @keyframes bounceIcon {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
         }
 
         body {
@@ -74,17 +45,15 @@
         }
 
         .auth-container {
-            max-width: 500px;
-            margin: 50px auto;
+            max-width: 600px;
+            margin: 30px auto;
             background: #ffffff;
-            padding: 35px;
+            padding: 30px;
             border-radius: 16px;
             box-shadow: 0 15px 35px rgba(6, 26, 20, 0.08);
             border: 1px solid rgba(212, 175, 55, 0.2);
-            transition: all 0.3s ease;
-        }
-        .auth-container:hover {
-            box-shadow: 0 20px 45px rgba(6, 26, 20, 0.12);
+            position: relative;
+            z-index: 5;
         }
 
         h1, h2, h3 {
@@ -94,34 +63,38 @@
 
         .arabic-school-title {
             font-family: 'Traditional Arabic', 'Amiri', serif, sans-serif;
-            font-size: 24px;
-            color: var(--accent);
+            font-size: 19px;
+            color: var(--primary);
             text-align: center;
-            margin-bottom: 12px;
             direction: rtl;
             font-weight: bold;
-            text-shadow: 0 2px 4px rgba(212, 175, 55, 0.2);
-            animation: floatEffect 3s ease-in-out infinite;
+        }
+
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: 600;
             color: #374151;
+            font-size: 13px;
         }
 
         input, select {
             width: 100%;
-            padding: 13px;
+            padding: 10px 12px;
             border: 1.5px solid #d1d5db;
-            border-radius: 10px;
+            border-radius: 8px;
             box-sizing: border-box;
-            font-size: 15px;
+            font-size: 14px;
             transition: all 0.3s ease;
         }
         input:focus, select:focus {
@@ -133,171 +106,48 @@
         .section-cards-container {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 12px;
-            margin-top: 8px;
+            gap: 10px;
+            margin-top: 5px;
         }
 
         .section-card {
             background: #ffffff;
             border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 15px 18px;
+            border-radius: 10px;
+            padding: 12px 15px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            transition: all 0.35s ease;
         }
-
-        .section-card::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 5px;
-            background: #9ca3af;
-            transition: background 0.3s ease;
-        }
-
         .section-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 22px rgba(0,0,0,0.07);
             border-color: var(--accent);
         }
-
-        .section-card.selected-online {
-            border-color: #3b82f6;
-            background: #eff6ff;
-            animation: colorShift 4s infinite ease-in-out;
-        }
-        .section-card.selected-online::before {
-            background: #3b82f6;
-        }
-        .section-card.selected-online .section-icon {
-            color: #3b82f6;
-        }
-
-        .section-card.selected-night {
-            border-color: #8b5cf6;
-            background: #f5f3ff;
-            animation: colorShift 4s infinite ease-in-out;
-        }
-        .section-card.selected-night::before {
-            background: #8b5cf6;
-        }
-        .section-card.selected-night .section-icon {
-            color: #8b5cf6;
-        }
-
-        .section-card.selected-married {
-            border-color: #ec4899;
-            background: #fdf2f8;
-            animation: colorShift 4s infinite ease-in-out;
-        }
-        .section-card.selected-married::before {
-            background: #ec4899;
-        }
-        .section-card.selected-married .section-icon {
-            color: #ec4899;
-        }
-
-        .section-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .section-icon {
-            font-size: 26px;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f3f4f6;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            animation: bounceIcon 2s infinite ease-in-out;
-        }
-
-        .section-text h4 {
-            margin: 0 0 4px 0;
-            font-size: 15px;
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        .section-text p {
-            margin: 0;
-            font-size: 12px;
-            color: #4b5563;
-        }
-
-        .section-radio-indicator {
-            width: 22px;
-            height: 22px;
-            border: 2px solid #d1d5db;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .section-card.selected-online .section-radio-indicator {
-            border-color: #3b82f6;
-            background: #3b82f6;
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-        }
-        .section-card.selected-night .section-radio-indicator {
-            border-color: #8b5cf6;
-            background: #8b5cf6;
-            box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
-        }
-        .section-card.selected-married .section-radio-indicator {
-            border-color: #ec4899;
-            background: #ec4899;
-            box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
-        }
-
-        .section-radio-indicator::after {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: white;
-            border-radius: 50%;
-            display: none;
-        }
-
-        .section-card.selected-online .section-radio-indicator::after,
-        .section-card.selected-night .section-radio-indicator::after,
-        .section-card.selected-married .section-radio-indicator::after {
-            display: block;
-            animation: fadeInScale 0.2s ease;
+        .section-card.selected {
+            border-color: var(--primary);
+            background: #f4fbf7;
         }
 
         button {
             background: var(--gold-gradient);
             color: var(--primary);
             border: none;
-            padding: 14px 20px;
+            padding: 12px 20px;
             width: 100%;
-            border-radius: 10px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 15px;
             cursor: pointer;
             font-weight: 700;
-            margin-top: 10px;
+            margin-top: 8px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            z-index: 10;
         }
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
             opacity: 0.95;
+            transform: translateY(-2px);
         }
 
         .whatsapp-btn {
@@ -308,31 +158,296 @@
             justify-content: center;
             gap: 10px;
             text-decoration: none;
-            padding: 14px 20px;
-            border-radius: 10px;
-            font-size: 16px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 15px;
             font-weight: 700;
             margin-bottom: 15px;
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
             animation: pulseGlow 2s infinite;
-            transition: all 0.3s ease;
-        }
-        .whatsapp-btn:hover {
-            background: #22bf5b;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-            color: white;
+            position: relative;
+            z-index: 10;
         }
 
-        #adminDashboard {
-            display: none;
-            min-height: 100vh;
-            background: #f8fafc;
+        /* --- CERTIFICATE / FORM WATERMARK STYLING --- */
+        #successPage {
+            max-width: 540px;
+            margin: 10px auto;
+            position: relative;
         }
-        #adminDashboard.active-page {
+
+        .official-certificate-card {
+            background: #fdfbf7;
+            border: 3px solid #0b2e23;
+            border-radius: 8px;
+            padding: 8px;
+            box-shadow: 0 15px 35px rgba(6, 26, 20, 0.15);
+            position: relative;
+            box-sizing: border-box;
+            color: #111;
+            aspect-ratio: 2 / 3;
             display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
         }
 
+        /* Watermark Background Styling for hotoro.jp */
+        .official-certificate-card::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 82%;
+            height: 82%;
+            background-image: url('hoto.jp');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.12; /* Dishashewar hoton background */
+            filter: grayscale(15%) contrast(1.1);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .cert-outer-border {
+            border: 1.5px solid #d4af37;
+            padding: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.94); /* Tabbatar da rubuce-rubuce sun fito sosai sama da background */
+            height: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cert-header {
+            display: grid;
+            grid-template-columns: 58px 1fr 58px;
+            align-items: center;
+            border-bottom: 2px solid #0b2e23;
+            padding-bottom: 6px;
+            margin-bottom: 4px;
+            gap: 6px;
+        }
+
+        .cert-badge-box {
+            width: 58px;
+            height: 72px;
+            border: 1.5px solid #d4af37;
+            border-radius: 4px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: inset 0 0 5px rgba(212, 175, 55, 0.4);
+            justify-self: start;
+        }
+        .cert-badge-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.05) saturate(1.05);
+        }
+
+        .cert-passport-box {
+            width: 58px;
+            height: 72px;
+            border: 2px solid #0b2e23;
+            border-radius: 4px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            color: #555;
+            text-align: center;
+            overflow: hidden;
+            justify-self: end;
+        }
+        .cert-passport-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cert-title-area {
+            text-align: center;
+        }
+        .cert-title-area h2 {
+            margin: 0;
+            font-size: 11px;
+            color: #0b2e23;
+            text-transform: uppercase;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+        .cert-title-area .arabic-school-title {
+            font-size: 11.5px;
+            margin: 1px 0;
+        }
+        .cert-title-area h3 {
+            margin: 0;
+            font-size: 9px;
+            color: #1f2937;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cert-grid-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 10px;
+            margin-bottom: 4px;
+            align-items: center;
+        }
+
+        .cert-field-group label {
+            font-size: 8.5px;
+            font-weight: 800;
+            color: #0b2e23;
+            text-transform: uppercase;
+            margin-bottom: 1px;
+        }
+
+        .cert-field-value {
+            border-bottom: 1.5px dashed #0b2e23;
+            padding: 2px 4px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #111;
+            min-height: 16px;
+            background: rgba(250, 250, 249, 0.9);
+            border-radius: 3px;
+        }
+
+        .cert-section-box {
+            border: 1px solid #d4af37;
+            background: rgba(253, 251, 247, 0.9);
+            border-radius: 4px;
+            padding: 4px 6px;
+            margin-bottom: 4px;
+        }
+        .cert-section-box label {
+            font-size: 8.5px;
+            font-weight: 800;
+            color: #0b2e23;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .cert-sections-options {
+            display: flex;
+            justify-content: space-around;
+            font-size: 10px;
+            font-weight: bold;
+            color: #374151;
+        }
+
+        .cert-rules-box {
+            border: 1px solid #0b2e23;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        .cert-rules-title {
+            background: #0b2e23;
+            color: #d4af37;
+            text-align: center;
+            font-size: 8.5px;
+            font-weight: bold;
+            padding: 3px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cert-rules-content {
+            padding: 4px 6px;
+            font-size: 8.5px;
+            color: #333;
+            line-height: 1.2;
+        }
+        .cert-rules-content div {
+            margin-bottom: 2px;
+        }
+
+        .cert-signatures-area {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr 1.2fr;
+            gap: 6px;
+            margin-top: 2px;
+            align-items: center;
+        }
+
+        .cert-sig-box {
+            text-align: center;
+        }
+        .cert-sig-title {
+            font-size: 8px;
+            font-weight: bold;
+            color: #0b2e23;
+            text-transform: uppercase;
+            margin-bottom: 1px;
+        }
+        .cert-sig-line {
+            border-bottom: 1.5px dashed #0b2e23;
+            height: 16px;
+            font-family: 'Brush Script MT', cursive, serif;
+            font-size: 11px;
+            color: #1e3a8a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cert-date-line {
+            font-size: 7.5px;
+            margin-top: 1px;
+            color: #555;
+        }
+
+        .cert-stamp-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .cert-stamp {
+            width: 40px;
+            height: 40px;
+            border: 1.5px dashed #1e3a8a;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #1e3a8a;
+            font-size: 6.5px;
+            font-weight: bold;
+            transform: rotate(-10deg);
+            text-transform: uppercase;
+            background: rgba(30, 58, 138, 0.03);
+        }
+
+        .cert-footer-motto {
+            text-align: center;
+            font-size: 8.5px;
+            font-weight: bold;
+            color: #0b2e23;
+            margin-top: 4px;
+            padding-top: 3px;
+            border-top: 1px solid #d4af37;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Admin Dashboard & Sidebar Layout */
+        #adminDashboard { display: none; min-height: 100vh; background: #f8fafc; }
+        #adminDashboard.active-page { display: flex; }
+        
         .sidebar {
             width: var(--sidebar-width);
             background: var(--primary);
@@ -340,629 +455,309 @@
             position: fixed;
             height: 100%;
             overflow-y: auto;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 100;
             left: 0;
+            top: 0;
+            z-index: 100;
             box-shadow: 5px 0 25px rgba(0,0,0,0.15);
-            border-right: 1px solid rgba(212, 175, 55, 0.15);
+            transition: left 0.3s ease;
         }
-        .sidebar.mobile-hidden {
-            left: -270px;
-        }
-
-        .sidebar-header {
-            padding: 25px 20px;
-            font-size: 19px;
-            font-weight: bold;
-            background: #030d0a;
-            text-align: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            color: var(--accent);
-            letter-spacing: 0.5px;
+        
+        .sidebar.sidebar-closed {
+            left: calc(var(--sidebar-width) * -1);
         }
 
-        .sidebar-menu {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .sidebar-header { padding: 22px 20px; font-size: 18px; font-weight: bold; background: #030d0a; text-align: center; color: var(--accent); }
+        .sidebar-menu { list-style: none; padding: 0; margin: 0; }
+        .sidebar-menu li { padding: 15px 20px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.03); font-weight: 500; display: flex; align-items: center; gap: 10px; }
+        .sidebar-menu li:hover, .sidebar-menu li.active { background: var(--secondary); border-left: 5px solid var(--accent); color: var(--accent); }
+        
+        .main-content { 
+            margin-left: var(--sidebar-width); 
+            flex: 1; 
+            padding: 30px; 
+            box-sizing: border-box; 
+            transition: margin-left 0.3s ease;
+            width: 100%;
         }
-
-        .sidebar-menu li {
-            padding: 16px 22px;
-            cursor: pointer;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .sidebar-menu li:hover, .sidebar-menu li.active {
-            background: var(--secondary);
-            border-left: 5px solid var(--accent);
-            color: var(--accent);
-            padding-left: 26px;
-        }
-
-        .main-content {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            padding: 35px;
-            box-sizing: border-box;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        
         .main-content.full-width {
             margin-left: 0;
         }
 
-        .top-navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            padding: 18px 30px;
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            margin-bottom: 30px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-
-        .nav-right-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .notification-container {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .notification-bell {
-            font-size: 22px;
-            background: #f3f4f6;
-            border: 1px solid #e5e7eb;
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            color: var(--primary);
-            position: relative;
-        }
-        .notification-bell:hover {
-            background: #e5e7eb;
-            transform: scale(1.05);
-        }
-
-        .notification-badge {
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            background: #ef4444;
-            color: white;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 2px 7px;
-            border-radius: 50%;
-            display: none;
-            box-shadow: 0 2px 5px rgba(239, 68, 68, 0.4);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
-        }
-
-        .notification-dropdown {
-            position: absolute;
-            right: 0;
-            top: 55px;
-            width: 340px;
-            background: white;
-            border-radius: 14px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-            display: none;
-            z-index: 1000;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            overflow: hidden;
-            animation: fadeInScale 0.25s ease;
-        }
-
-        .notification-header {
-            background: var(--primary);
-            color: var(--accent);
-            padding: 15px 18px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .notification-list {
-            max-height: 320px;
-            overflow-y: auto;
-        }
-
-        .notification-item {
-            padding: 14px 18px;
-            border-bottom: 1px solid #f3f4f6;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .notification-item:hover {
-            background: #faf7eb;
-            transform: translateX(3px);
-        }
-        .notification-item.unread {
-            background: #fcf9e8;
-            border-left: 4px solid var(--accent);
-        }
-
-        .menu-toggle {
-            font-size: 24px;
-            cursor: pointer;
-            background: #f3f4f6;
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-            color: var(--primary);
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            padding: 0;
-            transition: all 0.3s ease;
-        }
-        .menu-toggle:hover {
-            background: #e5e7eb;
-        }
-
-        .dash-section {
-            display: none;
-            background: white;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        .dash-section.active-tab {
-            display: block;
-            animation: fadeInScale 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .section-codes-panel {
-            background: #fcfcfc;
-            border: 1px solid #e5e7eb;
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-        }
-
-        .codes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-            gap: 12px;
-            max-height: 250px;
-            overflow-y: auto;
-            padding: 8px;
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-        .code-card {
-            background: white;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1.5px solid #e5e7eb;
-            position: relative;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .code-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(212, 175, 55, 0.15);
-        }
-        .code-card.used {
-            background: #fef2f2;
-            border-color: #fca5a5;
-            color: #991b1b;
-        }
-        .code-card.unused {
-            background: #f0fdf4;
-            border-color: #86efac;
-            color: #166534;
-        }
+        .top-navbar { display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px 25px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); margin-bottom: 25px; }
         
-        .code-card-actions {
-            display: flex;
-            gap: 6px;
-        }
-        .code-card-actions button {
-            margin-top: 0;
-            padding: 5px 8px;
-            font-size: 11px;
-            border-radius: 6px;
-            box-shadow: none;
-            width: auto;
-            flex: 1;
-        }
+        .dash-section { display: none; background: white; padding: 25px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); }
+        .dash-section.active-tab { display: block; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .stat-card { background: #fff; padding: 18px; border-radius: 10px; border: 1px solid #e5e7eb; text-align: center; border-top: 4px solid var(--accent); }
+        .stat-card .stat-value { font-size: 20px; font-weight: bold; color: var(--primary); }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 10px 12px; text-align: left; font-size: 13px; border-bottom: 1px solid #f3f4f6; }
+        th { background-color: var(--primary); color: var(--accent); }
+        tr:hover td { background-color: #faf7eb; cursor: pointer; }
 
-        .section-code-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+        .balloons-container, .confetti-container { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            pointer-events: none; 
+            overflow: hidden; 
+            z-index: 1; 
         }
-        .section-code-buttons button {
-            margin-top: 0;
-            flex: 1;
-            padding: 10px 15px;
-            font-size: 14px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-top: 20px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid #e5e7eb;
-        }
-        th, td {
-            padding: 14px 18px;
-            text-align: left;
-            font-size: 14px;
-        }
-        th {
-            background-color: var(--primary);
-            color: var(--accent);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-        td {
-            border-bottom: 1px solid #f3f4f6;
-            background: #fff;
-        }
-        tr:last-child td {
-            border-bottom: none;
-        }
-        tr:hover td { 
-            background-color: #faf7eb; 
-        }
-
-        .btn-back-section {
-            background: #4b5563;
-            width: auto;
-            padding: 10px 18px;
-            font-size: 14px;
-            margin-bottom: 20px;
-            box-shadow: none;
-        }
-        .btn-back-section:hover {
-            background: #374151;
-            box-shadow: none;
-        }
-
-        #successPage {
-            max-width: 650px;
-            margin: 30px auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .balloons-container, .confetti-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 10;
-        }
-
-        .balloon {
-            position: absolute;
-            bottom: -100px;
-            width: 35px;
-            height: 45px;
-            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-            animation: floatBalloon 4s ease-in infinite;
-        }
-        .balloon::after {
-            content: "";
-            position: absolute;
-            bottom: -8px;
-            left: 15px;
-            width: 2px;
-            height: 12px;
-            background: #888;
-        }
-
-        .confetti {
-            position: absolute;
-            top: -20px;
-            width: 10px;
-            height: 15px;
-            animation: swingConfetti 3s linear infinite;
-        }
-
-        .luxury-form-card {
-            background: #ffffff;
-            border: 2px solid var(--accent);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 15px 40px rgba(6, 26, 20, 0.12);
-            position: relative;
-            z-index: 5;
-            box-sizing: border-box;
-        }
-
-        .luxury-header-title {
-            text-align: center;
-            border-bottom: 2px dashed rgba(212, 175, 55, 0.4);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .luxury-data-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            background: #fdfbf7;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            margin-bottom: 20px;
-        }
-
-        .luxury-field-item {
-            font-size: 14px;
-            color: #374151;
-        }
-        .luxury-field-item span {
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .signatures-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #e5e7eb;
-            text-align: center;
-        }
-
-        .sig-box {
-            font-size: 14px;
-            font-weight: 600;
-            color: #4b5563;
-        }
-
-        .sig-line {
-            margin-top: 10px;
-            border-bottom: 1.5px dashed var(--primary);
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Brush Script MT', cursive, serif;
-            font-size: 20px;
-            color: #1e3a8a;
-        }
+        .balloon { position: absolute; bottom: -100px; width: 30px; height: 40px; border-radius: 50%; animation: floatBalloon 4s ease-in infinite; }
+        .confetti { position: absolute; top: -20px; width: 8px; height: 12px; animation: swingConfetti 3s linear infinite; }
 
         @media (max-width: 768px) {
-            .sidebar {
-                left: -270px;
-            }
-            .sidebar.mobile-show {
-                left: 0;
-            }
-            .main-content {
-                margin-left: 0;
-                padding: 15px;
-            }
-            .luxury-data-grid {
-                grid-template-columns: 1fr;
-            }
+            .sidebar { left: calc(var(--sidebar-width) * -1); }
+            .sidebar.sidebar-mobile-open { left: 0; }
+            .main-content { margin-left: 0; padding: 10px; }
         }
     </style>
 </head>
 <body>
 
 <!-- 1. WELCOME PAGE -->
-<div id="welcomePage" class="page active-page auth-container" style="text-align: center; padding: 40px 25px;">
-    <div class="arabic-school-title" id="arabicTitleTrigger" onclick="handleArabicTitleTap(event)" title="Ka danna sau 5 a jere domin shiga admin">مدرسة مفتاح العلم والدراسات الإسلامية</div>
-    
-    <div style="margin: 30px 0; line-height: 1.6;">
-        <h1 style="font-size: 38px; font-weight: 800; color: var(--primary); letter-spacing: 2px; margin: 0; text-transform: uppercase;">Welcome</h1>
-        <div style="font-size: 20px; font-weight: 700; color: var(--accent); margin: 8px 0; letter-spacing: 3px; text-transform: uppercase;">To</div>
-        <h2 style="font-size: 22px; font-weight: 700; color: var(--secondary); margin: 10px 0; text-transform: uppercase; line-height: 1.4;">Madrasatul Miftahul Ilmi Waddurasatul Islamiyya Hotoro Kano</h2>
-        <div style="font-size: 16px; font-weight: 800; color: #0284c7; letter-spacing: 2px; margin-top: 15px; text-transform: uppercase;">Online Registration</div>
+<div id="welcomePage" class="page active-page auth-container" style="text-align: center; padding: 35px 20px;">
+    <div class="arabic-school-title" id="arabicTitleTrigger" onclick="handleArabicTitleTap(event)" title="Ka danna sau 5 domin shiga admin" style="font-size: 20px; margin-bottom: 10px; color: var(--accent); cursor: pointer;">مدرسة مفتاح العلم والدراسات الإسلامية</div>
+    <div style="margin: 25px 0; line-height: 1.5;">
+        <h1 style="font-size: 28px; font-weight: 800; color: var(--primary); margin: 0;">WELCOME TO</h1>
+        <h2 style="font-size: 18px; font-weight: 700; color: var(--secondary); margin: 8px 0;">Madrasatul Miftahul Ilmi Waddurasatul Islamiyya Hotoro Kano</h2>
+        <div style="font-size: 14px; font-weight: 800; color: #0284c7; margin-top: 12px;">ONLINE REGISTRATION</div>
     </div>
-
-    <button onclick="showPage('rulesPage')" style="background: var(--gold-gradient); font-size: 18px; padding: 16px 24px; margin-top: 15px; border-radius: 12px; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);">Register Now</button>
+    <button onclick="showPage('rulesPage')" style="font-size: 16px; padding: 14px 22px; border-radius: 10px;">Register Now</button>
 </div>
 
 <!-- 2. RULES PAGE -->
-<div id="rulesPage" class="page auth-container" style="max-width: 600px;">
+<div id="rulesPage" class="page auth-container">
     <h2>OUR RULES</h2>
-    <div style="background: #fdfbf7; padding: 20px; max-height: 260px; overflow-y: auto; border-left: 5px solid var(--accent); margin-bottom: 20px; font-size: 14px; line-height: 1.6; border-radius: 0 10px 10px 0; border-top: 1px solid #f3e5ab; border-right: 1px solid #f3e5ab; border-bottom: 1px solid #f3e5ab;">
+    <div style="background: #fdfbf7; padding: 18px; max-height: 240px; overflow-y: auto; border-left: 4px solid var(--accent); margin-bottom: 18px; font-size: 13.5px; line-height: 1.5;">
         <ul>
             <li>Fear Allah in all your actions.</li>
             <li>Be punctual and attend all classes regularly.</li>
             <li>Respect your teachers, parents, and fellow students.</li>
             <li>Wear the prescribed school uniform neatly and modestly.</li>
             <li>Maintain personal hygiene and keep the school environment clean.</li>
-            <li>Speak politely and avoid fighting, bullying, or abusive language.</li>
+            <li>Speak politely and avoid fighting or abusive language.</li>
             <li>Take good care of all school property and facilities.</li>
             <li>Perform your daily prayers and participate actively in Qur'an lessons.</li>
             <li>Complete all assignments and come prepared for every class.</li>
             <li>Be honest, trustworthy, and avoid all forms of cheating.</li>
         </ul>
     </div>
-    <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
-        <input type="checkbox" id="agreeCheck" onclick="toggleNextBtn()" style="width: 22px; height: 22px; accent-color: var(--primary);"> Na karanta kuma na amince da dokokin makarantar
+    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+        <input type="checkbox" id="agreeCheck" onclick="toggleNextBtn()" style="width: 20px; height: 20px; accent-color: var(--primary);"> Na karanta kuma na amince da dokokin makarantar
     </label>
     <button id="rulesNextBtn" style="display: none;" onclick="showPage('registerPage')">Ci Gaba (Next)</button>
-    <button onclick="showPage('welcomePage')" style="background: #4b5563; box-shadow: none;">Baya</button>
+    <button onclick="showPage('welcomePage')" style="background: #4b5563; color: white; box-shadow: none;">Baya</button>
 </div>
 
 <!-- 3. REGISTRATION FORM PAGE -->
-<div id="registerPage" class="page auth-container" style="max-width: 600px;">
-    <h2>Fom din Rajistar Dalibi</h2>
+<div id="registerPage" class="page auth-container" style="max-width: 620px;">
+    <h2>Madrasatul Miftahul Ilmi</h2>
+    <p style="text-align: center; margin: 0 0 18px 0; font-size: 12.5px; color: #4b5563; font-weight: 600;">Waddurasatul Islamiyya Hotoro, Kano State - Fom din Rajista</p>
+
     <form id="regForm" onsubmit="goToCodePage(event)">
-        <div class="form-group"><label>Sunan Dalibi</label><input type="text" id="firstName" required placeholder="Misali: Abubakar"></div>
-        <div class="form-group"><label>Sunan Mahaifi</label><input type="text" id="lastName" required placeholder="Misali: Abdullahi"></div>
-        <div class="form-group"><label>Shekaru</label><input type="number" id="age" required placeholder="20"></div>
-        <div class="form-group"><label>Full Address</label><input type="text" id="address" required placeholder="Hotoro GRA, Kano"></div>
-        <div class="form-group"><label>Lambar Waya</label><input type="text" id="phone" required placeholder="08012345678"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #fdfbf7; padding: 12px 15px; border-radius: 10px; border: 1px solid rgba(212, 175, 55, 0.3); margin-bottom: 18px;">
+            <div style="flex: 1; padding-right: 12px;">
+                <div class="arabic-school-title" style="font-size: 16px; text-align: right;">مدرسة مفتاح العلم والدراسات الإسلامية</div>
+                <div style="font-size: 10.5px; color: #b45309; text-align: right; font-weight: bold; margin-top: 3px;">حطورو كاورو - كنو</div>
+            </div>
+            <div>
+                <label style="margin-bottom: 3px; font-size: 11px;">Hoton Passport *</label>
+                <input type="file" id="passportInput" accept="image/*" required style="padding: 5px; font-size: 11px; width: 145px;">
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group">
+                <label>Sunan Dalibi *</label>
+                <input type="text" id="firstName" required placeholder="Misali: Abubakar">
+            </div>
+            <div class="form-group">
+                <label>Sunan Mahaifi *</label>
+                <input type="text" id="lastName" required placeholder="Misali: Abdullahi">
+            </div>
+        </div>
+
+        <div class="form-grid-2">
+            <div class="form-group">
+                <label>Shekaru (Age) *</label>
+                <input type="number" id="age" required placeholder="Misali: 20">
+            </div>
+            <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="text" id="phone" required placeholder="08012345678">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Address *</label>
+            <input type="text" id="address" required placeholder="Misali: Hotoro GRA, Kano">
+        </div>
         
         <div class="form-group">
-            <label>Zaɓi Sashen Karatu</label>
+            <label>Select Section *</label>
             <input type="hidden" id="sectionSelect" required>
             
             <div class="section-cards-container">
-                <div class="section-card" id="cardONL" onclick="selectSection('ONL', this)">
-                    <div class="section-info">
-                        <div class="section-icon">🌐</div>
-                        <div class="section-text">
-                            <h4>Online Class</h4>
-                            <p>Karatu ta intanet kai tsaye (Rajista ₦1,500)</p>
-                        </div>
-                    </div>
-                    <div class="section-radio-indicator"></div>
-                </div>
-
                 <div class="section-card" id="cardDR" onclick="selectSection('DR', this)">
-                    <div class="section-info">
-                        <div class="section-icon">🌙</div>
-                        <div class="section-text">
-                            <h4>Night Class / Sashen Dare</h4>
-                            <p>Karatu a lokacin dare a makaranta (Rajista ₦1,000)</p>
-                        </div>
-                    </div>
-                    <div class="section-radio-indicator"></div>
+                    <div><strong>Night Class / Sashen Dare</strong><br><small>Karatu a dare (Rajista ₦1,000)</small></div>
+                    <span>🌙</span>
                 </div>
-
+                <div class="section-card" id="cardONL" onclick="selectSection('ONL', this)">
+                    <div><strong>Online Class</strong><br><small>Karatu ta intanet (Rajista ₦1,500)</small></div>
+                    <span>🌐</span>
+                </div>
                 <div class="section-card" id="cardADL" onclick="selectSection('ADL', this)">
-                    <div class="section-info">
-                        <div class="section-icon">🧕</div>
-                        <div class="section-text">
-                            <h4>Married Women Class / Matan Aure</h4>
-                            <p>Sashen musamman na matan aure (Rajista ₦1,500)</p>
-                        </div>
-                    </div>
-                    <div class="section-radio-indicator"></div>
+                    <div><strong>Married Women / Matan Aure</strong><br><small>Sashen matan aure (Rajista ₦1,500)</small></div>
+                    <span>🧕</span>
                 </div>
             </div>
-
-            <div id="feeNote" style="font-size: 13px; font-weight: bold; margin-top: 12px; color: #b91c1c; text-align: center;"></div>
+            <div id="feeNote" style="font-size: 12px; font-weight: bold; margin-top: 8px; color: #b91c1c; text-align: center;"></div>
         </div>
         
         <button type="submit">Yi Register</button>
     </form>
-    <button onclick="showPage('rulesPage')" style="background: #4b5563; box-shadow: none;">Baya</button>
+    <button onclick="showPage('rulesPage')" style="background: #4b5563; color: white; box-shadow: none; margin-top: 8px;">Baya</button>
 </div>
 
 <!-- 4. CONFIRMATION CODE INPUT PAGE -->
 <div id="codePage" class="page auth-container">
     <h2>Confirmation Code</h2>
-    <p style="font-size: 13px; color: #4b5563; margin-bottom: 20px;">Tura kuɗin rajista ga Admin ta WhatsApp domin samun lambar tabbatarwa (Confirmation Code) ta sashen da ka zaɓa.</p>
+    <p style="font-size: 12.5px; color: #4b5563; margin-bottom: 18px;">Tura kuɗin rajista ga Admin ta WhatsApp uchun samun lambar tabbatarwa (Confirmation Code).</p>
     
-    <a id="whatsappLinkBtn" href="https://wa.me/2347056845435?text=Assalamu%20Alaikum%20Admin,%20Ina%20son%20samun%20Confirmation%20Code%20na%20rajista%20ta%20Miftahul%20Ilmi." target="_blank" class="whatsapp-btn">
+    <a id="whatsappLinkBtn" href="https://wa.me/2347056845435?text=Assalamu%20Alaikum%20Admin,%20Ina%20son%20samun%20Confirmation%20Code." target="_blank" class="whatsapp-btn">
         💬 Tuntuɓi Admin a WhatsApp (0705 684 5435)
     </a>
 
-    <div class="form-group" style="margin-top: 25px;">
-        <label>Sanya Code</label>
+    <div class="form-group" style="margin-top: 20px;">
+        <label>Sanya Code *</label>
         <input type="text" id="confCodeInput" required placeholder="Misali: onl478jr7 ko dr921ab3">
     </div>
     <button onclick="submitRegistration()">Kammala Rajista</button>
-    <button onclick="showPage('registerPage')" style="background: #4b5563; box-shadow: none;">Baya</button>
+    <button onclick="showPage('registerPage')" style="background: #4b5563; color: white; box-shadow: none;">Baya</button>
 </div>
 
-<!-- 5. SUCCESS FULL LUXURY FORM PAGE -->
-<div id="successPage" class="page">
+<!-- 5. SUCCESS FULL CERTIFICATE/FORM PAGE -->
+<div id="successPage" class="page" style="position: relative; z-index: 5;">
     <div class="balloons-container" id="balloonsContainer"></div>
     <div class="confetti-container" id="confettiContainer"></div>
 
-    <div class="luxury-form-card" id="printableFormCard">
-        <h2 style="color: var(--accent); margin-bottom: 5px;">🎉 Congratulations! 🎉</h2>
-        <div class="arabic-school-title" style="font-size: 20px;">مدرسة مفتاح العلم والدراسات الإسلامية</div>
-        <div class="luxury-header-title">
-            <h3 style="margin: 0; color: var(--primary);">Miftahul Ilmi Waddurasatul Islamiyya</h3>
-            <p style="margin: 5px 0 0 0; font-size: 13px; color: #4b5563;">Hotoro GRA, Kano State - Cikakken Fom din Rajistar Dalibi</p>
-        </div>
-
-        <div class="luxury-data-grid">
-            <div class="luxury-field-item">User ID: <span id="formCardUserId"></span></div>
-            <div class="luxury-field-item">Ranar Rajista: <span id="formCardDate"></span></div>
-            <div class="luxury-field-item">Sunan Farko: <span id="formCardFirstName"></span></div>
-            <div class="luxury-field-item">Sunan Mahaifi: <span id="formCardLastName"></span></div>
-            <div class="luxury-field-item">Shekaru: <span id="formCardAge"></span></div>
-            <div class="luxury-field-item">Lambar Waya: <span id="formCardPhone"></span></div>
-            <div class="luxury-field-item" style="grid-column: span 2;">Full Address: <span id="formCardAddress"></span></div>
-            <div class="luxury-field-item" style="grid-column: span 2;">Sashen Karatu: <span id="formCardSection"></span></div>
-        </div>
-
-        <div class="signatures-grid">
-            <div class="sig-box">
-                Sa Hannun Management
-                <div class="sig-line">Miftahul Admin</div>
+    <div class="official-certificate-card" id="printableFormCard">
+        <div class="cert-outer-border">
+            
+            <div class="cert-header">
+                <div class="cert-badge-box" id="formCardBadgeBox">
+                    <img src="hoto.jp" alt="Badge" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\'font-size:9px; text-align:center; color:#b45309; font-weight:bold;\'>BADGE</span>';">
+                </div>
+                <div class="cert-title-area">
+                    <h2>Madrasatul Miftahul Ilmi Waddurasatul Islamiyya</h2>
+                    <div class="arabic-school-title">مدرسة مفتاح العلم والدراسات الإسلامية</div>
+                    <h3>Hotoro Kano State</h3>
+                </div>
+                <div class="cert-passport-box" id="formCardPassportBox">PHOTO</div>
             </div>
-            <div class="sig-box">
-                Sa Hannun Dalibi
-                <div class="sig-line" id="studentSigLine">Student Sign</div>
+
+            <div class="cert-grid-row">
+                <div class="cert-field-group">
+                    <label>Sunan Dalibi:</label>
+                    <div class="cert-field-value" id="formCardFirstName"></div>
+                </div>
+                <div class="cert-field-group">
+                    <label>Sunan Mahaifi:</label>
+                    <div class="cert-field-value" id="formCardLastName"></div>
+                </div>
             </div>
+
+            <div class="cert-grid-row">
+                <div class="cert-field-group">
+                    <label>Student ID:</label>
+                    <div class="cert-field-value" id="formCardUserId" style="color: #0b2e23; font-weight: bold;"></div>
+                </div>
+                <div class="cert-field-group">
+                    <label>Phone Number:</label>
+                    <div class="cert-field-value" id="formCardPhone"></div>
+                </div>
+            </div>
+
+            <div class="cert-grid-row" style="margin-bottom: 2px;">
+                <div class="cert-section-box" style="margin-bottom: 0;">
+                    <label>Select Section:</label>
+                    <div class="cert-sections-options">
+                        <div><span id="chkDr">🔲</span> DARE</div>
+                        <div><span id="chkOnl">🔲</span> ONLINE</div>
+                        <div><span id="chkAdl">🔲</span> ADULT</div>
+                    </div>
+                </div>
+                <div class="cert-field-group" style="margin-bottom: 0;">
+                    <label>Address:</label>
+                    <div class="cert-field-value" id="formCardAddress" style="height: 25px; overflow: hidden;"></div>
+                </div>
+            </div>
+
+            <div class="cert-rules-box">
+                <div class="cert-rules-title">Sashen Cike Dokar Makaranta</div>
+                <div class="cert-rules-content">
+                    <div>☑ Na karanta kuma na fahimci dokokin makaranta.</div>
+                    <div>☑ Na amince da bin dokokin makaranta.</div>
+                    <div>☑ Na amince da hukuncin karya doka.</div>
+                </div>
+            </div>
+
+            <div class="cert-signatures-area">
+                <div class="cert-sig-box">
+                    <div class="cert-sig-title">Student Sign</div>
+                    <div class="cert-sig-line" id="studentSigLine">Sign</div>
+                    <div class="cert-date-line">DATE: <span id="formCardDate1">--/--/--</span></div>
+                </div>
+
+                <div class="cert-stamp-container">
+                    <div class="cert-stamp">
+                        <span>Miftahul</span>
+                        <span>Official</span>
+                        <span>Stamp</span>
+                    </div>
+                </div>
+
+                <div class="cert-sig-box">
+                    <div class="cert-sig-title">Management Sign</div>
+                    <div class="cert-sig-line">Miftahul Admin</div>
+                    <div class="cert-date-line">DATE: <span id="formCardDate2">--/--/--</span></div>
+                </div>
+            </div>
+
+            <div class="cert-footer-motto">ILMI &bull; IMANI &bull; IHSANI</div>
         </div>
     </div>
 
-    <div style="max-width: 650px; margin: 20px auto 0 auto; display: flex; gap: 12px; flex-wrap: wrap;">
-        <button onclick="downloadFormAsImage()" style="background: #0284c7; flex: 1; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);">📥 Save Form a Waya (Download)</button>
+    <div style="max-width: 540px; margin: 12px auto 0 auto; display: flex; gap: 10px; flex-wrap: wrap; position: relative; z-index: 10;">
+        <button onclick="downloadFormAsImage()" style="background: #0284c7; color:white; flex: 1; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);">📥 Save Form a Waya (Download)</button>
         <a id="whatsappSendBtn" href="#" target="_blank" class="whatsapp-btn" style="flex: 1; margin: 0; text-decoration: none;">💬 Turawa Admin WhatsApp</a>
     </div>
-    <div style="text-align: center; margin-top: 15px;">
-        <button onclick="showPage('welcomePage')" style="background: #4b5563; width: auto; padding: 10px 25px; box-shadow: none;">Kammala / Komawa Gida</button>
+    <div style="text-align: center; margin-top: 10px; position: relative; z-index: 10;">
+        <button onclick="showPage('welcomePage')" style="background: #4b5563; color: white; width: auto; padding: 8px 22px; box-shadow: none;">Kammala / Komawa Gida</button>
     </div>
 </div>
 
 <!-- 6. ADMIN PIN & LOGIN PAGES -->
 <div id="pinPage" class="page auth-container">
     <h2>Admin Security PIN</h2>
-    <div class="form-group"><label>Sanya 6-Digit PIN</label><input type="password" id="adminPin" maxlength="6" placeholder="******" value=""></div>
+    <div class="form-group"><label>Sanya 6-Digit PIN *</label><input type="password" id="adminPin" maxlength="6" placeholder="******" required></div>
     <button onclick="verifyAdminPin()">Shiga</button>
-    <button onclick="showPage('welcomePage')" style="background: #4b5563; box-shadow: none;">Soke</button>
+    <button onclick="showPage('welcomePage')" style="background: #4b5563; color: white; box-shadow: none;">Soke</button>
 </div>
 
 <div id="loginPage" class="page auth-container">
     <h2>Admin Login</h2>
-    <div class="form-group"><label>Username</label><input type="text" id="adminUser" placeholder="Sanya username" value=""></div>
-    <div class="form-group"><label>Password</label><input type="password" id="adminPass" placeholder="Sanya password" value=""></div>
+    <div class="form-group"><label>Username *</label><input type="text" id="adminUser" placeholder="Username" required></div>
+    <div class="form-group"><label>Password *</label><input type="password" id="adminPass" placeholder="Password" required></div>
     <button onclick="verifyAdminLogin()">Login</button>
-    <button onclick="showPage('welcomePage')" style="background: #4b5563; box-shadow: none;">Soke</button>
+    <button onclick="showPage('welcomePage')" style="background: #4b5563; color: white; box-shadow: none;">Soke</button>
 </div>
-
 
 <!-- 7. FULL ADMIN DASHBOARD -->
 <div id="adminDashboard" class="page">
@@ -971,129 +766,213 @@
         <ul class="sidebar-menu">
             <li onclick="switchTab('tabOverview', this)" class="active">📊 Overview & Stats</li>
             <li onclick="switchTab('tabCodes', this)">🔑 Confirmation Codes</li>
-            <li onclick="switchTab('tabStudents', this)">👥 All Students & Sections</li>
-            <li onclick="switchTab('tabSettings', this)">⚙️ Settings & Credentials</li>
-            <li onclick="showPage('welcomePage')" style="color: #fca5a5; margin-top: 30px;">🚪 Logout</li>
+            <li onclick="switchTab('tabStudents', this)">👥 All Students</li>
+            <li onclick="switchTab('tabForms', this)">📄 Forms</li>
+            <li onclick="showPage('welcomePage')" style="color: #fca5a5; margin-top: 25px;">🚪 Logout</li>
         </ul>
     </div>
 
     <div class="main-content" id="mainContentArea">
         <div class="top-navbar">
-            <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+            <button onclick="toggleSidebar()" style="background: #f3f4f6; border: 1px solid #ccc; width:40px; height:40px; border-radius:8px; cursor:pointer; position:relative; z-index:10;">☰</button>
             <h3 style="margin: 0; color: var(--primary);">Dashboard Panel</h3>
-            
-            <div class="nav-right-actions">
-                <div class="notification-container">
-                    <button class="notification-bell" onclick="toggleNotifications(event)">
-                        🔔 <span class="notification-badge" id="notificationBadge">0</span>
-                    </button>
-                    <div class="notification-dropdown" id="notificationDropdown" onclick="event.stopPropagation()">
-                        <div class="notification-header">
-                            <span>Sabuwar Sako (Registrations)</span>
-                            <span style="font-size: 11px; cursor: pointer; text-decoration: underline;" onclick="markAllNotificationsRead()">Mark all read</span>
-                        </div>
-                        <div class="notification-list" id="notificationListContainer">
-                            <div style="padding: 15px; text-align: center; color: #777; font-size: 13px;">Babu sabon sako</div>
-                        </div>
-                    </div>
-                </div>
-
-                <span id="adminWelcomeUser" style="font-weight: bold; color: var(--primary);"></span>
-            </div>
+            <span id="adminWelcomeUser" style="font-weight: bold; color: var(--primary);"></span>
         </div>
 
         <div id="tabOverview" class="dash-section active-tab">
-            <h2>Binciken Dalibi (Search System)</h2>
-            <div class="form-group">
-                <input type="text" id="liveSearchInput" onkeyup="performLiveSearch()" placeholder="Search da User ID (misali MIF...) ko Sunan Dalibi...">
+            <h2>Financial & Revenue Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-card"><h4>Jimillar Dalibai</h4><div class="stat-value" id="statTotalStudents">0</div></div>
+                <div class="stat-card"><h4>Jimillar Kudin Rajista</h4><div class="stat-value" id="statTotalRevenue">₦0</div></div>
             </div>
-            <div id="searchDashboardResult" style="margin-top: 15px;"></div>
+            <h2>Search System</h2>
+            <input type="text" id="liveSearchInput" onkeyup="performLiveSearch()" placeholder="Search da Student ID ko Suna...">
+            <div id="searchDashboardResult" style="margin-top: 12px;"></div>
         </div>
 
+        <!-- CODES TAB -->
         <div id="tabCodes" class="dash-section">
-            <button class="btn-back-section" onclick="switchTab('tabOverview', document.querySelector('.sidebar-menu li'))">⬅️ Baya (Back)</button>
-            <h2>Sarrafa Confirmation Codes (Raba bisa Sashe)</h2>
-            <p style="font-size: 13px; color: #4b5563; margin-bottom: 20px;">Kowanne sashe yana da nasa engine mai zaman kansa, baturi guda 10, da maɓallan sarrafa su musamman.</p>
-            
-            <!-- NIGHT CLASS PANEL -->
-            <div class="section-codes-panel" style="border-top: 4px solid #8b5cf6;">
-                <h3 style="text-align: left; margin-top: 0; color: #7c3aed; display: flex; justify-content: space-between; align-items: center;">
-                    <span>🌙 Night Class / Sashen Dare Codes</span>
-                    <span id="countCodesDr" style="font-size: 13px; background: #f5f3ff; padding: 4px 10px; border-radius: 6px; color: #7c3aed;">0 codes</span>
-                </h3>
-                <div class="codes-grid" id="codesGridDR"></div>
-                <div class="section-code-buttons">
-                    <button onclick="generateCodesForSection('DR')" style="background: #7c3aed; color: white;">⚡ Generate Dare Codes (10)</button>
-                    <button onclick="copySectionCodes('DR')" style="background: #0284c7; color: white;">📋 Copy All Dare</button>
-                    <button onclick="deleteSectionCodes('DR')" style="background: #dc2626; color: white;">🗑️ Delete All Dare</button>
-                </div>
-            </div>
+            <h2>Sarrafa Confirmation Codes</h2>
+            <p style="font-size: 13px; color: #555; margin-bottom: 20px;">Kowanne sashe yana da nasa engine mai zaman kansa, baturi guda 10, da maɓallan sarrafa su musamman.</p>
 
-            <!-- ONLINE CLASS PANEL -->
-            <div class="section-codes-panel" style="border-top: 4px solid #3b82f6;">
-                <h3 style="text-align: left; margin-top: 0; color: #2563eb; display: flex; justify-content: space-between; align-items: center;">
-                    <span>🌐 Online Class Codes</span>
-                    <span id="countCodesOnl" style="font-size: 13px; background: #eff6ff; padding: 4px 10px; border-radius: 6px; color: #2563eb;">0 codes</span>
-                </h3>
-                <div class="codes-grid" id="codesGridONL"></div>
-                <div class="section-code-buttons">
-                    <button onclick="generateCodesForSection('ONL')" style="background: #2563eb; color: white;">⚡ Generate Online Codes (10)</button>
-                    <button onclick="copySectionCodes('ONL')" style="background: #0284c7; color: white;">📋 Copy All Online</button>
-                    <button onclick="deleteSectionCodes('ONL')" style="background: #dc2626; color: white;">🗑️ Delete All Online</button>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                
+                <!-- DARE ENGINE -->
+                <div style="background: #faf7eb; border: 2px solid #d4af37; border-radius: 12px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 style="color: #7c3aed; margin: 0; font-size: 15px;">🌙 Night Class / Sashen Dare Codes</h3>
+                            <span id="countBadgeDR" style="background: #ede9fe; color: #7c3aed; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;">0 codes</span>
+                        </div>
+                        <div style="max-height: 220px; overflow-y: auto; background: transparent; padding-right: 4px;" id="listEngineDR"></div>
+                    </div>
+                    <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 6px;">
+                        <button onclick="generateCodesForSection('DR')" style="background: #7c3aed; color:white; margin:0; padding:10px;">⚡ Generate Dare Codes (10)</button>
+                        <button onclick="copyAllCodes('DR')" style="background: #0284c7; color:white; margin:0; padding:10px;">📋 Copy All Dare</button>
+                        <button onclick="deleteAllCodes('DR')" style="background: #dc2626; color:white; margin:0; padding:10px;">🗑️ Delete All Dare</button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- ADULT / MARRIED WOMEN PANEL -->
-            <div class="section-codes-panel" style="border-top: 4px solid #ec4899;">
-                <h3 style="text-align: left; margin-top: 0; color: #db2777; display: flex; justify-content: space-between; align-items: center;">
-                    <span>🧕 Married Women / Adult Class Codes</span>
-                    <span id="countCodesAdl" style="font-size: 13px; background: #fdf2f8; padding: 4px 10px; border-radius: 6px; color: #db2777;">0 codes</span>
-                </h3>
-                <div class="codes-grid" id="codesGridADL"></div>
-                <div class="section-code-buttons">
-                    <button onclick="generateCodesForSection('ADL')" style="background: #db2777; color: white;">⚡ Generate Adult Codes (10)</button>
-                    <button onclick="copySectionCodes('ADL')" style="background: #0284c7; color: white;">📋 Copy All Adult</button>
-                    <button onclick="deleteSectionCodes('ADL')" style="background: #dc2626; color: white;">🗑️ Delete All Adult</button>
+                <!-- ONLINE ENGINE -->
+                <div style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 12px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 style="color: #16a34a; margin: 0; font-size: 15px;">🌐 Online Class Codes</h3>
+                            <span id="countBadgeONL" style="background: #dcfce7; color: #16a34a; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;">0 codes</span>
+                        </div>
+                        <div style="max-height: 220px; overflow-y: auto; background: transparent; padding-right: 4px;" id="listEngineONL"></div>
+                    </div>
+                    <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 6px;">
+                        <button onclick="generateCodesForSection('ONL')" style="background: #16a34a; color:white; margin:0; padding:10px;">⚡ Generate Online Codes (10)</button>
+                        <button onclick="copyAllCodes('ONL')" style="background: #0284c7; color:white; margin:0; padding:10px;">📋 Copy All Online</button>
+                        <button onclick="deleteAllCodes('ONL')" style="background: #dc2626; color:white; margin:0; padding:10px;">🗑️ Delete All Online</button>
+                    </div>
                 </div>
+
+                <!-- ADULT ENGINE -->
+                <div style="background: #fdf2f8; border: 2px solid #db2777; border-radius: 12px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 style="color: #db2777; margin: 0; font-size: 15px;">🧕 Adult / Married Women</h3>
+                            <span id="countBadgeADL" style="background: #fce7f3; color: #db2777; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;">0 codes</span>
+                        </div>
+                        <div style="max-height: 220px; overflow-y: auto; background: transparent; padding-right: 4px;" id="listEngineADL"></div>
+                    </div>
+                    <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 6px;">
+                        <button onclick="generateCodesForSection('ADL')" style="background: #db2777; color:white; margin:0; padding:10px;">⚡ Generate Adult Codes (10)</button>
+                        <button onclick="copyAllCodes('ADL')" style="background: #0284c7; color:white; margin:0; padding:10px;">📋 Copy All Adult</button>
+                        <button onclick="deleteAllCodes('ADL')" style="background: #dc2626; color:white; margin:0; padding:10px;">🗑️ Delete All Adult</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
+        <!-- STUDENTS TAB -->
         <div id="tabStudents" class="dash-section">
-            <button class="btn-back-section" onclick="switchTab('tabOverview', document.querySelector('.sidebar-menu li'))">⬅️ Baya (Back)</button>
-            <h2>Sashen Dalibai (Students Categories)</h2>
-            <div style="display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
-                <button onclick="filterStudentSection('ALL')" style="background: #374151; width: auto; box-shadow: none;">Dukka (Total)</button>
-                <button onclick="filterStudentSection('ONL')" style="background: #2563eb; width: auto; box-shadow: none;">Online Section (<span id="countOnl">0</span>)</button>
-                <button onclick="filterStudentSection('DR')" style="background: #7c3aed; width: auto; box-shadow: none;">Night Section (<span id="countDr">0</span>)</button>
-                <button onclick="filterStudentSection('ADL')" style="background: #db2777; width: auto; box-shadow: none;">Adult/Married (<span id="countAdl">0</span>)</button>
+            <h2>All Students Management</h2>
+            <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
+                <button onclick="filterStudentTab('ALL', this)" class="student-filter-btn" style="width: auto; background: var(--primary); color: var(--accent); padding: 8px 16px; margin:0;">All</button>
+                <button onclick="filterStudentTab('ONL', this)" class="student-filter-btn" style="width: auto; background: #e5e7eb; color: #374151; padding: 8px 16px; margin:0;">Online</button>
+                <button onclick="filterStudentTab('DR', this)" class="student-filter-btn" style="width: auto; background: #e5e7eb; color: #374151; padding: 8px 16px; margin:0;">Dare</button>
+                <button onclick="filterStudentTab('ADL', this)" class="student-filter-btn" style="width: auto; background: #e5e7eb; color: #374151; padding: 8px 16px; margin:0;">Adult</button>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="studentSearchInput" onkeyup="renderFilteredStudents()" placeholder="Search da Student ID ko Suna...">
             </div>
             <div id="studentTableContainer"></div>
         </div>
 
-        <div id="tabSettings" class="dash-section">
-            <button class="btn-back-section" onclick="switchTab('tabOverview', document.querySelector('.sidebar-menu li'))">⬅️ Baya (Back)</button>
-            <h2>Canja Bayanan Admin (Credentials)</h2>
-            <div class="form-group">
-                <label>Sabon Username</label>
-                <input type="text" id="newAdminUser" placeholder="Saka sabon username">
+        <!-- FORMS TAB -->
+        <div id="tabForms" class="dash-section">
+            <h2>Successful Registration Forms</h2>
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="formsSearchInput" onkeyup="renderFormsList()" placeholder="Search da Student ID ko Suna domin ganin fom...">
             </div>
-            <div class="form-group">
-                <label>Sabon Password</label>
-                <input type="password" id="newAdminPass" placeholder="Saka sabon password">
-            </div>
-            <button onclick="updateAdminCredentials()" style="background: var(--gold-gradient);">Adana Canji (Save Changes)</button>
+            <div id="formsListContainer"></div>
         </div>
     </div>
 </div>
 
-<!-- SINGLE STUDENT DETAILS MODAL -->
-<div id="studentModal" class="page" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); backdrop-filter: blur(4px); z-index:1000; display:none; justify-content:center; align-items:center;">
-    <div style="background:white; padding:35px; border-radius:16px; width:90%; max-width:500px; position:relative; border: 1px solid rgba(212, 175, 55, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.2); animation: fadeInScale 0.3s ease;">
-        <h3 style="color: var(--primary);">Cikakkun Bayanan Dalibi</h3>
-        <div id="modalStudentDetails" style="margin: 20px 0; line-height: 1.6;"></div>
+<!-- MODAL FOR SHORT DETAILS -->
+<div id="studentModal" class="page" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000; display:none; justify-content:center; align-items:center; overflow-y:auto; padding:15px;">
+    <div style="background:#fff; border-radius:12px; padding:25px; max-width:400px; width:100%; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
+        <h3 style="margin-top:0; color:var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 10px;">Cikakken Bayanin Dalibi</h3>
+        <div style="margin: 15px 0; font-size: 14px; line-height: 1.8;">
+            <div><strong>Student ID:</strong> <span id="modalStudentId" style="color:#0b2e23; font-weight:bold;"></span></div>
+            <div><strong>Name:</strong> <span id="modalStudentName"></span></div>
+            <div><strong>Section:</strong> <span id="modalStudentSection" style="color:#b45309; font-weight:bold;"></span></div>
+        </div>
         <div style="display: flex; gap: 10px; margin-top: 20px;">
-            <button id="modalDeleteBtn" onclick="" style="background:#dc2626; color:white; box-shadow:none; flex:1; margin-top:0;">Goge Wannan Dalibin</button>
-            <button onclick="closeStudentModal()" style="background:#4b5563; box-shadow:none; flex:1; margin-top:0;">Rufe (Close)</button>
+            <button onclick="deleteCurrentStudent()" style="background:#dc2626; color:white; box-shadow:none; margin:0; flex:1;">🗑️ Delete</button>
+            <button onclick="closeStudentModal()" style="background:#4b5563; color:white; box-shadow:none; margin:0; flex:1;">❌ Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL FOR VIEWING FULL CERTIFICATE/FORM -->
+<div id="formViewModal" class="page" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:1000; display:none; justify-content:center; align-items:center; overflow-y:auto; padding:15px;">
+    <div style="background:#fdfbf7; border-radius:12px; padding:15px; max-width:520px; width:100%; box-shadow: 0 15px 35px rgba(0,0,0,0.3); position:relative;">
+        <div class="official-certificate-card" id="adminPrintableFormCard" style="margin:0 auto; width:100%;">
+            <div class="cert-outer-border">
+                <div class="cert-header">
+                    <div class="cert-badge-box" id="adminFormBadgeBox">
+                        <img src="hoto.jp" alt="Badge" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\'font-size:9px; text-align:center; color:#b45309; font-weight:bold;\'>BADGE</span>';">
+                    </div>
+                    <div class="cert-title-area">
+                        <h2>Madrasatul Miftahul Ilmi Waddurasatul Islamiyya</h2>
+                        <div class="arabic-school-title">مدرسة مفتاح العلم والدراسات الإسلامية</div>
+                        <h3>Hotoro Kano State</h3>
+                    </div>
+                    <div class="cert-passport-box" id="adminFormPassportBox">PHOTO</div>
+                </div>
+                <div class="cert-grid-row">
+                    <div class="cert-field-group">
+                        <label>Sunan Dalibi:</label>
+                        <div class="cert-field-value" id="adminFormFirstName"></div>
+                    </div>
+                    <div class="cert-field-group">
+                        <label>Sunan Mahaifi:</label>
+                        <div class="cert-field-value" id="adminFormLastName"></div>
+                    </div>
+                </div>
+                <div class="cert-grid-row">
+                    <div class="cert-field-group">
+                        <label>Student ID:</label>
+                        <div class="cert-field-value" id="adminFormUserId" style="color: #0b2e23; font-weight: bold;"></div>
+                    </div>
+                    <div class="cert-field-group">
+                        <label>Phone Number:</label>
+                        <div class="cert-field-value" id="adminFormPhone"></div>
+                    </div>
+                </div>
+                <div class="cert-grid-row" style="margin-bottom: 2px;">
+                    <div class="cert-section-box" style="margin-bottom: 0;">
+                        <label>Select Section:</label>
+                        <div class="cert-sections-options">
+                            <div><span id="adminChkDr">🔲</span> DARE</div>
+                            <div><span id="adminChkOnl">🔲</span> ONLINE</div>
+                            <div><span id="adminChkAdl">🔲</span> ADULT</div>
+                        </div>
+                    </div>
+                    <div class="cert-field-group" style="margin-bottom: 0;">
+                        <label>Address:</label>
+                        <div class="cert-field-value" id="adminFormAddress" style="height: 25px; overflow: hidden;"></div>
+                    </div>
+                </div>
+                <div class="cert-rules-box">
+                    <div class="cert-rules-title">Sashen Cike Dokar Makaranta</div>
+                    <div class="cert-rules-content">
+                        <div>☑ Na karanta kuma na fahimci dokokin makaranta.</div>
+                        <div>☑ Na amince da bin dokokin makaranta.</div>
+                        <div>☑ Na amince da hukuncin karya doka.</div>
+                    </div>
+                </div>
+                <div class="cert-signatures-area">
+                    <div class="cert-sig-box">
+                        <div class="cert-sig-title">Student Sign</div>
+                        <div class="cert-sig-line" id="adminStudentSigLine">Sign</div>
+                        <div class="cert-date-line">DATE: <span id="adminFormDate1">--/--/--</span></div>
+                    </div>
+                    <div class="cert-stamp-container">
+                        <div class="cert-stamp">
+                            <span>Miftahul</span>
+                            <span>Official</span>
+                            <span>Stamp</span>
+                        </div>
+                    </div>
+                    <div class="cert-sig-box">
+                        <div class="cert-sig-title">Management Sign</div>
+                        <div class="cert-sig-line">Miftahul Admin</div>
+                        <div class="cert-date-line">DATE: <span id="adminFormDate2">--/--/--</span></div>
+                    </div>
+                </div>
+                <div class="cert-footer-motto">ILMI &bull; IMANI &bull; IHSANI</div>
+            </div>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <button onclick="downloadAdminFormImage()" style="background:#0284c7; color:white; box-shadow:none; margin:0; flex:1;">📥 Save Fom ɗin</button>
+            <button onclick="closeAdminFormModal()" style="background:#4b5563; color:white; box-shadow:none; margin:0; flex:1;">❌ Close</button>
         </div>
     </div>
 </div>
@@ -1101,47 +980,35 @@
 <script>
     if (!localStorage.getItem('db_codes')) localStorage.setItem('db_codes', JSON.stringify([]));
     if (!localStorage.getItem('db_students')) localStorage.setItem('db_students', JSON.stringify([]));
-    if (!localStorage.getItem('db_notifications')) localStorage.setItem('db_notifications', JSON.stringify([]));
-    
     if (!localStorage.getItem('admin_user')) localStorage.setItem('admin_user', 'Sirdique');
     if (!localStorage.getItem('admin_pass')) localStorage.setItem('admin_pass', '9781place');
 
-    let arabicTapCount = 0;
-    let arabicTapTimer = null;
+    let arabicTapCount = 0, arabicTapTimer = null, tempPassportBase64 = '', currentActiveFilter = 'ALL', selectedModalUserId = null;
 
-    function handleArabicTitleTap(event) {
+    document.getElementById('passportInput').addEventListener('change', function(e) {
+        let file = e.target.files[0];
+        if(file) {
+            let reader = new FileReader();
+            reader.onload = function(event) { tempPassportBase64 = event.target.result; };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function handleArabicTitleTap(e) {
         arabicTapCount++;
-        if (arabicTapTimer) clearTimeout(arabicTapTimer);
-
-        if (arabicTapCount === 5) {
+        if(arabicTapTimer) clearTimeout(arabicTapTimer);
+        if(arabicTapCount === 5) {
             arabicTapCount = 0;
-            document.getElementById('adminPin').value = '';
             showPage('pinPage');
         } else {
             arabicTapTimer = setTimeout(() => { arabicTapCount = 0; }, 800);
         }
     }
 
-    window.onclick = function(event) {
-        if (!event.target.closest('.notification-container')) {
-            let dropdown = document.getElementById('notificationDropdown');
-            if(dropdown) dropdown.style.display = 'none';
-        }
-    };
-
     function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(p => {
-            if(p.id !== 'studentModal') p.classList.remove('active-page');
+        document.querySelectorAll('.page').forEach(p => { 
+            if(p.id !== 'studentModal' && p.id !== 'formViewModal') p.classList.remove('active-page'); 
         });
-        
-        if(pageId === 'loginPage') {
-            document.getElementById('adminUser').value = '';
-            document.getElementById('adminPass').value = '';
-        }
-        if(pageId === 'pinPage') {
-            document.getElementById('adminPin').value = '';
-        }
-
         document.getElementById(pageId).classList.add('active-page');
         if(pageId === 'adminDashboard') loadDashboardData();
         if(pageId === 'successPage') startBalloonsAndConfetti();
@@ -1150,35 +1017,28 @@
     function switchTab(tabId, el) {
         document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active-tab'));
         document.querySelectorAll('.sidebar-menu li').forEach(l => l.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active-tab');
+        
+        let targetTab = document.getElementById(tabId);
+        if(targetTab) targetTab.classList.add('active-tab');
         if(el) el.classList.add('active');
-        loadDashboardData();
-
-        const sidebar = document.getElementById('appSidebar');
-        const mainContent = document.getElementById('mainContentArea');
-        if (window.innerWidth > 768) {
-            sidebar.classList.toggle('mobile-hidden');
-            mainContent.classList.toggle('full-width');
-        } else {
-            sidebar.classList.remove('mobile-show');
+        
+        if (window.innerWidth <= 768) {
+            let sidebar = document.getElementById('appSidebar');
+            sidebar.classList.remove('sidebar-mobile-open');
         }
+        loadDashboardData();
     }
 
     function toggleSidebar() {
-        const sidebar = document.getElementById('appSidebar');
-        const mainContent = document.getElementById('mainContentArea');
-        if (window.innerWidth > 768) {
-            sidebar.classList.toggle('mobile-hidden');
-            mainContent.classList.toggle('full-width');
+        let sidebar = document.getElementById('appSidebar');
+        let mainContent = document.getElementById('mainContentArea');
+        
+        if (window.innerWidth <= 768) {
+            sidebar.classList.toggle('sidebar-mobile-open');
         } else {
-            sidebar.classList.toggle('mobile-show');
+            sidebar.classList.toggle('sidebar-closed');
+            mainContent.classList.toggle('full-width');
         }
-    }
-
-    function toggleNotifications(e) {
-        e.stopPropagation();
-        let dropdown = document.getElementById('notificationDropdown');
-        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
     }
 
     function toggleNextBtn() {
@@ -1187,144 +1047,111 @@
 
     function selectSection(secValue, cardElement) {
         document.getElementById('sectionSelect').value = secValue;
-
-        document.querySelectorAll('.section-card').forEach(c => {
-            c.classList.remove('selected-online', 'selected-night', 'selected-married');
-        });
-
-        if(secValue === 'ONL') cardElement.classList.add('selected-online');
-        else if(secValue === 'DR') cardElement.classList.add('selected-night');
-        else if(secValue === 'ADL') cardElement.classList.add('selected-married');
-
+        document.querySelectorAll('.section-card').forEach(c => c.classList.remove('selected'));
+        cardElement.classList.add('selected');
+        
         let note = document.getElementById('feeNote');
         let firstName = document.getElementById('firstName').value || 'Dalibi';
-        let whatsappMsg = `Assalamu Alaikum Admin, Na kammala cike fom din rajista na Miftahul Ilmi. Sunana ${firstName}, kuma na zabi sashen ${secValue}. Ina son samun Confirmation Code na.`;
+        let whatsappMsg = `Assalamu Alaikum Admin, Sunana ${firstName}, na zabi sashen ${secValue}. Ina son samun Confirmation Code.`;
         document.getElementById('whatsappLinkBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(whatsappMsg)}`;
 
-        if(secValue === 'ONL') note.innerText = '✨ Online Class: Rajista ₦1,500 | Wata-wata ₦1,000';
-        else if(secValue === 'DR') note.innerText = '🌙 Night Class / Sashen Dare: Rajista ₦1,000 | Wata-wata ₦300';
-        else if(secValue === 'ADL') note.innerText = '🧕 Married Women Class / Matan Aure: Rajista ₦1,500 | Wata-wata ₦1,000';
-        else note.innerText = '';
+        if(secValue === 'ONL') note.innerText = '✨ Online Class: Rajista ₦1,500';
+        else if(secValue === 'DR') note.innerText = '🌙 Night Class: Rajista ₦1,000';
+        else if(secValue === 'ADL') note.innerText = '🧕 Married Women: Rajista ₦1,500';
     }
 
     function goToCodePage(e) {
         e.preventDefault();
-        let sec = document.getElementById('sectionSelect').value;
-        if(!sec) {
+        
+        if(!tempPassportBase64) {
+            alert('Don Allah ka zabi hoton passport tukuna!');
+            return;
+        }
+        
+        if(!document.getElementById('sectionSelect').value) {
             alert('Don Allah ka zaɓi sashen karatu!');
             return;
         }
-        let firstName = document.getElementById('firstName').value;
-        let whatsappMsg = `Assalamu Alaikum Admin, Na kammala cike fom din rajista na Miftahul Ilmi. Sunana ${firstName}, kuma na zabi sashen ${sec}. Ina son samun Confirmation Code na.`;
-        document.getElementById('whatsappLinkBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(whatsappMsg)}`;
+        
         showPage('codePage');
     }
 
     function submitRegistration() {
         let codeInput = document.getElementById('confCodeInput').value.trim().toLowerCase();
         let selectedSection = document.getElementById('sectionSelect').value;
-        
         let codesObj = JSON.parse(localStorage.getItem('db_codes')) || [];
-        
         let foundCode = codesObj.find(c => c.code.toLowerCase() === codeInput);
         
-        if(!foundCode) {
-            alert('Wannan Confirmation Code bai wanzu a cikin tsarin ba!');
-            return;
-        }
-
+        if(!foundCode) { alert('Wannan Confirmation Code bai wanzu ba!'); return; }
         let expectedPrefix = selectedSection === 'DR' ? 'dr' : (selectedSection === 'ONL' ? 'onl' : 'adl');
         if(!foundCode.code.toLowerCase().startsWith(expectedPrefix)) {
-            alert('Wannan Code din ba na wannan sashen da ka zaɓa bane! Dole ka yi amfani da code mai farawa da (' + expectedPrefix.toUpperCase() + ').');
-            return;
+            alert('Wannan Code din ba na wannan sashen bane!'); return;
         }
-
-        if(foundCode.used) {
-            alert('An riga an yi amfani da wannan Confirmation Code din!');
-            return;
-        }
+        if(foundCode.used) { alert('An riga an yi amfani da wannan code din!'); return; }
 
         foundCode.used = true;
         localStorage.setItem('db_codes', JSON.stringify(codesObj));
 
         let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        let secLen = students.filter(s => s.section === selectedSection).length + 1;
-        let userId = `MIF${Math.floor(Math.random()*90+10)}${selectedSection}${String(secLen).padStart(4,'0')}`;
-        let now = new Date().toLocaleString();
-
-        let firstName = document.getElementById('firstName').value;
-        let lastName = document.getElementById('lastName').value;
+        let userId = `MIF${Math.floor(Math.random()*90+10)}${selectedSection}${String(students.length+1).padStart(4,'0')}`;
+        let now = new Date().toLocaleDateString();
 
         let newStudent = {
             userId: userId,
-            firstName: firstName,
-            lastName: lastName,
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
             age: document.getElementById('age').value,
             address: document.getElementById('address').value,
             phone: document.getElementById('phone').value,
             section: selectedSection,
+            passport: tempPassportBase64,
             date: now
         };
 
         students.push(newStudent);
         localStorage.setItem('db_students', JSON.stringify(students));
 
-        let notifications = JSON.parse(localStorage.getItem('db_notifications')) || [];
-        notifications.unshift({
-            id: 'notif_' + Date.now(),
-            userId: userId,
-            name: `${firstName} ${lastName}`,
-            section: selectedSection,
-            time: now,
-            read: false
-        });
-        localStorage.setItem('db_notifications', JSON.stringify(notifications));
-
-        document.getElementById('formCardUserId').innerText = userId;
-        document.getElementById('formCardDate').innerText = now;
-        document.getElementById('formCardFirstName').innerText = firstName;
-        document.getElementById('formCardLastName').innerText = lastName;
-        document.getElementById('formCardAge').innerText = newStudent.age;
-        document.getElementById('formCardPhone').innerText = newStudent.phone;
-        document.getElementById('formCardAddress').innerText = newStudent.address;
-        document.getElementById('formCardSection').innerText = selectedSection;
-        document.getElementById('studentSigLine').innerText = `${firstName} ${lastName}`;
-
-        let waText = `Assalamu Alaikum Admin, Ga cikakken bayanin fom dina na rajista Miftahul Ilmi:\n\n*User ID:* ${userId}\n*Suna:* ${firstName} ${lastName}\n*Sashe:* ${selectedSection}\n*Lambar Waya:* ${newStudent.phone}\n*Adireshin:* ${newStudent.address}\n\nNa yi saving din fom dina kuma na turo saboda confirmation.`;
-        document.getElementById('whatsappSendBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(waText)}`;
-
-        document.getElementById('regForm').reset();
-        document.querySelectorAll('.section-card').forEach(c => c.classList.remove('selected-online', 'selected-night', 'selected-married'));
-        document.getElementById('feeNote').innerText = '';
-        document.getElementById('confCodeInput').value = '';
+        populateCertificateData(newStudent);
         showPage('successPage');
+    }
+
+    function populateCertificateData(s) {
+        document.getElementById('formCardFirstName').innerText = s.firstName;
+        document.getElementById('formCardLastName').innerText = s.lastName;
+        document.getElementById('formCardUserId').innerText = s.userId;
+        document.getElementById('formCardPhone').innerText = s.phone;
+        document.getElementById('formCardAddress').innerText = s.address;
+        document.getElementById('studentSigLine').innerText = `${s.firstName} ${s.lastName}`;
+        document.getElementById('formCardDate1').innerText = s.date;
+        document.getElementById('formCardDate2').innerText = s.date;
+
+        let pBox = document.getElementById('formCardPassportBox');
+        if(s.passport) {
+            pBox.innerHTML = `<img src="${s.passport}" alt="Passport">`;
+        } else {
+            pBox.innerText = 'PHOTO';
+        }
+
+        document.getElementById('chkDr').innerText = s.section === 'DR' ? '☑' : '🔲';
+        document.getElementById('chkOnl').innerText = s.section === 'ONL' ? '☑' : '🔲';
+        document.getElementById('chkAdl').innerText = s.section === 'ADL' ? '☑' : '🔲';
+
+        let waText = `Assalamu Alaikum Admin, Ga fom dina na rajista Miftahul Ilmi:\n\n*Student ID:* ${s.userId}\n*Suna:* ${s.firstName} ${s.lastName}\n*Sashe:* ${s.section}`;
+        document.getElementById('whatsappSendBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(waText)}`;
     }
 
     function startBalloonsAndConfetti() {
         let bContainer = document.getElementById('balloonsContainer');
         let cContainer = document.getElementById('confettiContainer');
-        bContainer.innerHTML = '';
-        cContainer.innerHTML = '';
-
-        const balloonColors = ['#ff4d4d', '#ffcc00', '#33cc33', '#3399ff', '#cc33ff'];
-        for(let i=0; i<12; i++) {
-            let b = document.createElement('div');
-            b.className = 'balloon';
-            b.style.left = Math.random() * 90 + '%';
-            b.style.backgroundColor = balloonColors[Math.floor(Math.random() * balloonColors.length)];
-            b.style.animationDelay = (Math.random() * 2) + 's';
-            b.style.animationDuration = (3 + Math.random() * 2) + 's';
+        bContainer.innerHTML = ''; cContainer.innerHTML = '';
+        for(let i=0; i<10; i++) {
+            let b = document.createElement('div'); b.className = 'balloon';
+            b.style.left = Math.random() * 90 + '%'; b.style.backgroundColor = ['#ff4d4d','#ffcc00','#33cc33'][i%3];
             bContainer.appendChild(b);
         }
-
-        const confettiColors = ['#d4af37', '#25d366', '#ef4444', '#3b82f6', '#8b5cf6'];
-        for(let i=0; i<30; i++) {
-            let c = document.createElement('div');
-            c.className = 'confetti';
-            c.style.left = Math.random() * 100 + '%';
-            c.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-            c.style.animationDelay = (Math.random() * 2) + 's';
-            c.style.animationDuration = (2 + Math.random() * 2) + 's';
+        for(let i=0; i<20; i++) {
+            let c = document.createElement('div'); c.className = 'confetti';
+            c.style.left = Math.random() * 100 + '%'; c.style.backgroundColor = ['#d4af37','#25d366','#ef4444'][i%3];
             cContainer.appendChild(c);
         }
     }
@@ -1336,305 +1163,265 @@
             link.download = 'Miftahul_Ilmi_Form.png';
             link.href = canvas.toDataURL('image/png');
             link.click();
-        }).catch(err => {
-            alert('An samu matsala wajen sauke hoton. Ka yi screenshot!');
         });
     }
 
     function verifyAdminPin() {
-        if(document.getElementById('adminPin').value === '676767') {
-            document.getElementById('adminPin').value = '';
-            showPage('loginPage');
-        } else {
-            alert('PIN bai daidai ba!');
-            document.getElementById('adminPin').value = '';
-        }
+        if(document.getElementById('adminPin').value === '676767') showPage('loginPage');
+        else alert('PIN bai daidai ba!');
     }
 
     function verifyAdminLogin() {
         let u = document.getElementById('adminUser').value.trim();
         let p = document.getElementById('adminPass').value.trim();
-        
-        let savedUser = localStorage.getItem('admin_user') || 'Sirdique';
-        let savedPass = localStorage.getItem('admin_pass') || '9781place';
-
-        if((u === savedUser && p === savedPass) || (u === 'Sirdique' && p === '9781place')) {
+        if(u === localStorage.getItem('admin_user') && p === localStorage.getItem('admin_pass')) {
             document.getElementById('adminWelcomeUser').innerText = `Admin: ${u}`;
-            document.getElementById('adminUser').value = '';
-            document.getElementById('adminPass').value = '';
             showPage('adminDashboard');
         } else {
             alert('Username ko Password bai daidai ba!');
-            document.getElementById('adminPass').value = '';
         }
     }
 
     function loadDashboardData() {
-        let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
         let students = JSON.parse(localStorage.getItem('db_students')) || [];
+        document.getElementById('statTotalStudents').innerText = students.length;
+        document.getElementById('statTotalRevenue').innerText = `₦${(students.length * 1250).toLocaleString()}`;
 
-        let drCodes = codes.filter(c => c.code.toLowerCase().startsWith('dr'));
-        let onlCodes = codes.filter(c => c.code.toLowerCase().startsWith('onl'));
-        let adlCodes = codes.filter(c => c.code.toLowerCase().startsWith('adl'));
-
-        let gridDR = document.getElementById('codesGridDR');
-        document.getElementById('countCodesDr').innerText = `${drCodes.length} codes`;
-        gridDR.innerHTML = drCodes.length ? drCodes.map(c => `
-            <div class="code-card ${c.used ? 'used' : 'unused'}">
-                <div><b>${c.code}</b><br><small>${c.used ? '🔴 Used' : '🟢 Active'}</small></div>
-                <div class="code-card-actions">
-                    <button onclick="copyCodeItem('${c.code}')" style="background: #0284c7; color: white;">Copy</button>
-                    <button onclick="deleteCodeItem('${c.code}')" style="background: #dc2626; color: white;">Delete</button>
-                </div>
-            </div>
-        `).join('') : '<p style="font-size: 13px; color: #777; text-align: center; margin: 10px 0;">Babu code a sashen dare.</p>';
-
-        let gridONL = document.getElementById('codesGridONL');
-        document.getElementById('countCodesOnl').innerText = `${onlCodes.length} codes`;
-        gridONL.innerHTML = onlCodes.length ? onlCodes.map(c => `
-            <div class="code-card ${c.used ? 'used' : 'unused'}">
-                <div><b>${c.code}</b><br><small>${c.used ? '🔴 Used' : '🟢 Active'}</small></div>
-                <div class="code-card-actions">
-                    <button onclick="copyCodeItem('${c.code}')" style="background: #0284c7; color: white;">Copy</button>
-                    <button onclick="deleteCodeItem('${c.code}')" style="background: #dc2626; color: white;">Delete</button>
-                </div>
-            </div>
-        `).join('') : '<p style="font-size: 13px; color: #777; text-align: center; margin: 10px 0;">Babu code a sashen online.</p>';
-
-        let gridADL = document.getElementById('codesGridADL');
-        document.getElementById('countCodesAdl').innerText = `${adlCodes.length} codes`;
-        gridADL.innerHTML = adlCodes.length ? adlCodes.map(c => `
-            <div class="code-card ${c.used ? 'used' : 'unused'}">
-                <div><b>${c.code}</b><br><small>${c.used ? '🔴 Used' : '🟢 Active'}</small></div>
-                <div class="code-card-actions">
-                    <button onclick="copyCodeItem('${c.code}')" style="background: #0284c7; color: white;">Copy</button>
-                    <button onclick="deleteCodeItem('${c.code}')" style="background: #dc2626; color: white;">Delete</button>
-                </div>
-            </div>
-        `).join('') : '<p style="font-size: 13px; color: #777; text-align: center; margin: 10px 0;">Babu code a sashen matan aure.</p>';
-
-        document.getElementById('countOnl').innerText = students.filter(s => s.section === 'ONL').length;
-        document.getElementById('countDr').innerText = students.filter(s => s.section === 'DR').length;
-        document.getElementById('countAdl').innerText = students.filter(s => s.section === 'ADL').length;
-
-        renderStudentTable(students);
-        loadNotificationsUI();
+        renderFilteredStudents();
+        renderFormsList();
+        renderCodesEngines();
     }
 
-    function loadNotificationsUI() {
-        let notifications = JSON.parse(localStorage.getItem('db_notifications')) || [];
-        let badge = document.getElementById('notificationBadge');
-        let listContainer = document.getElementById('notificationListContainer');
-
-        let unreadCount = notifications.filter(n => !n.read).length;
-
-        if(unreadCount > 0) {
-            badge.innerText = unreadCount;
-            badge.style.display = 'inline-block';
-        } else {
-            badge.style.display = 'none';
+    function filterStudentTab(filterKey, el) {
+        currentActiveFilter = filterKey;
+        document.querySelectorAll('.student-filter-btn').forEach(btn => {
+            btn.style.background = '#e5e7eb';
+            btn.style.color = '#374151';
+        });
+        if(el) {
+            el.style.background = 'var(--primary)';
+            el.style.color = 'var(--accent)';
         }
-
-        if(!notifications.length) {
-            listContainer.innerHTML = '<div style="padding: 15px; text-align: center; color: #777; font-size: 13px;">Babu sabon sako</div>';
-            return;
-        }
-
-        listContainer.innerHTML = notifications.map(n => `
-            <div class="notification-item ${n.read ? '' : 'unread'}" onclick="handleNotificationClick('${n.userId}')">
-                <div style="font-weight: bold; color: var(--primary);">👤 ${n.name}</div>
-                <div style="font-size: 12px; color: #4b5563;">User ID: <b>${n.userId}</b> (${n.section})</div>
-                <div style="font-size: 10px; color: #6b7280; margin-top: 3px;">🕒 ${n.time}</div>
-            </div>
-        `).join('');
+        renderFilteredStudents();
     }
 
-    function handleNotificationClick(userId) {
-        let notifications = JSON.parse(localStorage.getItem('db_notifications')) || [];
-        let n = notifications.find(item => item.userId === userId);
-        if(n) {
-            n.read = true;
-            localStorage.setItem('db_notifications', JSON.stringify(notifications));
-        }
-        loadNotificationsUI();
-        document.getElementById('notificationDropdown').style.display = 'none';
-        viewStudentDetails(userId);
-    }
-
-    function markAllNotificationsRead() {
-        let notifications = JSON.parse(localStorage.getItem('db_notifications')) || [];
-        notifications.forEach(n => n.read = true);
-        localStorage.setItem('db_notifications', JSON.stringify(notifications));
-        loadNotificationsUI();
-    }
-
-    function copyCodeItem(code) {
-        navigator.clipboard.writeText(code);
-        alert('An kofe code: ' + code);
-    }
-
-    function deleteCodeItem(code) {
-        let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
-        codes = codes.filter(c => c.code !== code);
-        localStorage.setItem('db_codes', JSON.stringify(codes));
-        loadDashboardData();
-    }
-
-    function generateCodesForSection(sectionType) {
-        let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
-        const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-        let prefix = sectionType === 'DR' ? 'dr' : (sectionType === 'ONL' ? 'onl' : 'adl');
+    function renderFilteredStudents() {
+        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+        let searchQuery = document.getElementById('studentSearchInput').value.trim().toUpperCase();
         
-        for(let i = 0; i < 10; i++) {
-            let codeStr = prefix;
-            for(let j = 0; j < 6; j++) {
-                codeStr += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            codes.push({ code: codeStr, used: false });
-        }
-        
-        localStorage.setItem('db_codes', JSON.stringify(codes));
-        loadDashboardData();
-        alert('An ƙirƙiri sabbin codes 10 na sashen (' + sectionType + ') cikin nasara!');
-    }
+        let filtered = students.filter(s => {
+            let matchesFilter = (currentActiveFilter === 'ALL') || (s.section === currentActiveFilter);
+            let matchesSearch = searchQuery === '' || s.userId.toUpperCase().includes(searchQuery) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(searchQuery);
+            return matchesFilter && matchesSearch;
+        });
 
-    function copySectionCodes(sectionType) {
-        let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
-        let prefix = sectionType.toLowerCase();
-        let sectionCodes = codes.filter(c => c.code.toLowerCase().startsWith(prefix));
-        
-        if(!sectionCodes.length) {
-            alert('Babu code a wannan sashen da za a kofe!');
-            return;
-        }
-
-        let allStr = sectionCodes.map(c => c.code).join('\n');
-        navigator.clipboard.writeText(allStr);
-        alert('An kofe dukkan codes din wannan sashen!');
-    }
-
-    function deleteSectionCodes(sectionType) {
-        if(confirm('Kana son share dukkan codes din wannan sashen ne?')) {
-            let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
-            let prefix = sectionType.toLowerCase();
-            codes = codes.filter(c => !c.code.toLowerCase().startsWith(prefix));
-            localStorage.setItem('db_codes', JSON.stringify(codes));
-            loadDashboardData();
-            alert('An share codes din wannan sashen cikin nasara!');
-        }
-    }
-
-    function renderStudentTable(list) {
-        let container = document.getElementById('studentTableContainer');
-        if(!list.length) {
-            container.innerHTML = '<p>Babu dalibai a cikin wannan sashen a yanzu.</p>';
-            return;
-        }
-        container.innerHTML = `
+        let tableContainer = document.getElementById('studentTableContainer');
+        tableContainer.innerHTML = filtered.length ? `
             <table>
-                <tr><th>User ID</th><th>Suna</th><th>Sashe</th><th>Lamba</th><th>Action</th></tr>
-                ${list.map(s => `
-                    <tr>
-                        <td onclick="viewStudentDetails('${s.userId}')"><b>${s.userId}</b></td>
-                        <td onclick="viewStudentDetails('${s.userId}')">${s.firstName} ${s.lastName}</td>
-                        <td onclick="viewStudentDetails('${s.userId}')">${s.section}</td>
-                        <td onclick="viewStudentDetails('${s.userId}')">${s.phone}</td>
-                        <td>
-                            <button onclick="deleteStudent('${s.userId}')" style="background: #dc2626; color: white; padding: 6px 12px; font-size: 12px; width: auto; box-shadow: none; margin-top: 0;">🗑️ Goge</button>
-                        </td>
-                    </tr>
-                `).join('')}
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Section</th>
+                </tr>
+                ${filtered.map(s => {
+                    let sectionName = s.section === 'DR' ? 'Dare' : (s.section === 'ONL' ? 'Online' : 'Adult');
+                    return `
+                        <tr onclick="openStudentModal('${s.userId}')">
+                            <td><b>${s.userId}</b></td>
+                            <td>${s.firstName} ${s.lastName}</td>
+                            <td>${sectionName}</td>
+                        </tr>
+                    `;
+                }).join('')}
             </table>
-        `;
+        ` : '<p style="text-align:center; color:#666; margin-top:15px;">Babu dalibai a ƙarƙashin wannan sashen ko binciken.</p>';
     }
 
-    function filterStudentSection(sec) {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        if(sec === 'ALL') renderStudentTable(students);
-        else renderStudentTable(students.filter(s => s.section === sec));
-    }
-
-    function viewStudentDetails(userId) {
+    function openStudentModal(userId) {
         let students = JSON.parse(localStorage.getItem('db_students')) || [];
         let s = students.find(item => item.userId === userId);
         if(!s) return;
-        document.getElementById('modalStudentDetails').innerHTML = `
-            <p><b>User ID:</b> ${s.userId}</p>
-            <p><b>Cikakken Suna:</b> ${s.firstName} ${s.lastName}</p>
-            <p><b>Shekaru:</b> ${s.age}</p>
-            <p><b>Adireshin Gida:</b> ${s.address}</p>
-            <p><b>Lambar Waya:</b> ${s.phone}</p>
-            <p><b>Sashen Karatu:</b> ${s.section}</p>
-            <p><b>Ranar da yayi Register:</b> ${s.date}</p>
-        `;
-        document.getElementById('modalDeleteBtn').setAttribute('onclick', `deleteStudent('${s.userId}'); closeStudentModal();`);
+
+        selectedModalUserId = userId;
+        let sectionName = s.section === 'DR' ? 'Dare' : (s.section === 'ONL' ? 'Online' : 'Adult');
+        
+        document.getElementById('modalStudentId').innerText = s.userId;
+        document.getElementById('modalStudentName').innerText = `${s.firstName} ${s.lastName}`;
+        document.getElementById('modalStudentSection').innerText = sectionName;
+        
         document.getElementById('studentModal').style.display = 'flex';
     }
-    
-    function closeStudentModal() { 
-        document.getElementById('studentModal').style.display = 'none'; 
+
+    function closeStudentModal() {
+        selectedModalUserId = null;
+        document.getElementById('studentModal').style.display = 'none';
     }
 
-    function deleteStudent(userId) {
-        if(confirm('Kana tabbatar da kana son goge rajistar wannan dalibin?')) {
-            let students = JSON.parse(localStorage.getItem('db_students')) || [];
-            students = students.filter(s => s.userId !== userId);
-            localStorage.setItem('db_students', JSON.stringify(students));
-            
-            let notifications = JSON.parse(localStorage.getItem('db_notifications')) || [];
-            notifications = notifications.filter(n => n.userId !== userId);
-            localStorage.setItem('db_notifications', JSON.stringify(notifications));
+    function deleteCurrentStudent() {
+        if(!selectedModalUserId) return;
+        if(!confirm('Shin kana tabbatar da kana son goge rajistar wannan dalibin har abada daga ko’ina?')) return;
 
-            loadDashboardData();
-            let searchInput = document.getElementById('liveSearchInput');
-            if(searchInput && searchInput.value) performLiveSearch();
-            
-            alert('An goge dalibin daga tsarin rajista cikin nasara!');
+        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+        let updatedStudents = students.filter(s => s.userId !== selectedModalUserId);
+        localStorage.setItem('db_students', JSON.stringify(updatedStudents));
+
+        closeStudentModal();
+        loadDashboardData();
+        alert('An goge rajistar dalibin gaba ɗaya!');
+    }
+
+    function renderFormsList() {
+        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+        let q = document.getElementById('formsSearchInput').value.trim().toUpperCase();
+
+        let filtered = students.filter(s => q === '' || s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q));
+        let container = document.getElementById('formsListContainer');
+
+        container.innerHTML = filtered.length ? `
+            <table>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Section</th>
+                    <th>Action</th>
+                </tr>
+                ${filtered.map(s => {
+                    let sectionName = s.section === 'DR' ? 'Dare' : (s.section === 'ONL' ? 'Online' : 'Adult');
+                    return `
+                        <tr>
+                            <td onclick="openAdminFormModal('${s.userId}')"><b>${s.userId}</b></td>
+                            <td onclick="openAdminFormModal('${s.userId}')">${s.firstName} ${s.lastName}</td>
+                            <td onclick="openAdminFormModal('${s.userId}')">${sectionName}</td>
+                            <td>
+                                <button onclick="openAdminFormModal('${s.userId}')" style="background:var(--primary); color:var(--accent); padding:4px 10px; font-size:11px; margin:0; width:auto;">📄 Duba Fom</button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('')}
+            </table>
+        ` : '<p style="text-align:center; color:#666; margin-top:15px;">Babu fom ɗin rajista da aka samu.</p>';
+    }
+
+    function openAdminFormModal(userId) {
+        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+        let s = students.find(item => item.userId === userId);
+        if(!s) return;
+
+        document.getElementById('adminFormFirstName').innerText = s.firstName;
+        document.getElementById('adminFormLastName').innerText = s.lastName;
+        document.getElementById('adminFormUserId').innerText = s.userId;
+        document.getElementById('adminFormPhone').innerText = s.phone;
+        document.getElementById('adminFormAddress').innerText = s.address;
+        document.getElementById('adminStudentSigLine').innerText = `${s.firstName} ${s.lastName}`;
+        document.getElementById('adminFormDate1').innerText = s.date;
+        document.getElementById('adminFormDate2').innerText = s.date;
+
+        let pBox = document.getElementById('adminFormPassportBox');
+        if(s.passport) {
+            pBox.innerHTML = `<img src="${s.passport}" alt="Passport">`;
+        } else {
+            pBox.innerText = 'PHOTO';
         }
+
+        document.getElementById('adminChkDr').innerText = s.section === 'DR' ? '☑' : '🔲';
+        document.getElementById('adminChkOnl').innerText = s.section === 'ONL' ? '☑' : '🔲';
+        document.getElementById('adminChkAdl').innerText = s.section === 'ADL' ? '☑' : '🔲';
+
+        document.getElementById('formViewModal').style.display = 'flex';
+    }
+
+    function closeAdminFormModal() {
+        document.getElementById('formViewModal').style.display = 'none';
+    }
+
+    function downloadAdminFormImage() {
+        let card = document.getElementById('adminPrintableFormCard');
+        html2canvas(card, { scale: 2 }).then(canvas => {
+            let link = document.createElement('a');
+            link.download = 'Miftahul_Ilmi_Form.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+    }
+
+    function renderCodesEngines() {
+        let codesObj = JSON.parse(localStorage.getItem('db_codes')) || [];
+        
+        ['DR', 'ONL', 'ADL'].forEach(sec => {
+            let filtered = codesObj.filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase()));
+            let container = document.getElementById(`listEngine${sec}`);
+            let badge = document.getElementById(`countBadge${sec}`);
+            if(badge) badge.innerText = `${filtered.length} codes`;
+            
+            container.innerHTML = filtered.length ? filtered.map(c => `
+                <div style="background: white; border: 1.5px solid ${c.used ? '#fca5a5' : '#86efac'}; border-radius: 8px; padding: 10px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.03);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-family: monospace; font-size: 15px; font-weight: bold; color: ${c.used ? '#991b1b' : '#166534'};">${c.code}</span>
+                        <span style="font-size: 11px; font-weight: bold; color: ${c.used ? '#dc2626' : '#16a34a'};">● ${c.used ? 'Used' : 'Active'}</span>
+                    </div>
+                    <div style="display: flex; gap: 6px;">
+                        <button onclick="copySingleCode('${c.code}')" style="background: #0284c7; color: white; padding: 6px; font-size: 12px; margin: 0; flex: 1; border-radius: 6px;">Copy</button>
+                        <button onclick="deleteSingleCode('${c.code}')" style="background: #dc2626; color: white; padding: 6px; font-size: 12px; margin: 0; flex: 1; border-radius: 6px;">Delete</button>
+                    </div>
+                </div>
+            `).join('') : '<p style="font-size:12px; text-align:center; color:#777; margin:15px 0;">Babu code a wannan sashen.</p>';
+        });
+    }
+
+    function generateCodesForSection(sec) {
+        let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
+        let prefix = sec.toLowerCase();
+        
+        for(let i=0; i<10; i++) {
+            let codeStr = prefix + Math.random().toString(36).substring(2, 8);
+            codes.push({ code: codeStr, used: false });
+        }
+        localStorage.setItem('db_codes', JSON.stringify(codes));
+        renderCodesEngines();
+        alert(`An ƙirƙiri sabbin codes 10 na sashen ${sec}!`);
+    }
+
+    function copySingleCode(codeStr) {
+        navigator.clipboard.writeText(codeStr).then(() => {
+            alert(`An yi copy na: ${codeStr}`);
+        });
+    }
+
+    function deleteSingleCode(codeStr) {
+        if(!confirm(`Shin kana son goge code din: ${codeStr}?`)) return;
+        let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
+        let updated = codes.filter(c => c.code !== codeStr);
+        localStorage.setItem('db_codes', JSON.stringify(updated));
+        renderCodesEngines();
+    }
+
+    function copyAllCodes(sec) {
+        let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
+        let filtered = codes.filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase()) && !c.used);
+        if(!filtered.length) { alert('Babu wani active code a wannan sashen da za a yi copying!'); return; }
+        
+        let textToCopy = filtered.map(c => c.code).join('\n');
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            alert(`An yi copy na active codes ${filtered.length} na sashen ${sec}!`);
+        });
+    }
+
+    function deleteAllCodes(sec) {
+        if(!confirm(`Shin kana son share duk Confirmation Codes na sashen ${sec}?`)) return;
+        let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
+        let remaining = codes.filter(c => !c.code.toLowerCase().startsWith(sec.toLowerCase()));
+        localStorage.setItem('db_codes', JSON.stringify(remaining));
+        renderCodesEngines();
+        alert(`An share duk codes na sashen ${sec}!`);
     }
 
     function performLiveSearch() {
-        let query = document.getElementById('liveSearchInput').value.trim().toUpperCase();
+        let q = document.getElementById('liveSearchInput').value.trim().toUpperCase();
         let students = JSON.parse(localStorage.getItem('db_students')) || [];
         let resArea = document.getElementById('searchDashboardResult');
-        
-        if(!query) { resArea.innerHTML = ''; return; }
-
-        let matches = students.filter(s => s.userId.toUpperCase().includes(query) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(query));
-        
-        if(!matches.length) {
-            resArea.innerHTML = '<p style="color: red;">Ba a samu sakamako ba.</p>';
-            return;
-        }
-
-        resArea.innerHTML = `
-            <table>
-                <tr><th>User ID</th><th>Suna</th><th>Sashe</th><th>Actions</th></tr>
-                ${matches.model ? '' : matches.map(s => `
-                    <tr>
-                        <td>${s.userId}</td>
-                        <td>${s.firstName} ${s.lastName}</td>
-                        <td>${s.section}</td>
-                        <td style="display: flex; gap: 8px;">
-                            <button onclick="viewStudentDetails('${s.userId}')" style="padding:6px 12px; font-size:12px; width:auto; box-shadow:none; margin-top:0;">Duba</button>
-                            <button onclick="deleteStudent('${s.userId}')" style="background:#dc2626; color:white; padding:6px 12px; font-size:12px; width:auto; box-shadow:none; margin-top:0;">Goge</button>
-                        </td>
-                    </tr>
-                `).join('')}
-            </table>
-        `;
-    }
-
-    function updateAdminCredentials() {
-        let u = document.getElementById('newAdminUser').value.trim();
-        let p = document.getElementById('newAdminPass').value.trim();
-        if(!u || !p) { alert('Saka bayanan da suke daidai!'); return; }
-        
-        localStorage.setItem('admin_user', u);
-        localStorage.setItem('admin_pass', p);
-        alert('An canza sunan admin da password cikin nasara!');
-        document.getElementById('newAdminUser').value = '';
-        document.getElementById('newAdminPass').value = '';
+        if(!q) { resArea.innerHTML = ''; return; }
+        let matches = students.filter(s => s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q));
+        resArea.innerHTML = matches.map(s => `<div>${s.userId} - ${s.firstName} ${s.lastName}</div>`).join('');
     }
 </script>
 
