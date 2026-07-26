@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miftahul Ilmi Waddurasatul Islamiyya - Hotoro</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root {
             --primary: #042f2e;
@@ -52,6 +53,27 @@
             border: 1px solid rgba(245, 158, 11, 0.25);
             position: relative;
             z-index: 5;
+            background-image: url('young.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        .auth-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 20px;
+            z-index: 1;
+        }
+
+        .auth-container > * {
+            position: relative;
+            z-index: 2;
         }
 
         h1, h2, h3 { text-align: center; color: var(--primary); }
@@ -149,6 +171,27 @@
             overflow: hidden;
             box-sizing: border-box;
             color: #111;
+            position: relative;
+            background-image: url('young.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .official-certificate-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(253, 251, 247, 0.88);
+            z-index: 1;
+        }
+
+        .official-certificate-card > * {
+            position: relative;
+            z-index: 2;
         }
 
         .cert-outer-border {
@@ -189,6 +232,11 @@
             text-align: center;
         }
         .cert-badge-box img, .cert-passport-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .cert-badge-box img {
+            object-fit: fill;
+            transform: scaleX(0.85);
+        }
 
         .cert-title-area h2 { margin: 0; font-size: 11.5px; color: var(--primary); text-transform: uppercase; font-weight: 800; }
         .cert-title-area h3 { margin: 0; font-size: 9.5px; color: #475569; text-transform: uppercase; }
@@ -383,6 +431,9 @@
 
     <form id="regForm">
         <div style="display: flex; justify-content: space-between; align-items: center; background: #fdfbf7; padding: 14px 18px; border-radius: 12px; border: 1px solid rgba(245, 158, 11, 0.3); margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="hoto.png" alt="Logo" style="width: 50px; height: 50px; object-fit: fill; transform: scaleX(0.85); border-radius: 6px; border: 1.5px solid var(--accent);">
+            </div>
             <div style="flex: 1; padding-right: 12px;">
                 <div class="arabic-school-title" style="font-size: 15px; text-align: right;">مدرسة مفتاح العلم والدراسات الإسلامية</div>
                 <div style="font-size: 11px; color: #d97706; text-align: right; font-weight: bold; margin-top: 4px;">حطورو كاورو - كنو</div>
@@ -400,7 +451,19 @@
 
         <div class="form-grid-2">
             <div class="form-group"><label>Shekaru (Age) *</label><input type="number" id="age" required placeholder="Misali: 15"></div>
-            <div class="form-group"><label>Phone Number *</label><input type="text" id="phone" required placeholder="08012345678"></div>
+            <div class="form-group">
+                <label>Gender (Jinsi) *</label>
+                <select id="gender" required>
+                    <option value="">Zaɓi Jinsi</option>
+                    <option value="Namiji">Namiji</option>
+                    <option value="Mace">Mace</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" id="phone" inputmode="numeric" pattern="[0-9]*" maxlength="11" required placeholder="Misali: 08012345678">
         </div>
 
         <div class="form-group"><label>Address *</label><input type="text" id="address" required placeholder="Misali: Hotoro GRA, Kano"></div>
@@ -440,7 +503,9 @@
     <div class="official-certificate-card" id="printableFormCard">
         <div class="cert-outer-border">
             <div class="cert-header">
-                <div class="cert-badge-box" id="formCardBadgeBox">BADGE</div>
+                <div class="cert-badge-box" id="formCardBadgeBox">
+                    <img src="hoto.png" alt="Logo">
+                </div>
                 <div class="cert-title-area" style="text-align: center;">
                     <h2>Madrasatul Miftahul Ilmi Waddurasatul Islamiyya</h2>
                     <div class="arabic-school-title" style="font-size: 12px; margin: 2px 0;">مدرسة مفتاح العلم والدراسات الإسلامية</div>
@@ -456,11 +521,16 @@
 
             <div class="cert-grid-row">
                 <div class="cert-field-group"><label>Student ID:</label><div class="cert-field-value" id="formCardUserId" style="color: var(--primary); font-weight: bold;"></div></div>
+                <div class="cert-field-group"><label>Gender:</label><div class="cert-field-value" id="formCardGender"></div></div>
+            </div>
+
+            <div class="cert-grid-row">
                 <div class="cert-field-group"><label>Phone Number:</label><div class="cert-field-value" id="formCardPhone"></div></div>
+                <div class="cert-field-group"><label>Address:</label><div class="cert-field-value" id="formCardAddress" style="overflow: hidden;"></div></div>
             </div>
 
             <div class="cert-grid-row" style="margin-bottom: 2px;">
-                <div class="cert-section-box" style="margin-bottom: 0;">
+                <div class="cert-section-box" style="margin-bottom: 0; width: 100%;">
                     <label>Assigned Class & Code:</label>
                     <div class="cert-sections-options" style="flex-direction: column; align-items: center; gap: 4px;">
                         <div style="display: flex; gap: 10px; width: 100%; justify-content: space-around;">
@@ -473,7 +543,6 @@
                         <div style="font-size: 11px; color: #b45309; font-family: monospace;" id="formCardUsedCode">Code: --</div>
                     </div>
                 </div>
-                <div class="cert-field-group" style="margin-bottom: 0;"><label>Address:</label><div class="cert-field-value" id="formCardAddress" style="height: 25px; overflow: hidden;"></div></div>
             </div>
 
             <div class="cert-rules-box">
@@ -735,6 +804,7 @@
         <div style="margin: 20px 0; font-size: 14.5px; line-height: 2;">
             <div><strong>Student ID:</strong> <span id="modalStudentId" style="color:var(--primary); font-weight:bold;"></span></div>
             <div><strong>Name:</strong> <span id="modalStudentName"></span></div>
+            <div><strong>Gender:</strong> <span id="modalStudentGender"></span></div>
             <div><strong>Class:</strong> <span id="modalStudentClass" style="color:#d97706; font-weight:bold;"></span></div>
             <div><strong>Used Code:</strong> <span id="modalStudentCode" style="font-family:monospace; color:#047857; font-weight:bold;"></span></div>
             <div><strong>Phone Number:</strong> <span id="modalStudentPhone"></span></div>
@@ -755,7 +825,9 @@
         <div class="official-certificate-card" id="adminPrintableFormCard" style="margin:0 auto; width:100%;">
             <div class="cert-outer-border">
                 <div class="cert-header">
-                    <div class="cert-badge-box" id="adminFormBadgeBox">BADGE</div>
+                    <div class="cert-badge-box" id="adminFormBadgeBox">
+                        <img src="hoto.png" alt="Logo">
+                    </div>
                     <div class="cert-title-area" style="text-align: center;">
                         <h2>Madrasatul Miftahul Ilmi Waddurasatul Islamiyya</h2>
                         <div class="arabic-school-title" style="font-size: 12px; margin: 2px 0;">مدرسة مفتاح العلم والدراسات الإسلامية</div>
@@ -769,10 +841,14 @@
                 </div>
                 <div class="cert-grid-row">
                     <div class="cert-field-group"><label>Student ID:</label><div class="cert-field-value" id="adminFormUserId" style="color: var(--primary); font-weight: bold;"></div></div>
+                    <div class="cert-field-group"><label>Gender:</label><div class="cert-field-value" id="adminFormGender"></div></div>
+                </div>
+                <div class="cert-grid-row">
                     <div class="cert-field-group"><label>Phone Number:</label><div class="cert-field-value" id="adminFormPhone"></div></div>
+                    <div class="cert-field-group"><label>Address:</label><div class="cert-field-value" id="adminFormAddress" style="overflow: hidden;"></div></div>
                 </div>
                 <div class="cert-grid-row" style="margin-bottom: 2px;">
-                    <div class="cert-section-box" style="margin-bottom: 0;">
+                    <div class="cert-section-box" style="margin-bottom: 0; width: 100%;">
                         <label>Assigned Class & Code:</label>
                         <div class="cert-sections-options" style="flex-direction: column; align-items: center; gap: 4px;">
                             <div style="display: flex; gap: 10px; width: 100%; justify-content: space-around;">
@@ -785,7 +861,6 @@
                             <div style="font-size: 11px; color: #b45309; font-family: monospace;" id="adminFormUsedCode">Code: --</div>
                         </div>
                     </div>
-                    <div class="cert-field-group" style="margin-bottom: 0;"><label>Address:</label><div class="cert-field-value" id="adminFormAddress" style="height: 25px; overflow: hidden;"></div></div>
                 </div>
                 <div class="cert-rules-box">
                     <div class="cert-rules-title">Sashen Cike Dokar Makaranta</div>
@@ -811,10 +886,11 @@
 </div>
 
 <script>
-    if (!localStorage.getItem('db_codes')) localStorage.setItem('db_codes', JSON.stringify([]));
-    if (!localStorage.getItem('db_students')) localStorage.setItem('db_students', JSON.stringify([]));
-    if (!localStorage.getItem('db_notices')) localStorage.setItem('db_notices', JSON.stringify([]));
-    if (!localStorage.getItem('db_monthly_archives')) localStorage.setItem('db_monthly_archives', JSON.stringify([]));
+    // Supabase Initialization
+    const SUPABASE_URL = 'https://rwplgnnnspbzdjizimrt.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_0hCtfEs8Y4FnDmN07J4Brw_xOL8ECSY';
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
     if (!localStorage.getItem('admin_user')) localStorage.setItem('admin_user', 'Sirdique');
     if (!localStorage.getItem('admin_pass')) localStorage.setItem('admin_pass', '9781place');
 
@@ -912,6 +988,12 @@
         e.preventDefault();
         if(!tempPassportBase64) { alert('Don Allah ka zabi hoton passport tukuna!'); return; }
         
+        let phoneVal = document.getElementById('phone').value.trim();
+        if(phoneVal.length !== 11) {
+            alert('Lambar waya dole ta zama lamba 11 takamaimai!');
+            return;
+        }
+
         let firstName = document.getElementById('firstName').value || 'Dalibi';
         let whatsappMsg = `Assalamu Alaikum Admin, Sunana ${firstName}. Ina son samun Confirmation Code din shiga makaranta.`;
         document.getElementById('whatsappLinkBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(whatsappMsg)}`;
@@ -923,14 +1005,16 @@
         return new Date(year, month + 1, 0).getDate();
     }
 
-    function checkAndArchiveRevenue(students) {
+    async function checkAndArchiveRevenue(students) {
         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let now = new Date();
         let curMonthName = monthNames[now.getMonth()];
         let curYear = now.getFullYear();
         let curMonthKey = `${curMonthName} ${curYear}`;
 
-        let archives = JSON.parse(localStorage.getItem('db_monthly_archives')) || [];
+        let { data: archives, error: fetchErr } = await supabaseClient.from('monthly_archives').select('*');
+        if (fetchErr) archives = [];
+
         let monthlyMap = {};
 
         students.forEach(s => {
@@ -955,7 +1039,7 @@
             if(mKey !== curMonthKey) {
                 let exists = archives.find(a => a.monthKey === mKey);
                 if(!exists) {
-                    archives.push({
+                    let newArch = {
                         monthKey: mKey,
                         cl1: monthlyMap[mKey].cl1,
                         cl2: monthlyMap[mKey].cl2,
@@ -964,16 +1048,19 @@
                         cl5: monthlyMap[mKey].cl5,
                         total: monthlyMap[mKey].total,
                         days: monthlyMap[mKey].daysCount
-                    });
+                    };
+                    await supabaseClient.from('monthly_archives').insert([newArch]);
                 }
             }
         }
-        localStorage.setItem('db_monthly_archives', JSON.stringify(archives));
     }
 
-    document.getElementById('finalizeRegBtn').addEventListener('click', function() {
+    document.getElementById('finalizeRegBtn').addEventListener('click', async function() {
         let codeInput = document.getElementById('confCodeInput').value.trim().toLowerCase();
-        let codesObj = JSON.parse(localStorage.getItem('db_codes')) || [];
+        
+        let { data: codesObj, error: codeErr } = await supabaseClient.from('codes').select('*');
+        if(codeErr || !codesObj) codesObj = [];
+
         let foundCode = codesObj.find(c => c.code.toLowerCase() === codeInput);
         
         if(!foundCode) { alert('Wannan Confirmation Code bai wanzu ba!'); return; }
@@ -988,10 +1075,11 @@
         else if(codeInput.startsWith('cl5')) detectedClass = 'CL5';
         else { alert('Wannan Code din bai fara da ingantattun kalmomi huɗu na wani aji ba (misali cl1_, cl2_, cl3_, cl4_, cl5_)!'); return; }
 
-        foundCode.used = true;
-        localStorage.setItem('db_codes', JSON.stringify(codesObj));
+        await supabaseClient.from('codes').update({ used: true }).eq('code', foundCode.code);
 
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+        let { data: students, error: studErr } = await supabaseClient.from('students').select('*');
+        if(studErr || !students) students = [];
+
         let userId = `MIF${Math.floor(Math.random()*90+10)}${detectedClass}${String(students.length+1).padStart(4,'0')}`;
         let now = new Date();
         let timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -1002,6 +1090,7 @@
             firstName: document.getElementById('firstName').value,
             lastName: document.getElementById('lastName').value,
             age: document.getElementById('age').value,
+            gender: document.getElementById('gender').value,
             address: document.getElementById('address').value,
             phone: document.getElementById('phone').value,
             section: detectedClass,
@@ -1012,24 +1101,22 @@
             timestamp: now.getTime()
         };
 
-        students.unshift(newStudent);
-        try {
-            localStorage.setItem('db_students', JSON.stringify(students));
-        } catch(e) {
-            alert('An samu matsalar cikar ma\'ajiya (localStorage full)!');
+        let { error: insertErr } = await supabaseClient.from('students').insert([newStudent]);
+        if(insertErr) {
+            alert('An samu matsala wajen adana bayanan dalibi a Supabase!');
             return;
         }
 
-        checkAndArchiveRevenue(students);
+        let { data: allStuds } = await supabaseClient.from('students').select('*');
+        await checkAndArchiveRevenue(allStuds || []);
 
-        let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
-        notices.unshift({
-            id: 'notice_' + Date.now() + '_' + Math.random(),
+        let noticeItem = {
+            notice_id: 'notice_' + Date.now() + '_' + Math.random(),
             studentId: newStudent.userId,
             section: newStudent.section,
             unread: true
-        });
-        localStorage.setItem('db_notices', JSON.stringify(notices));
+        };
+        await supabaseClient.from('notices').insert([noticeItem]);
 
         populateCertificateData(newStudent);
         renderNotices();
@@ -1047,6 +1134,7 @@
         document.getElementById('formCardFirstName').innerText = s.firstName;
         document.getElementById('formCardLastName').innerText = s.lastName;
         document.getElementById('formCardUserId').innerText = s.userId;
+        document.getElementById('formCardGender').innerText = s.gender || '--';
         document.getElementById('formCardPhone').innerText = s.phone;
         document.getElementById('formCardAddress').innerText = s.address;
         document.getElementById('studentSigLine').innerText = `${s.firstName} ${s.lastName}`;
@@ -1062,7 +1150,7 @@
             if(el) el.innerText = s.section === cls ? '☑' : '🔲';
         });
 
-        let waText = `Assalamu Alaikum Admin, Ga fom dina na rajista Miftahul Ilmi:\n\n*Student ID:* ${s.userId}\n*Suna:* ${s.firstName} ${s.lastName}\n*Aji:* ${s.section}\n*Code:* ${s.usedCode || '--'}`;
+        let waText = `Assalamu Alaikum Admin, Ga fom dina na rajista Miftahul Ilmi:\n\n*Student ID:* ${s.userId}\n*Suna:* ${s.firstName} ${s.lastName}\n*Gender:* ${s.gender || '--'}\n*Aji:* ${s.section}\n*Code:* ${s.usedCode || '--'}`;
         document.getElementById('whatsappSendBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(waText)}`;
     }
 
@@ -1101,9 +1189,11 @@
         } else { alert('Username ko Password bai daidai ba!'); }
     });
 
-    function loadDashboardData() {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        checkAndArchiveRevenue(students);
+    async function loadDashboardData() {
+        let { data: students, error } = await supabaseClient.from('students').select('*');
+        if(error || !students) students = [];
+
+        await checkAndArchiveRevenue(students);
 
         let totalRev = students.length * 1000;
         document.getElementById('statTotalStudents').innerText = students.length;
@@ -1132,7 +1222,7 @@
         renderPromoDemo();
     }
 
-    function renderMonthlyRevenueTab(students) {
+    async function renderMonthlyRevenueTab(students) {
         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let now = new Date();
         let curMonthName = monthNames[now.getMonth()];
@@ -1157,7 +1247,9 @@
         document.getElementById('curCl5Rev').innerText = `₦${curRev.CL5.toLocaleString()}`;
         document.getElementById('curAllRev').innerText = `₦${curTotal.toLocaleString()}`;
 
-        let archives = JSON.parse(localStorage.getItem('db_monthly_archives')) || [];
+        let { data: archives, error } = await supabaseClient.from('monthly_archives').select('*');
+        if(error || !archives) archives = [];
+
         let archiveContainer = document.getElementById('monthlyArchivesListContainer');
 
         archiveContainer.innerHTML = archives.length ? archives.map(a => `
@@ -1195,9 +1287,13 @@
         }
     });
 
-    function renderNotices() {
-        let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+    async function renderNotices() {
+        let { data: notices } = await supabaseClient.from('notices').select('*');
+        if(!notices) notices = [];
+
+        let { data: students } = await supabaseClient.from('students').select('*');
+        if(!students) students = [];
+
         let badge = document.getElementById('noticeBadgeCount');
         let container = document.getElementById('noticeListContainer');
 
@@ -1209,7 +1305,7 @@
             let student = students.find(s => s.userId === n.studentId);
             let displayName = student ? `${student.firstName} ${student.lastName}` : 'Dalibi';
             return `
-                <div class="notice-item ${n.unread ? 'unread' : ''}" onclick="openStudentModal('${n.studentId}'); markNotice('${n.id}'); event.stopPropagation();">
+                <div class="notice-item ${n.unread ? 'unread' : ''}" onclick="openStudentModal('${n.studentId}'); markNotice('${n.notice_id}'); event.stopPropagation();">
                     <div>
                         <div style="font-weight: bold; color: var(--primary); font-size: 13.5px;">ID: ${n.studentId}</div>
                         <div style="font-size: 12px; color: #475569; margin-top: 2px;">
@@ -1217,44 +1313,51 @@
                         </div>
                     </div>
                     <div class="notice-actions" onclick="event.stopPropagation();">
-                        <button type="button" class="notice-btn" style="background:#ef4444;" onclick="deleteSingleNotice('${n.id}')">Delete</button>
+                        <button type="button" class="notice-btn" style="background:#ef4444;" onclick="deleteSingleNotice('${n.notice_id}')">Delete</button>
                     </div>
                 </div>
             `;
         }).join('') : '<div style="padding: 20px; text-align: center; color: #64748b; font-size: 12px;">Babu wata sabuwar sanarwa.</div>';
     }
 
-    function markNotice(id) {
-        let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
-        let notice = notices.find(n => n.id === id);
-        if(notice) { notice.unread = false; localStorage.setItem('db_notices', JSON.stringify(notices)); renderNotices(); }
-    }
-
-    function deleteSingleNotice(id) {
-        let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
-        let updated = notices.filter(n => n.id !== id);
-        localStorage.setItem('db_notices', JSON.stringify(updated));
+    async function markNotice(id) {
+        await supabaseClient.from('notices').update({ unread: false }).eq('notice_id', id);
         renderNotices();
     }
 
-    document.getElementById('markAllNoticesBtn').addEventListener('click', function(e) {
+    async function deleteSingleNotice(id) {
+        await supabaseClient.from('notices').delete().eq('notice_id', id);
+        renderNotices();
+    }
+
+    document.getElementById('markAllNoticesBtn').addEventListener('click', async function(e) {
         e.stopPropagation();
-        let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
-        notices.forEach(n => n.unread = false);
-        localStorage.setItem('db_notices', JSON.stringify(notices));
+        let { data: notices } = await supabaseClient.from('notices').select('*');
+        if(notices) {
+            for(let n of notices) {
+                await supabaseClient.from('notices').update({ unread: false }).eq('notice_id', n.notice_id);
+            }
+        }
         renderNotices();
     });
 
-    document.getElementById('delAllNoticesBtn').addEventListener('click', function(e) {
+    document.getElementById('delAllNoticesBtn').addEventListener('click', async function(e) {
         e.stopPropagation();
-        localStorage.setItem('db_notices', JSON.stringify([]));
+        let { data: notices } = await supabaseClient.from('notices').select('*');
+        if(notices) {
+            for(let n of notices) {
+                await supabaseClient.from('notices').delete().eq('notice_id', n.notice_id);
+            }
+        }
         renderNotices();
     });
 
     document.getElementById('promoSearchInput').addEventListener('input', renderPromoDemo);
 
-    function renderPromoDemo() {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+    async function renderPromoDemo() {
+        let { data: students } = await supabaseClient.from('students').select('*');
+        if(!students) students = [];
+
         let q = document.getElementById('promoSearchInput').value.trim().toUpperCase();
         let container = document.getElementById('promoDemoContainer');
 
@@ -1284,52 +1387,57 @@
         if(drop) drop.classList.toggle('show');
     }
 
-    function changeStudentClass(userId, action) {
+    async function changeStudentClass(userId, action) {
         let classes = ['CL1', 'CL2', 'CL3', 'CL4', 'CL5'];
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        let s = students.find(item => item.userId === userId);
+        let { data: students } = await supabaseClient.from('students').select('*');
+        if(!students) return;
 
+        let s = students.find(item => item.userId === userId);
         if (!s) return;
 
         let currentIndex = classes.indexOf(s.section);
         if (currentIndex === -1) currentIndex = 0;
 
+        let newSection = s.section;
         if (action === 'PROMOTE') {
             if (currentIndex < classes.length - 1) {
-                s.section = classes[currentIndex + 1];
-                alert(`An daga ${s.firstName} zuwa ${s.section}!`);
+                newSection = classes[currentIndex + 1];
+                alert(`An daga ${s.firstName} zuwa ${newSection}!`);
             } else {
                 alert(`${s.firstName} yana ajin karshe wato ${s.section}!`);
                 return;
             }
         } else if (action === 'DEMOTE') {
             if (currentIndex > 0) {
-                s.section = classes[currentIndex - 1];
-                alert(`An dawo da ${s.firstName} zuwa ${s.section}!`);
+                newSection = classes[currentIndex - 1];
+                alert(`An dawo da ${s.firstName} zuwa ${newSection}!`);
             } else {
                 alert(`${s.firstName} yana ajin farko wato ${s.section}!`);
                 return;
             }
         }
 
-        localStorage.setItem('db_students', JSON.stringify(students));
+        await supabaseClient.from('students').update({ section: newSection }).eq('userId', userId);
         loadDashboardData();
     }
 
     document.getElementById('allStudentSearchInput').addEventListener('input', renderAllStudentsTable);
 
-    function renderAllStudentsTable() {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+    async function renderAllStudentsTable() {
+        let { data: students } = await supabaseClient.from('students').select('*');
+        if(!students) students = [];
+
         let q = document.getElementById('allStudentSearchInput').value.trim().toUpperCase();
         let filtered = students.filter(s => q === '' || s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q));
 
         document.getElementById('allStudentTableContainer').innerHTML = filtered.length ? `
             <table>
-                <tr><th>Student ID</th><th>Name</th><th>Class</th><th>Code</th><th>Phone Number</th></tr>
+                <tr><th>Student ID</th><th>Name</th><th>Gender</th><th>Class</th><th>Code</th><th>Phone Number</th></tr>
                 ${filtered.map(s => `
                     <tr onclick="openStudentModal('${s.userId}')">
                         <td><b>${s.userId}</b></td>
                         <td>${s.firstName} ${s.lastName}</td>
+                        <td>${s.gender || '--'}</td>
                         <td><b style="color:#d97706;">${s.section}</b></td>
                         <td><span style="font-family:monospace; color:#047857;">${s.usedCode || '--'}</span></td>
                         <td>${s.phone || '--'}</td>
@@ -1339,8 +1447,10 @@
         ` : '<p style="text-align:center; color:#64748b; margin-top:20px;">Babu dalibai.</p>';
     }
 
-    function renderClassTables() {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+    async function renderClassTables() {
+        let { data: students } = await supabaseClient.from('students').select('*');
+        if(!students) students = [];
+
         ['CL1', 'CL2', 'CL3', 'CL4', 'CL5'].forEach(cls => {
             let filtered = students.filter(s => s.section === cls);
             let container = document.getElementById(`class${cls.slice(2)}TableContainer`);
@@ -1351,6 +1461,7 @@
                             <th>Student ID</th>
                             <th>Name</th>
                             <th>Age</th>
+                            <th>Gender</th>
                             <th>Code</th>
                             <th>Phone</th>
                             <th>Address</th>
@@ -1361,6 +1472,7 @@
                                 <td><b>${s.userId}</b></td>
                                 <td>${s.firstName} ${s.lastName}</td>
                                 <td>${s.age || '--'}</td>
+                                <td>${s.gender || '--'}</td>
                                 <td><span style="font-family:monospace; color:#047857;">${s.usedCode || '--'}</span></td>
                                 <td>${s.phone || '--'}</td>
                                 <td>${s.address || '--'}</td>
@@ -1373,14 +1485,17 @@
         });
     }
 
-    function openStudentModal(userId) {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+    async function openStudentModal(userId) {
+        let { data: students } = await supabaseClient.from('students').select('*');
+        if(!students) return;
+
         let s = students.find(item => item.userId === userId);
         if(!s) return;
 
         selectedModalUserId = userId;
         document.getElementById('modalStudentId').innerText = s.userId;
         document.getElementById('modalStudentName').innerText = `${s.firstName} ${s.lastName}`;
+        document.getElementById('modalStudentGender').innerText = s.gender || '--';
         document.getElementById('modalStudentClass').innerText = s.section;
         document.getElementById('modalStudentCode').innerText = s.usedCode || '--';
         document.getElementById('modalStudentPhone').innerText = s.phone || '--';
@@ -1395,13 +1510,11 @@
         document.getElementById('studentModal').style.display = 'none';
     });
 
-    document.getElementById('deleteStudentBtn').addEventListener('click', function() {
+    document.getElementById('deleteStudentBtn').addEventListener('click', async function() {
         if(!selectedModalUserId) return;
         if(!confirm('Shin kana tabbatar da kana son goge rajistar wannan dalibin har abada daga ko’ina?')) return;
 
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        let updated = students.filter(s => s.userId !== selectedModalUserId);
-        localStorage.setItem('db_students', JSON.stringify(updated));
+        await supabaseClient.from('students').delete().eq('userId', selectedModalUserId);
 
         document.getElementById('studentModal').style.display = 'none';
         selectedModalUserId = null;
@@ -1420,8 +1533,10 @@
 
     document.getElementById('formsSearchInput').addEventListener('input', renderFormsList);
 
-    function renderFormsList() {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+    async function renderFormsList() {
+        let { data: students } = await supabaseClient.from('students').select('*');
+        if(!students) students = [];
+
         let q = document.getElementById('formsSearchInput').value.trim().toUpperCase();
 
         let filtered = students.filter(s => {
@@ -1446,14 +1561,17 @@
         ` : '<p style="text-align:center; color:#64748b; margin-top:20px;">Babu fom ɗin rajista da aka samu.</p>';
     }
 
-    function openAdminFormModal(userId) {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+    async function openAdminFormModal(userId) {
+        let { data: students } = await supabaseClient.from('students').select('*');
+        if(!students) return;
+
         let s = students.find(item => item.userId === userId);
         if(!s) return;
 
         document.getElementById('adminFormFirstName').innerText = s.firstName;
         document.getElementById('adminFormLastName').innerText = s.lastName;
         document.getElementById('adminFormUserId').innerText = s.userId;
+        document.getElementById('adminFormGender').innerText = s.gender || '--';
         document.getElementById('adminFormPhone').innerText = s.phone;
         document.getElementById('adminFormAddress').innerText = s.address;
         document.getElementById('adminStudentSigLine').innerText = `${s.firstName} ${s.lastName}`;
@@ -1482,8 +1600,10 @@
         });
     });
 
-    function renderCodesEngines() {
-        let codesObj = JSON.parse(localStorage.getItem('db_codes')) || [];
+    async function renderCodesEngines() {
+        let { data: codesObj } = await supabaseClient.from('codes').select('*');
+        if(!codesObj) codesObj = [];
+
         ['CL1', 'CL2', 'CL3', 'CL4', 'CL5'].forEach(sec => {
             let filtered = codesObj.filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase() + '_'));
             let container = document.getElementById(`listEngine${sec}`);
@@ -1507,10 +1627,11 @@
         });
     }
 
-    function generateCodesForClass(sec) {
-        let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
+    async function generateCodesForClass(sec) {
+        let { data: codes } = await supabaseClient.from('codes').select('*');
+        if(!codes) codes = [];
+
         let prefix = sec.toLowerCase() + '_';
-        
         let classCodes = codes.filter(c => c.code.toLowerCase().startsWith(prefix));
         
         if (classCodes.length >= 40) {
@@ -1518,12 +1639,13 @@
             return;
         }
 
+        let newEntries = [];
         for(let i = 0; i < 20; i++) {
             let codeStr = prefix + Math.random().toString(36).substring(2, 8);
-            codes.push({ code: codeStr, used: false });
+            newEntries.push({ code: codeStr, used: false });
         }
 
-        localStorage.setItem('db_codes', JSON.stringify(codes));
+        await supabaseClient.from('codes').insert(newEntries);
         renderCodesEngines();
         alert(`An ƙirƙiri sabbin codes 20 na ${sec} successfully!`);
     }
@@ -1532,15 +1654,16 @@
         navigator.clipboard.writeText(codeStr).then(() => { alert(`An yi copy: ${codeStr}`); });
     }
 
-    function deleteSingleCode(codeStr) {
+    async function deleteSingleCode(codeStr) {
         if(!confirm(`Goge code: ${codeStr}?`)) return;
-        let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
-        localStorage.setItem('db_codes', JSON.stringify(codes.filter(c => c.code !== codeStr)));
+        await supabaseClient.from('codes').delete().eq('code', codeStr);
         renderCodesEngines();
     }
 
-    function copyAllCodes(sec) {
-        let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
+    async function copyAllCodes(sec) {
+        let { data: codes } = await supabaseClient.from('codes').select('*');
+        if(!codes) codes = [];
+
         let filtered = codes.filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase() + '_') && !c.used);
         if(!filtered.length) { alert('Babu active code!'); return; }
         navigator.clipboard.writeText(filtered.map(c => c.code).join('\n')).then(() => {
@@ -1548,16 +1671,23 @@
         });
     }
 
-    function deleteAllCodes(sec) {
+    async function deleteAllCodes(sec) {
         if(!confirm(`Share duk codes na ${sec}?`)) return;
-        let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
-        localStorage.setItem('db_codes', JSON.stringify(codes.filter(c => !c.code.toLowerCase().startsWith(sec.toLowerCase() + '_'))));
+        let { data: codes } = await supabaseClient.from('codes').select('*');
+        if(!codes) return;
+
+        let toDelete = codes.filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase() + '_'));
+        for(let c of toDelete) {
+            await supabaseClient.from('codes').delete().eq('code', c.code);
+        }
         renderCodesEngines();
     }
 
-    document.getElementById('liveSearchInput').addEventListener('input', function() {
+    document.getElementById('liveSearchInput').addEventListener('input', async function() {
         let q = this.value.trim().toUpperCase();
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+        let { data: students } = await supabaseClient.from('students').select('*');
+        if(!students) students = [];
+
         let resArea = document.getElementById('searchDashboardResult');
         if(!q) { resArea.innerHTML = ''; return; }
         let matches = students.filter(s => s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q));
