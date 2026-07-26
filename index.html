@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="ha">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miftahul Ilmi Waddurasatul Islamiyya - Hotoro</title>
-    <!-- html2canvas library for saving form as image -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root {
@@ -40,13 +40,8 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .page {
-            display: none;
-        }
-        .active-page {
-            display: block;
-            animation: fadeInScale 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        .page { display: none; }
+        .active-page { display: block; animation: fadeInScale 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
         .auth-container {
             max-width: 600px;
@@ -58,13 +53,9 @@
             border: 1px solid rgba(245, 158, 11, 0.25);
             position: relative;
             z-index: 5;
-            backdrop-filter: blur(10px);
         }
 
-        h1, h2, h3 {
-            text-align: center;
-            color: var(--primary);
-        }
+        h1, h2, h3 { text-align: center; color: var(--primary); }
 
         .arabic-school-title {
             font-family: 'Traditional Arabic', 'Amiri', serif, sans-serif;
@@ -73,26 +64,12 @@
             text-align: center;
             direction: rtl;
             font-weight: bold;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
-        .form-grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
+        .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .form-group { margin-bottom: 18px; }
 
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: #334155;
-            font-size: 13.5px;
-        }
+        label { display: block; margin-bottom: 6px; font-weight: 600; color: #334155; font-size: 13.5px; }
 
         input, select {
             width: 100%;
@@ -111,33 +88,17 @@
             box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.15);
         }
 
-        .section-cards-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-top: 8px;
-        }
-
-        .section-card {
-            background: #ffffff;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 14px 18px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .section-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.04);
-        }
-        .section-card.selected {
-            border-color: var(--primary);
+        .dare-fixed-box {
             background: #f0fdf4;
-            box-shadow: 0 4px 12px rgba(6, 78, 59, 0.08);
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 16px;
+            letter-spacing: 1px;
+            margin-top: 5px;
         }
 
         button {
@@ -153,17 +114,8 @@
             margin-top: 10px;
             transition: all 0.25s ease;
             box-shadow: 0 6px 20px rgba(245, 158, 11, 0.25);
-            position: relative;
-            z-index: 10;
         }
-        button:hover {
-            opacity: 0.95;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.35);
-        }
-        button:active {
-            transform: translateY(0);
-        }
+        button:hover { opacity: 0.95; transform: translateY(-2px); }
 
         .whatsapp-btn {
             background: #10b981;
@@ -180,20 +132,10 @@
             margin-bottom: 15px;
             box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
             animation: pulseGlow 2.5s infinite;
-            position: relative;
-            z-index: 10;
-            transition: all 0.25s ease;
         }
-        .whatsapp-btn:hover {
-            background: #059669;
-            transform: translateY(-2px);
-        }
+        .whatsapp-btn:hover { background: #059669; }
 
-        #successPage {
-            max-width: 540px;
-            margin: 10px auto;
-            position: relative;
-        }
+        #successPage { max-width: 540px; margin: 10px auto; position: relative; }
 
         .official-certificate-card {
             background: #fdfbf7;
@@ -201,32 +143,13 @@
             border-radius: 12px;
             padding: 10px;
             box-shadow: 0 20px 40px rgba(4, 47, 46, 0.15);
-            position: relative;
-            box-sizing: border-box;
-            color: #111;
             aspect-ratio: 2 / 3;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             overflow: hidden;
-        }
-
-        .official-certificate-card::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 82%;
-            height: 82%;
-            background-image: url('Place.png');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            opacity: 0.25;
-            filter: contrast(1.2) saturate(1.3);
-            pointer-events: none;
-            z-index: 1;
+            box-sizing: border-box;
+            color: #111;
         }
 
         .cert-outer-border {
@@ -239,8 +162,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative;
-            z-index: 2;
         }
 
         .cert-header {
@@ -253,7 +174,7 @@
             gap: 8px;
         }
 
-        .cert-badge-box {
+        .cert-badge-box, .cert-passport-box {
             width: 62px;
             height: 76px;
             border: 2px solid var(--accent);
@@ -263,76 +184,18 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            box-shadow: inset 0 0 8px rgba(245, 158, 11, 0.3);
-            justify-self: start;
-        }
-        .cert-badge-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .cert-passport-box {
-            width: 62px;
-            height: 76px;
-            border: 2px solid var(--primary);
-            border-radius: 6px;
-            background: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 8.5px;
+            font-weight: 700;
             color: #64748b;
             text-align: center;
-            overflow: hidden;
-            justify-self: end;
-            font-weight: 700;
         }
-        .cert-passport-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .cert-badge-box img, .cert-passport-box img { width: 100%; height: 100%; object-fit: cover; }
 
-        .cert-title-area {
-            text-align: center;
-        }
-        .cert-title-area h2 {
-            margin: 0;
-            font-size: 11.5px;
-            color: var(--primary);
-            text-transform: uppercase;
-            font-weight: 800;
-            line-height: 1.1;
-        }
-        .cert-title-area .arabic-school-title {
-            font-size: 12px;
-            margin: 2px 0;
-        }
-        .cert-title-area h3 {
-            margin: 0;
-            font-size: 9.5px;
-            color: #475569;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+        .cert-title-area h2 { margin: 0; font-size: 11.5px; color: var(--primary); text-transform: uppercase; font-weight: 800; }
+        .cert-title-area h3 { margin: 0; font-size: 9.5px; color: #475569; text-transform: uppercase; }
 
-        .cert-grid-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px 12px;
-            margin-bottom: 6px;
-            align-items: center;
-        }
-
-        .cert-field-group label {
-            font-size: 9px;
-            font-weight: 800;
-            color: var(--primary);
-            text-transform: uppercase;
-            margin-bottom: 2px;
-        }
-
+        .cert-grid-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; margin-bottom: 6px; align-items: center; }
+        .cert-field-group label { font-size: 9px; font-weight: 800; color: var(--primary); text-transform: uppercase; margin-bottom: 2px; }
         .cert-field-value {
             border-bottom: 1.5px dashed var(--primary);
             padding: 3px 6px;
@@ -344,123 +207,25 @@
             border-radius: 4px;
         }
 
-        .cert-section-box {
-            border: 1px solid var(--accent);
-            background: rgba(253, 251, 247, 0.9);
-            border-radius: 6px;
-            padding: 6px 8px;
-            margin-bottom: 6px;
-        }
-        .cert-section-box label {
-            font-size: 9px;
-            font-weight: 800;
-            color: var(--primary);
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 3px;
-        }
-        .cert-sections-options {
-            display: flex;
-            justify-content: space-around;
-            font-size: 10.5px;
-            font-weight: bold;
-            color: #334155;
-        }
+        .cert-section-box { border: 1px solid var(--accent); background: rgba(253, 251, 247, 0.9); border-radius: 6px; padding: 6px 8px; margin-bottom: 6px; }
+        .cert-section-box label { font-size: 9px; font-weight: 800; color: var(--primary); text-transform: uppercase; display: block; margin-bottom: 3px; }
+        .cert-sections-options { display: flex; justify-content: space-around; font-size: 10px; font-weight: bold; color: #334155; }
 
-        .cert-rules-box {
-            border: 1.5px solid var(--primary);
-            border-radius: 6px;
-            margin-bottom: 6px;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.92);
-        }
-        .cert-rules-title {
-            background: var(--primary);
-            color: var(--accent);
-            text-align: center;
-            font-size: 9px;
-            font-weight: bold;
-            padding: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .cert-rules-content {
-            padding: 5px 8px;
-            font-size: 9px;
-            color: #334155;
-            line-height: 1.25;
-        }
-        .cert-rules-content div {
-            margin-bottom: 2px;
-        }
+        .cert-rules-box { border: 1.5px solid var(--primary); border-radius: 6px; margin-bottom: 6px; background: rgba(255, 255, 255, 0.92); overflow: hidden; }
+        .cert-rules-title { background: var(--primary); color: var(--accent); text-align: center; font-size: 9px; font-weight: bold; padding: 4px; text-transform: uppercase; }
+        .cert-rules-content { padding: 5px 8px; font-size: 9px; color: #334155; line-height: 1.25; }
 
-        .cert-signatures-area {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr 1.2fr;
-            gap: 8px;
-            margin-top: 4px;
-            align-items: center;
-        }
+        .cert-signatures-area { display: grid; grid-template-columns: 1.2fr 0.8fr 1.2fr; gap: 8px; margin-top: 4px; align-items: center; }
+        .cert-sig-title { font-size: 8.5px; font-weight: bold; color: var(--primary); text-transform: uppercase; margin-bottom: 2px; }
+        .cert-sig-line { border-bottom: 1.5px dashed var(--primary); height: 18px; font-size: 11px; color: #1e3a8a; display: flex; align-items: center; justify-content: center; }
+        .cert-date-line { font-size: 8px; margin-top: 2px; color: #64748b; }
 
-        .cert-sig-box {
-            text-align: center;
-        }
-        .cert-sig-title {
-            font-size: 8.5px;
-            font-weight: bold;
-            color: var(--primary);
-            text-transform: uppercase;
-            margin-bottom: 2px;
-        }
-        .cert-sig-line {
-            border-bottom: 1.5px dashed var(--primary);
-            height: 18px;
-            font-family: 'Brush Script MT', cursive, serif;
-            font-size: 12px;
-            color: #1e3a8a;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .cert-date-line {
-            font-size: 8px;
-            margin-top: 2px;
-            color: #64748b;
-        }
-
-        .cert-stamp-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
         .cert-stamp {
-            width: 44px;
-            height: 44px;
-            border: 1.5px dashed #1e3a8a;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #1e3a8a;
-            font-size: 7px;
-            font-weight: bold;
-            transform: rotate(-10deg);
-            text-transform: uppercase;
-            background: rgba(30, 58, 138, 0.04);
+            width: 42px; height: 42px; border: 1.5px dashed #1e3a8a; border-radius: 50%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            color: #1e3a8a; font-size: 6.5px; font-weight: bold; transform: rotate(-10deg); background: rgba(30, 58, 138, 0.04);
         }
-
-        .cert-footer-motto {
-            text-align: center;
-            font-size: 9px;
-            font-weight: bold;
-            color: var(--primary);
-            margin-top: 6px;
-            padding-top: 4px;
-            border-top: 1px solid var(--accent);
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-        }
+        .cert-footer-motto { text-align: center; font-size: 9px; font-weight: bold; color: var(--primary); margin-top: 6px; padding-top: 4px; border-top: 1px solid var(--accent); letter-spacing: 2px; text-transform: uppercase; }
 
         #adminDashboard { display: none; min-height: 100vh; background: #f1f5f9; }
         #adminDashboard.active-page { display: flex; }
@@ -472,147 +237,105 @@
             position: fixed;
             height: 100%;
             overflow-y: auto;
-            left: 0;
+            left: calc(var(--sidebar-width) * -1);
             top: 0;
             z-index: 100;
             box-shadow: 5px 0 25px rgba(0,0,0,0.15);
             transition: left 0.3s ease;
         }
-        
-        .sidebar.sidebar-closed {
-            left: calc(var(--sidebar-width) * -1);
-        }
-
-        .sidebar-header { padding: 25px 20px; font-size: 18px; font-weight: bold; background: #02201f; text-align: center; color: var(--accent); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .sidebar.sidebar-open { left: 0; }
+        .sidebar-header { padding: 22px 20px; font-size: 17px; font-weight: bold; background: #02201f; text-align: center; color: var(--accent); border-bottom: 1px solid rgba(255,255,255,0.05); }
         .sidebar-menu { list-style: none; padding: 0; margin: 0; }
-        .sidebar-menu li { padding: 16px 20px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.04); font-weight: 500; display: flex; align-items: center; gap: 12px; transition: all 0.2s; }
+        .sidebar-menu li { padding: 14px 20px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.04); font-weight: 500; display: flex; align-items: center; justify-content: space-between; transition: all 0.2s; font-size: 14px; }
         .sidebar-menu li:hover, .sidebar-menu li.active { background: var(--secondary); border-left: 5px solid var(--accent); color: var(--accent); padding-left: 25px; }
-        
-        .main-content { 
-            margin-left: var(--sidebar-width); 
-            flex: 1; 
-            padding: 35px; 
-            box-sizing: border-box; 
-            transition: margin-left 0.3s ease;
-            width: 100%;
-        }
-        
-        .main-content.full-width {
-            margin-left: 0;
-        }
+
+        .main-content { margin-left: 0; flex: 1; padding: 35px; box-sizing: border-box; transition: margin-left 0.3s ease; width: 100%; }
 
         .top-navbar { display: flex; justify-content: space-between; align-items: center; background: white; padding: 18px 30px; border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); margin-bottom: 30px; border: 1px solid #e2e8f0; }
-        
         .dash-section { display: none; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid #e2e8f0; }
         .dash-section.active-tab { display: block; animation: fadeInScale 0.3s ease forwards; }
-        
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 25px; }
-        .stat-card { background: #fff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; border-top: 4px solid var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-        .stat-card .stat-value { font-size: 22px; font-weight: bold; color: var(--primary); margin-top: 5px; }
-        
+
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 25px; }
+        .stat-card { background: #fff; padding: 18px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; border-top: 4px solid var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        .stat-card .stat-value { font-size: 20px; font-weight: bold; color: var(--primary); margin-top: 5px; }
+
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
         th, td { padding: 12px 15px; text-align: left; font-size: 13.5px; border-bottom: 1px solid #f1f5f9; }
         th { background-color: var(--primary); color: var(--accent); font-weight: 600; }
         tr:hover td { background-color: #f8fafc; cursor: pointer; }
 
-        .balloons-container, .confetti-container { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            pointer-events: none; 
-            overflow: hidden; 
-            z-index: 1; 
-        }
+        .balloons-container, .confetti-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1; }
         .balloon { position: absolute; bottom: -100px; width: 32px; height: 42px; border-radius: 50%; }
         .confetti { position: absolute; top: -20px; width: 8px; height: 12px; }
 
-        .notice-bell-wrapper {
-            position: relative;
-            cursor: pointer;
-            display: inline-block;
-        }
-        .notice-badge {
-            position: absolute;
-            top: -5px;
-            right: -8px;
-            background: #ef4444;
-            color: white;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-        .notice-dropdown {
-            position: absolute;
-            right: 0;
-            top: 50px;
-            width: 350px;
-            background: white;
-            border-radius: 14px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        .notice-bell-wrapper { position: relative; cursor: pointer; display: inline-block; }
+        .notice-badge { position: absolute; top: -5px; right: -8px; background: #ef4444; color: white; font-size: 10px; font-weight: bold; padding: 2px 6px; border-radius: 50%; border: 2px solid white; display: inline-block; }
+        .notice-dropdown { position: absolute; right: 0; top: 50px; width: 380px; background: white; border-radius: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.12); border: 1px solid #e2e8f0; display: none; z-index: 1000; overflow: hidden; }
+        .notice-dropdown.show { display: block; animation: fadeInScale 0.2s ease forwards; }
+        .notice-header { padding: 14px 18px; background: var(--primary); color: var(--accent); font-weight: bold; display: flex; justify-content: space-between; align-items: center; font-size: 13.5px; }
+        .notice-body { max-height: 340px; overflow-y: auto; }
+        .notice-item { padding: 12px 18px; border-bottom: 1px solid #f1f5f9; font-size: 13px; background: #fff; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; cursor: pointer; }
+        .notice-item:hover { background: #f8fafc; }
+        .notice-item.unread { background: #fdf8f0; border-left: 4px solid var(--accent); }
+        .notice-actions { display: flex; gap: 6px; align-items: center; }
+        .notice-btn { padding: 5px 10px; font-size: 11px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; width: auto; margin: 0; box-shadow: none; color: white; }
+
+        .promo-card {
+            background: #ffffff;
             border: 1px solid #e2e8f0;
+            border-left: 5px solid var(--accent);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            position: relative;
+        }
+        .promo-info h4 { margin: 0 0 5px 0; color: var(--primary); font-size: 15px; }
+        .promo-info p { margin: 0; font-size: 12.5px; color: #64748b; }
+        .promo-menu-btn {
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #475569;
+            padding: 5px 10px;
+            width: auto;
+            box-shadow: none;
+            margin: 0;
+        }
+        .promo-dropdown {
+            position: absolute;
+            right: 15px;
+            top: 45px;
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             display: none;
-            z-index: 1000;
+            flex-direction: column;
+            z-index: 50;
             overflow: hidden;
         }
-        .notice-dropdown.show {
-            display: block;
-            animation: fadeInScale 0.2s ease forwards;
-        }
-        .notice-header {
-            padding: 14px 18px;
-            background: var(--primary);
-            color: var(--accent);
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13.5px;
-        }
-        .notice-body {
-            max-height: 280px;
-            overflow-y: auto;
-        }
-        .notice-item {
-            padding: 12px 18px;
-            border-bottom: 1px solid #f1f5f9;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .promo-dropdown.show { display: flex; }
+        .promo-dropdown button {
+            background: transparent;
+            color: #334155;
+            padding: 10px 15px;
             font-size: 12.5px;
-            background: #fff;
-            transition: background 0.2s;
-        }
-        .notice-item.unread {
-            background: #fdf8f0;
-            font-weight: bold;
-        }
-        .notice-actions {
-            display: flex;
-            gap: 6px;
-        }
-        .notice-btn {
-            padding: 5px 9px;
-            font-size: 10.5px;
-            border-radius: 6px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            width: auto;
-            margin: 0;
+            text-align: left;
+            border-bottom: 1px solid #f1f5f9;
+            border-radius: 0;
             box-shadow: none;
+            margin: 0;
+            width: 100%;
         }
-        .notice-btn-mark { background: #0284c7; color: white; }
-        .notice-btn-del { background: #ef4444; color: white; }
+        .promo-dropdown button:hover { background: #f8fafc; }
 
         @media (max-width: 768px) {
-            .sidebar { left: calc(var(--sidebar-width) * -1); }
-            .sidebar.sidebar-mobile-open { left: 0; }
-            .main-content { margin-left: 0; padding: 15px; }
-            .notice-dropdown { width: 290px; right: -40px; }
+            .main-content { padding: 15px; }
             .form-grid-2 { grid-template-columns: 1fr; }
         }
     </style>
@@ -623,9 +346,9 @@
 <div id="welcomePage" class="page active-page auth-container" style="text-align: center; padding: 45px 25px;">
     <div class="arabic-school-title" id="arabicTitleTrigger" style="font-size: 22px; margin-bottom: 12px; cursor: pointer;" title="Ka danna sau 5 domin shiga admin">مدرسة مفتاح العلم والدراسات الإسلامية</div>
     <div style="margin: 30px 0; line-height: 1.6;">
-        <h1 style="font-size: 26px; font-weight: 800; color: var(--primary); margin: 0; letter-spacing: 0.5px;">WELCOME TO</h1>
-        <h2 style="font-size: 17px; font-weight: 700; color: #475569; margin: 10px 0;">Madrasatul Miftahul Ilmi Waddurasatul Islamiyya Hotoro Kano</h2>
-        <div style="font-size: 13.5px; font-weight: 800; color: var(--secondary); margin-top: 15px; background: #e6f4ea; display: inline-block; padding: 6px 16px; border-radius: 20px; border: 1px solid #10b981;">ONLINE REGISTRATION PORTAL</div>
+        <h1 style="font-size: 24px; font-weight: 800; color: var(--primary); margin: 0;">WELCOME TO</h1>
+        <h2 style="font-size: 16px; font-weight: 700; color: #475569; margin: 10px 0;">Madrasatul Miftahul Ilmi Waddurasatul Islamiyya Hotoro Kano</h2>
+        <div style="font-size: 13px; font-weight: 800; color: var(--secondary); margin-top: 15px; background: #e6f4ea; display: inline-block; padding: 6px 16px; border-radius: 20px; border: 1px solid #10b981;">ONLINE REGISTRATION PORTAL</div>
     </div>
     <button type="button" onclick="showPage('rulesPage')" style="font-size: 16px; padding: 15px 30px; border-radius: 12px;">Register Now ➔</button>
 </div>
@@ -633,7 +356,7 @@
 <!-- 2. RULES PAGE -->
 <div id="rulesPage" class="page auth-container">
     <h2>OUR RULES & REGULATIONS</h2>
-    <div style="background: #fdfbf7; padding: 20px; max-height: 250px; overflow-y: auto; border-left: 5px solid var(--accent); border-radius: 8px; margin-bottom: 20px; font-size: 14px; line-height: 1.6; border: 1px solid #e2e8f0;">
+    <div style="background: #fdfbf7; padding: 20px; max-height: 230px; overflow-y: auto; border-left: 5px solid var(--accent); border-radius: 8px; margin-bottom: 20px; font-size: 14px; line-height: 1.6; border: 1px solid #e2e8f0;">
         <ul style="padding-left: 15px; margin: 0;">
             <li>Fear Allah in all your actions.</li>
             <li>Be punctual and attend all classes regularly.</li>
@@ -672,51 +395,20 @@
         </div>
 
         <div class="form-grid-2">
-            <div class="form-group">
-                <label>Sunan Dalibi *</label>
-                <input type="text" id="firstName" required placeholder="Misali: Abubakar">
-            </div>
-            <div class="form-group">
-                <label>Sunan Mahaifi *</label>
-                <input type="text" id="lastName" required placeholder="Misali: Abdullahi">
-            </div>
+            <div class="form-group"><label>Sunan Dalibi *</label><input type="text" id="firstName" required placeholder="Misali: Abubakar"></div>
+            <div class="form-group"><label>Sunan Mahaifi *</label><input type="text" id="lastName" required placeholder="Misali: Abdullahi"></div>
         </div>
 
         <div class="form-grid-2">
-            <div class="form-group">
-                <label>Shekaru (Age) *</label>
-                <input type="number" id="age" required placeholder="Misali: 20">
-            </div>
-            <div class="form-group">
-                <label>Phone Number *</label>
-                <input type="text" id="phone" required placeholder="08012345678">
-            </div>
+            <div class="form-group"><label>Shekaru (Age) *</label><input type="number" id="age" required placeholder="Misali: 15"></div>
+            <div class="form-group"><label>Phone Number *</label><input type="text" id="phone" required placeholder="08012345678"></div>
         </div>
 
-        <div class="form-group">
-            <label>Address *</label>
-            <input type="text" id="address" required placeholder="Misali: Hotoro GRA, Kano">
-        </div>
+        <div class="form-group"><label>Address *</label><input type="text" id="address" required placeholder="Misali: Hotoro GRA, Kano"></div>
         
         <div class="form-group">
-            <label>Select Section *</label>
-            <input type="hidden" id="sectionSelect">
-            
-            <div class="section-cards-container">
-                <div class="section-card" id="cardDR" data-section="DR">
-                    <div><strong>Night Class / Sashen Dare</strong><br><small style="color: #64748b;">Karatu a dare (Rajista ₦1,000)</small></div>
-                    <span style="font-size: 20px;">🌙</span>
-                </div>
-                <div class="section-card" id="cardONL" data-section="ONL">
-                    <div><strong>Online Class</strong><br><small style="color: #64748b;">Karatu ta intanet (Rajista ₦1,500)</small></div>
-                    <span style="font-size: 20px;">🌐</span>
-                </div>
-                <div class="section-card" id="cardADL" data-section="ADL">
-                    <div><strong>Married Women / Matan Aure</strong><br><small style="color: #64748b;">Sashen matan aure (Rajista ₦1,500)</small></div>
-                    <span style="font-size: 20px;">🧕</span>
-                </div>
-            </div>
-            <div id="feeNote" style="font-size: 12.5px; font-weight: bold; margin-top: 10px; color: #059669; text-align: center;"></div>
+            <label>Tsarin Karatu / Tsari</label>
+            <div class="dare-fixed-box">🌙 DARE (Trained & Assigned by Code)</div>
         </div>
         
         <button type="submit" id="submitRegBtn">Yi Register ➔</button>
@@ -735,7 +427,7 @@
 
     <div class="form-group" style="margin-top: 25px;">
         <label>Sanya Code *</label>
-        <input type="text" id="confCodeInput" placeholder="Misali: onl478jr7 ko dr921ab3" style="text-align: center; font-family: monospace; font-size: 16px; letter-spacing: 1px;">
+        <input type="text" id="confCodeInput" placeholder="Misali: cl1_xyz89 ko cl2_abc12" style="text-align: center; font-family: monospace; font-size: 16px; letter-spacing: 1px;">
     </div>
     <button type="button" id="finalizeRegBtn">Kammala Rajista ✨</button>
     <button type="button" onclick="showPage('registerPage')" style="background: #64748b; color: white; box-shadow: none; margin-top: 10px;">← Baya</button>
@@ -748,54 +440,41 @@
 
     <div class="official-certificate-card" id="printableFormCard">
         <div class="cert-outer-border">
-            
             <div class="cert-header">
-                <div class="cert-badge-box" id="formCardBadgeBox">
-                    <img src="Sadeeq.png" alt="Badge" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\'font-size:9px; text-align:center; color:#d97706; font-weight:bold;\'>BADGE</span>';">
-                </div>
-                <div class="cert-title-area">
+                <div class="cert-badge-box" id="formCardBadgeBox">BADGE</div>
+                <div class="cert-title-area" style="text-align: center;">
                     <h2>Madrasatul Miftahul Ilmi Waddurasatul Islamiyya</h2>
-                    <div class="arabic-school-title">مدرسة مفتاح العلم والدراسات الإسلامية</div>
+                    <div class="arabic-school-title" style="font-size: 12px; margin: 2px 0;">مدرسة مفتاح العلم والدراسات الإسلامية</div>
                     <h3>Hotoro Kano State</h3>
                 </div>
                 <div class="cert-passport-box" id="formCardPassportBox">PHOTO</div>
             </div>
 
             <div class="cert-grid-row">
-                <div class="cert-field-group">
-                    <label>Sunan Dalibi:</label>
-                    <div class="cert-field-value" id="formCardFirstName"></div>
-                </div>
-                <div class="cert-field-group">
-                    <label>Sunan Mahaifi:</label>
-                    <div class="cert-field-value" id="formCardLastName"></div>
-                </div>
+                <div class="cert-field-group"><label>Sunan Dalibi:</label><div class="cert-field-value" id="formCardFirstName"></div></div>
+                <div class="cert-field-group"><label>Sunan Mahaifi:</label><div class="cert-field-value" id="formCardLastName"></div></div>
             </div>
 
             <div class="cert-grid-row">
-                <div class="cert-field-group">
-                    <label>Student ID:</label>
-                    <div class="cert-field-value" id="formCardUserId" style="color: var(--primary); font-weight: bold;"></div>
-                </div>
-                <div class="cert-field-group">
-                    <label>Phone Number:</label>
-                    <div class="cert-field-value" id="formCardPhone"></div>
-                </div>
+                <div class="cert-field-group"><label>Student ID:</label><div class="cert-field-value" id="formCardUserId" style="color: var(--primary); font-weight: bold;"></div></div>
+                <div class="cert-field-group"><label>Phone Number:</label><div class="cert-field-value" id="formCardPhone"></div></div>
             </div>
 
             <div class="cert-grid-row" style="margin-bottom: 2px;">
                 <div class="cert-section-box" style="margin-bottom: 0;">
-                    <label>Select Section:</label>
-                    <div class="cert-sections-options">
-                        <div><span id="chkDr">🔲</span> DARE</div>
-                        <div><span id="chkOnl">🔲</span> ONLINE</div>
-                        <div><span id="chkAdl">🔲</span> ADULT</div>
+                    <label>Assigned Class & Code:</label>
+                    <div class="cert-sections-options" style="flex-direction: column; align-items: center; gap: 4px;">
+                        <div style="display: flex; gap: 10px; width: 100%; justify-content: space-around;">
+                            <div><span id="chkCl1">🔲</span> CL1</div>
+                            <div><span id="chkCl2">🔲</span> CL2</div>
+                            <div><span id="chkCl3">🔲</span> CL3</div>
+                            <div><span id="chkCl4">🔲</span> CL4</div>
+                            <div><span id="chkCl5">🔲</span> CL5</div>
+                        </div>
+                        <div style="font-size: 11px; color: #b45309; font-family: monospace;" id="formCardUsedCode">Code: --</div>
                     </div>
                 </div>
-                <div class="cert-field-group" style="margin-bottom: 0;">
-                    <label>Address:</label>
-                    <div class="cert-field-value" id="formCardAddress" style="height: 25px; overflow: hidden;"></div>
-                </div>
+                <div class="cert-field-group" style="margin-bottom: 0;"><label>Address:</label><div class="cert-field-value" id="formCardAddress" style="height: 25px; overflow: hidden;"></div></div>
             </div>
 
             <div class="cert-rules-box">
@@ -808,25 +487,9 @@
             </div>
 
             <div class="cert-signatures-area">
-                <div class="cert-sig-box">
-                    <div class="cert-sig-title">Student Sign</div>
-                    <div class="cert-sig-line" id="studentSigLine">Sign</div>
-                    <div class="cert-date-line">DATE: <span id="formCardDate1">--/--/--</span></div>
-                </div>
-
-                <div class="cert-stamp-container">
-                    <div class="cert-stamp">
-                        <span>Miftahul</span>
-                        <span>Official</span>
-                        <span>Stamp</span>
-                    </div>
-                </div>
-
-                <div class="cert-sig-box">
-                    <div class="cert-sig-title">Management Sign</div>
-                    <div class="cert-sig-line">Miftahul Admin</div>
-                    <div class="cert-date-line">DATE: <span id="formCardDate2">--/--/--</span></div>
-                </div>
+                <div class="cert-sig-box"><div class="cert-sig-title">Student Sign</div><div class="cert-sig-line" id="studentSigLine">Sign</div><div class="cert-date-line">DATE: <span id="formCardDate1">--/--/--</span></div></div>
+                <div class="cert-stamp-container"><div class="cert-stamp"><span>Miftahul</span><span>Official</span><span>Stamp</span></div></div>
+                <div class="cert-sig-box"><div class="cert-sig-title">Management Sign</div><div class="cert-sig-line">Miftahul Admin</div><div class="cert-date-line">DATE: <span id="formCardDate2">--/--/--</span></div></div>
             </div>
 
             <div class="cert-footer-motto">ILMI &bull; IMANI &bull; IHSANI</div>
@@ -863,12 +526,18 @@
     <div class="sidebar" id="appSidebar">
         <div class="sidebar-header">✨ Miftahul Ilmi Admin</div>
         <ul class="sidebar-menu">
-            <li data-tab="tabOverview" class="active">📊 Overview & Stats</li>
-            <li data-tab="tabMonthly">📅 Monthly Revenue</li>
-            <li data-tab="tabCodes">🔑 Confirmation Codes</li>
-            <li data-tab="tabStudents">👥 All Students</li>
-            <li data-tab="tabForms">📄 Forms</li>
-            <li id="logoutBtn" style="color: #fca5a5; margin-top: 30px;">🚪 Logout</li>
+            <li data-tab="tabOverview" class="active"><span>📊 Overview & Revenue</span></li>
+            <li data-tab="tabMonthly"><span>📅 Money History</span></li>
+            <li data-tab="tabCodes"><span>🔑 Confirmation Codes</span></li>
+            <li data-tab="tabPromoDemo"><span>🚀 Promo & Demo</span></li>
+            <li data-tab="tabAllStudents"><span>👥 All Students</span><span id="badgeAllStudents" style="background:var(--accent); color:var(--primary); font-size:11px; padding:2px 8px; border-radius:10px; font-weight:bold;">0</span></li>
+            <li data-tab="tabClass1"><span>📘 Class 1</span><span id="badgeClass1" style="background:var(--accent); color:var(--primary); font-size:11px; padding:2px 8px; border-radius:10px; font-weight:bold;">0</span></li>
+            <li data-tab="tabClass2"><span>📗 Class 2</span><span id="badgeClass2" style="background:var(--accent); color:var(--primary); font-size:11px; padding:2px 8px; border-radius:10px; font-weight:bold;">0</span></li>
+            <li data-tab="tabClass3"><span>📙 Class 3</span><span id="badgeClass3" style="background:var(--accent); color:var(--primary); font-size:11px; padding:2px 8px; border-radius:10px; font-weight:bold;">0</span></li>
+            <li data-tab="tabClass4"><span>📓 Class 4</span><span id="badgeClass4" style="background:var(--accent); color:var(--primary); font-size:11px; padding:2px 8px; border-radius:10px; font-weight:bold;">0</span></li>
+            <li data-tab="tabClass5"><span>📔 Class 5</span><span id="badgeClass5" style="background:var(--accent); color:var(--primary); font-size:11px; padding:2px 8px; border-radius:10px; font-weight:bold;">0</span></li>
+            <li data-tab="tabForms"><span>📄 Forms</span></li>
+            <li id="logoutBtn" style="color: #fca5a5; margin-top: 20px;"><span>🚪 Logout</span><span></span></li>
         </ul>
     </div>
 
@@ -885,135 +554,194 @@
                     <span class="notice-badge" id="noticeBadgeCount">0</span>
                     <div class="notice-dropdown" id="noticeDropdown" onclick="event.stopPropagation()">
                         <div class="notice-header">
-                            <span>Sake-saken Rajista (Notifications)</span>
+                            <span>Sanarwar Rajista (Notifications)</span>
                             <div style="display: flex; gap: 5px;">
-                                <button type="button" class="notice-btn" style="background:#0284c7; color:white;" id="markAllNoticesBtn">Mark All</button>
-                                <button type="button" class="notice-btn" style="background:#ef4444; color:white;" id="delAllNoticesBtn">Delete</button>
+                                <button type="button" class="notice-btn" style="background:#0284c7;" id="markAllNoticesBtn">Mark All</button>
+                                <button type="button" class="notice-btn" style="background:#ef4444;" id="delAllNoticesBtn">Delete</button>
                             </div>
                         </div>
                         <div class="notice-body" id="noticeListContainer"></div>
                     </div>
                 </div>
-
                 <span id="adminWelcomeUser" style="font-weight: bold; color: var(--primary);"></span>
             </div>
         </div>
 
+        <!-- OVERVIEW TAB -->
         <div id="tabOverview" class="dash-section active-tab">
             <h2>Financial & Revenue Overview</h2>
             <div class="stats-grid">
                 <div class="stat-card"><h4>Jimillar Dalibai</h4><div class="stat-value" id="statTotalStudents">0</div></div>
-                <div class="stat-card"><h4>Jimillar Kudin Rajista (General)</h4><div class="stat-value" id="statTotalRevenue">₦0</div></div>
+                <div class="stat-card"><h4>Jimillar Kuɗi (All Revenue)</h4><div class="stat-value" id="statTotalRevenue">₦0</div></div>
             </div>
             <h2>Search System</h2>
             <input type="text" id="liveSearchInput" placeholder="Search da Student ID ko Suna...">
             <div id="searchDashboardResult" style="margin-top: 15px;"></div>
         </div>
 
+        <!-- MONTHLY REVENUE HISTORY TAB -->
         <div id="tabMonthly" class="dash-section">
-            <h2>Lissafin Kuɗi na Wata-Wata (Monthly Revenue Archives)</h2>
-            <p style="font-size: 13.5px; color: #64748b; margin-bottom: 25px;">Wannan sashen yana lissafa kuɗaɗen watan da ake ciki ta atomatik (har na tsawon shekaru 10 masu zuwa), kuma idan wata ya fita zai adana shi a ƙasa.</p>
+            <h2>Lissafin Kuɗi na Wata-Wata (Money History Archives)</h2>
+            <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">Wannan sashen yana lissafin kudaden watan da ake ciki ta atomatik, kuma yana lissafin kwanakin wata (28, 29, 30, 31) tare da adana na shekara idan ta cika.</p>
             
             <div style="background: #f8fafc; border: 2px solid var(--accent); border-radius: 14px; padding: 20px; margin-bottom: 25px;">
                 <h3 style="margin-top:0; color:var(--primary);" id="currentMonthTitleHeading">Watan da ake ciki: --</h3>
-                <div class="stats-grid" style="margin-bottom: 0;">
-                    <div class="stat-card"><h4>Dare</h4><div class="stat-value" id="currentMonthDrRev">₦0</div></div>
-                    <div class="stat-card"><h4>Online</h4><div class="stat-value" id="currentMonthOnlRev">₦0</div></div>
-                    <div class="stat-card"><h4>Adult</h4><div class="stat-value" id="currentMonthAdlRev">₦0</div></div>
-                    <div class="stat-card" style="border-top-color: var(--primary);"><h4>Jimillar Wata (All)</h4><div class="stat-value" id="currentMonthTotalRev">₦0</div></div>
+                <div class="stats-grid" style="margin-bottom: 0; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
+                    <div class="stat-card"><h4>Cl 1</h4><div class="stat-value" id="curCl1Rev">₦0</div></div>
+                    <div class="stat-card"><h4>Cl 2</h4><div class="stat-value" id="curCl2Rev">₦0</div></div>
+                    <div class="stat-card"><h4>Cl 3</h4><div class="stat-value" id="curCl3Rev">₦0</div></div>
+                    <div class="stat-card"><h4>Cl 4</h4><div class="stat-value" id="curCl4Rev">₦0</div></div>
+                    <div class="stat-card"><h4>Cl 5</h4><div class="stat-value" id="curCl5Rev">₦0</div></div>
+                    <div class="stat-card" style="border-top-color: var(--primary);"><h4>All</h4><div class="stat-value" id="curAllRev">₦0</div></div>
                 </div>
             </div>
 
-            <h3>Adana Tsofaffin Watanni (Saved Archives)</h3>
+            <h3>Adana Tsofaffin Watanni da Shekaru (Saved Archives)</h3>
             <div id="monthlyArchivesListContainer"></div>
         </div>
 
+        <!-- CODES TAB -->
         <div id="tabCodes" class="dash-section">
             <h2>Sarrafa Confirmation Codes</h2>
-            <p style="font-size: 13.5px; color: #64748b; margin-bottom: 25px;">Kowanne sashe yana da nasa engine mai zaman kansa, baturi guda 10, da maɓallan sarrafa su musamman.</p>
+            <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">Kowanne aji yana da nasa engine mai zaman kansa (generate zai bayar da guda 20 lokaci guda. Idan ya kai/ya wura 40 za ka goge wasu kafin ya sake yi).</p>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px;">
                 
-                <div style="background: #fdfbf7; border: 2px solid #d97706; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+                <!-- Class 1 Engine -->
+                <div style="background: #fdfbf7; border: 2px solid #d97706; border-radius: 14px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <h3 style="color: #b45309; margin: 0; font-size: 15.5px;">🌙 Night Class / Sashen Dare</h3>
-                            <span id="countBadgeDR" style="background: #fef3c7; color: #b45309; padding: 4px 12px; border-radius: 12px; font-size: 11.5px; font-weight: bold;">0 codes</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 style="color: #b45309; margin: 0; font-size: 15px;">📘 Class 1 (cl1_...)</h3>
+                            <span id="countBadgeCL1" style="background: #fef3c7; color: #b45309; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;">0 codes</span>
                         </div>
-                        <div style="max-height: 230px; overflow-y: auto; background: transparent; padding-right: 4px;" id="listEngineDR"></div>
+                        <div style="max-height: 200px; overflow-y: auto;" id="listEngineCL1"></div>
                     </div>
-                    <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 8px;">
-                        <button type="button" onclick="generateCodesForSection('DR')" style="background: #d97706; color:white; margin:0; padding:11px;">⚡ Generate Dare Codes (10)</button>
-                        <button type="button" onclick="copyAllCodes('DR')" style="background: #0284c7; color:white; margin:0; padding:11px;">📋 Copy All Dare</button>
-                        <button type="button" onclick="deleteAllCodes('DR')" style="background: #ef4444; color:white; margin:0; padding:11px;">🗑️ Delete All Dare</button>
+                    <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 6px;">
+                        <button type="button" onclick="generateCodesForClass('CL1')" style="background: #d97706; color:white; margin:0; padding:10px;">⚡ Generate (20)</button>
+                        <button type="button" onclick="copyAllCodes('CL1')" style="background: #0284c7; color:white; margin:0; padding:10px;">📋 Copy All</button>
+                        <button type="button" onclick="deleteAllCodes('CL1')" style="background: #ef4444; color:white; margin:0; padding:10px;">🗑️ Delete All</button>
                     </div>
                 </div>
 
-                <div style="background: #f0fdf4; border: 2px solid #10b981; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+                <!-- Class 2 Engine -->
+                <div style="background: #f0fdf4; border: 2px solid #10b981; border-radius: 14px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <h3 style="color: #047857; margin: 0; font-size: 15.5px;">🌐 Online Class Codes</h3>
-                            <span id="countBadgeONL" style="background: #d1fae5; color: #047857; padding: 4px 12px; border-radius: 12px; font-size: 11.5px; font-weight: bold;">0 codes</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 style="color: #047857; margin: 0; font-size: 15px;">📗 Class 2 (cl2_...)</h3>
+                            <span id="countBadgeCL2" style="background: #d1fae5; color: #047857; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;">0 codes</span>
                         </div>
-                        <div style="max-height: 230px; overflow-y: auto; background: transparent; padding-right: 4px;" id="listEngineONL"></div>
+                        <div style="max-height: 200px; overflow-y: auto;" id="listEngineCL2"></div>
                     </div>
-                    <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 8px;">
-                        <button type="button" onclick="generateCodesForSection('ONL')" style="background: #059669; color:white; margin:0; padding:11px;">⚡ Generate Online Codes (10)</button>
-                        <button type="button" onclick="copyAllCodes('ONL')" style="background: #0284c7; color:white; margin:0; padding:11px;">📋 Copy All Online</button>
-                        <button type="button" onclick="deleteAllCodes('ONL')" style="background: #ef4444; color:white; margin:0; padding:11px;">🗑️ Delete All Online</button>
+                    <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 6px;">
+                        <button type="button" onclick="generateCodesForClass('CL2')" style="background: #059669; color:white; margin:0; padding:10px;">⚡ Generate (20)</button>
+                        <button type="button" onclick="copyAllCodes('CL2')" style="background: #0284c7; color:white; margin:0; padding:10px;">📋 Copy All</button>
+                        <button type="button" onclick="deleteAllCodes('CL2')" style="background: #ef4444; color:white; margin:0; padding:10px;">🗑️ Delete All</button>
                     </div>
                 </div>
 
-                <div style="background: #fdf2f8; border: 2px solid #db2777; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;">
+                <!-- Class 3 Engine -->
+                <div style="background: #fdf2f8; border: 2px solid #db2777; border-radius: 14px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <h3 style="color: #be185d; margin: 0; font-size: 15.5px;">🧕 Adult / Married Women</h3>
-                            <span id="countBadgeADL" style="background: #fce7f3; color: #be185d; padding: 4px 12px; border-radius: 12px; font-size: 11.5px; font-weight: bold;">0 codes</span>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 style="color: #be185d; margin: 0; font-size: 15px;">📙 Class 3 (cl3_...)</h3>
+                            <span id="countBadgeCL3" style="background: #fce7f3; color: #be185d; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;">0 codes</span>
                         </div>
-                        <div style="max-height: 230px; overflow-y: auto; background: transparent; padding-right: 4px;" id="listEngineADL"></div>
+                        <div style="max-height: 200px; overflow-y: auto;" id="listEngineCL3"></div>
                     </div>
-                    <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 8px;">
-                        <button type="button" onclick="generateCodesForSection('ADL')" style="background: #db2777; color:white; margin:0; padding:11px;">⚡ Generate Adult Codes (10)</button>
-                        <button type="button" onclick="copyAllCodes('ADL')" style="background: #0284c7; color:white; margin:0; padding:11px;">📋 Copy All Adult</button>
-                        <button type="button" onclick="deleteAllCodes('ADL')" style="background: #ef4444; color:white; margin:0; padding:11px;">🗑️ Delete All Adult</button>
+                    <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 6px;">
+                        <button type="button" onclick="generateCodesForClass('CL3')" style="background: #db2777; color:white; margin:0; padding:10px;">⚡ Generate (20)</button>
+                        <button type="button" onclick="copyAllCodes('CL3')" style="background: #0284c7; color:white; margin:0; padding:10px;">📋 Copy All</button>
+                        <button type="button" onclick="deleteAllCodes('CL3')" style="background: #ef4444; color:white; margin:0; padding:10px;">🗑️ Delete All</button>
+                    </div>
+                </div>
+
+                <!-- Class 4 Engine -->
+                <div style="background: #e0f2fe; border: 2px solid #0284c7; border-radius: 14px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 style="color: #0369a1; margin: 0; font-size: 15px;">📓 Class 4 (cl4_...)</h3>
+                            <span id="countBadgeCL4" style="background: #bae6fd; color: #0369a1; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;">0 codes</span>
+                        </div>
+                        <div style="max-height: 200px; overflow-y: auto;" id="listEngineCL4"></div>
+                    </div>
+                    <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 6px;">
+                        <button type="button" onclick="generateCodesForClass('CL4')" style="background: #0284c7; color:white; margin:0; padding:10px;">⚡ Generate (20)</button>
+                        <button type="button" onclick="copyAllCodes('CL4')" style="background: #0284c7; color:white; margin:0; padding:10px;">📋 Copy All</button>
+                        <button type="button" onclick="deleteAllCodes('CL4')" style="background: #ef4444; color:white; margin:0; padding:10px;">🗑️ Delete All</button>
+                    </div>
+                </div>
+
+                <!-- Class 5 Engine -->
+                <div style="background: #fae8ff; border: 2px solid #a855f7; border-radius: 14px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h3 style="color: #7e22ce; margin: 0; font-size: 15px;">📔 Class 5 (cl5_...)</h3>
+                            <span id="countBadgeCL5" style="background: #f3e8ff; color: #7e22ce; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: bold;">0 codes</span>
+                        </div>
+                        <div style="max-height: 200px; overflow-y: auto;" id="listEngineCL5"></div>
+                    </div>
+                    <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 6px;">
+                        <button type="button" onclick="generateCodesForClass('CL5')" style="background: #a855f7; color:white; margin:0; padding:10px;">⚡ Generate (20)</button>
+                        <button type="button" onclick="copyAllCodes('CL5')" style="background: #0284c7; color:white; margin:0; padding:10px;">📋 Copy All</button>
+                        <button type="button" onclick="deleteAllCodes('CL5')" style="background: #ef4444; color:white; margin:0; padding:10px;">🗑️ Delete All</button>
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <div id="tabStudents" class="dash-section">
+        <!-- PROMO & DEMO TAB -->
+        <div id="tabPromoDemo" class="dash-section">
+            <h2>🚀 Promo & Demo (Sarrafa Ajin Ɗalibi)</h2>
+            <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">Anan zaka iya promote din dalibi zuwa ajin gaba ko demote dinsa zuwa ajin baya nan take.</p>
+            <div style="margin-bottom: 15px;"><input type="text" id="promoSearchInput" placeholder="Search da Student ID ko Suna..."></div>
+            <div id="promoDemoContainer"></div>
+        </div>
+
+        <!-- ALL STUDENTS TAB -->
+        <div id="tabAllStudents" class="dash-section">
             <h2>All Students Management</h2>
-            <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
-                <button type="button" onclick="filterStudentTab('ALL', this)" class="student-filter-btn" style="width: auto; background: var(--primary); color: var(--accent); padding: 9px 18px; margin:0; border-radius: 8px;">All</button>
-                <button type="button" onclick="filterStudentTab('ONL', this)" class="student-filter-btn" style="width: auto; background: #e2e8f0; color: #334155; padding: 9px 18px; margin:0; border-radius: 8px;">Online</button>
-                <button type="button" onclick="filterStudentTab('DR', this)" class="student-filter-btn" style="width: auto; background: #e2e8f0; color: #334155; padding: 9px 18px; margin:0; border-radius: 8px;">Dare</button>
-                <button type="button" onclick="filterStudentTab('ADL', this)" class="student-filter-btn" style="width: auto; background: #e2e8f0; color: #334155; padding: 9px 18px; margin:0; border-radius: 8px;">Adult</button>
-            </div>
-            <div style="margin-bottom: 20px;">
-                <input type="text" id="studentSearchInput" placeholder="Search da Student ID ko Suna...">
-            </div>
-            <div id="studentTableContainer"></div>
+            <div style="margin-bottom: 15px;"><input type="text" id="allStudentSearchInput" placeholder="Search da Student ID ko Suna..."></div>
+            <div id="allStudentTableContainer"></div>
         </div>
 
+        <!-- INDIVIDUAL CLASS TABS (Class 1 to 5) -->
+        <div id="tabClass1" class="dash-section"><h2>Class 1 Students Details</h2><div id="class1TableContainer"></div></div>
+        <div id="tabClass2" class="dash-section"><h2>Class 2 Students Details</h2><div id="class2TableContainer"></div></div>
+        <div id="tabClass3" class="dash-section"><h2>Class 3 Students Details</h2><div id="class3TableContainer"></div></div>
+        <div id="tabClass4" class="dash-section"><h2>Class 4 Students Details</h2><div id="class4TableContainer"></div></div>
+        <div id="tabClass5" class="dash-section"><h2>Class 5 Students Details</h2><div id="class5TableContainer"></div></div>
+
+        <!-- FORMS TAB -->
         <div id="tabForms" class="dash-section">
             <h2>Successful Registration Forms</h2>
-            <div style="margin-bottom: 20px;">
-                <input type="text" id="formsSearchInput" placeholder="Search da Student ID ko Suna domin ganin fom...">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                <button type="button" onclick="filterFormTab('ALL', this)" class="form-filter-btn" style="width: auto; background: var(--primary); color: var(--accent); padding: 8px 16px; margin:0; border-radius: 8px;">All</button>
+                <button type="button" onclick="filterFormTab('CL1', this)" class="form-filter-btn" style="width: auto; background: #e2e8f0; color: #334155; padding: 8px 16px; margin:0; border-radius: 8px;">Class 1</button>
+                <button type="button" onclick="filterFormTab('CL2', this)" class="form-filter-btn" style="width: auto; background: #e2e8f0; color: #334155; padding: 8px 16px; margin:0; border-radius: 8px;">Class 2</button>
+                <button type="button" onclick="filterFormTab('CL3', this)" class="form-filter-btn" style="width: auto; background: #e2e8f0; color: #334155; padding: 8px 16px; margin:0; border-radius: 8px;">Class 3</button>
+                <button type="button" onclick="filterFormTab('CL4', this)" class="form-filter-btn" style="width: auto; background: #e2e8f0; color: #334155; padding: 8px 16px; margin:0; border-radius: 8px;">Class 4</button>
+                <button type="button" onclick="filterFormTab('CL5', this)" class="form-filter-btn" style="width: auto; background: #e2e8f0; color: #334155; padding: 8px 16px; margin:0; border-radius: 8px;">Class 5</button>
             </div>
+            <div style="margin-bottom: 15px;"><input type="text" id="formsSearchInput" placeholder="Search da Student ID ko Suna domin ganin fom..."></div>
             <div id="formsListContainer"></div>
         </div>
     </div>
 </div>
 
-<!-- MODAL FOR SHORT DETAILS -->
-<div id="studentModal" class="page" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000; display:none; justify-content:center; align-items:center; overflow-y:auto; padding:20px;">
+<!-- MODAL FOR SHORT DETAILS / DELETE / CLOSE -->
+<div id="studentModal" class="page" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000; display:none; justify-content:center; align-items:center; padding:20px;">
     <div style="background:#fff; border-radius:16px; padding:30px; max-width:420px; width:100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
-        <h3 style="margin-top:0; color:var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 12px;">Cikakken Bayanin Dalibi</h3>
+        <h3 style="margin-top:0; color:var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 12px;">Takaitaccen Bayanin Dalibi (Short Details)</h3>
         <div style="margin: 20px 0; font-size: 14.5px; line-height: 2;">
             <div><strong>Student ID:</strong> <span id="modalStudentId" style="color:var(--primary); font-weight:bold;"></span></div>
             <div><strong>Name:</strong> <span id="modalStudentName"></span></div>
-            <div><strong>Section:</strong> <span id="modalStudentSection" style="color:#d97706; font-weight:bold;"></span></div>
+            <div><strong>Class:</strong> <span id="modalStudentClass" style="color:#d97706; font-weight:bold;"></span></div>
+            <div><strong>Used Code:</strong> <span id="modalStudentCode" style="font-family:monospace; color:#047857; font-weight:bold;"></span></div>
+            <div><strong>Phone Number:</strong> <span id="modalStudentPhone"></span></div>
+            <div><strong>Address:</strong> <span id="modalStudentAddress"></span></div>
+            <div><strong>Time of Register:</strong> <span id="modalStudentTime"></span></div>
+            <div><strong>Date:</strong> <span id="modalStudentDate"></span></div>
         </div>
         <div style="display: flex; gap: 12px; margin-top: 25px;">
             <button type="button" id="deleteStudentBtn" style="background:#ef4444; color:white; box-shadow:none; margin:0; flex:1;">🗑️ Delete</button>
@@ -1024,53 +752,41 @@
 
 <!-- MODAL FOR VIEWING FULL CERTIFICATE/FORM -->
 <div id="formViewModal" class="page" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:1000; display:none; justify-content:center; align-items:center; overflow-y:auto; padding:20px;">
-    <div style="background:#fdfbf7; border-radius:16px; padding:20px; max-width:520px; width:100%; box-shadow: 0 25px 50px rgba(0,0,0,0.35); position:relative;">
+    <div style="background:#fdfbf7; border-radius:16px; padding:20px; max-width:520px; width:100%; box-shadow: 0 25px 50px rgba(0,0,0,0.35);">
         <div class="official-certificate-card" id="adminPrintableFormCard" style="margin:0 auto; width:100%;">
             <div class="cert-outer-border">
                 <div class="cert-header">
-                    <div class="cert-badge-box" id="adminFormBadgeBox">
-                        <img src="Sadeeq.png" alt="Badge" onerror="this.onerror=null; this.parentElement.innerHTML='<span style=\'font-size:9px; text-align:center; color:#d97706; font-weight:bold;\'>BADGE</span>';">
-                    </div>
-                    <div class="cert-title-area">
+                    <div class="cert-badge-box" id="adminFormBadgeBox">BADGE</div>
+                    <div class="cert-title-area" style="text-align: center;">
                         <h2>Madrasatul Miftahul Ilmi Waddurasatul Islamiyya</h2>
-                        <div class="arabic-school-title">مدرسة مفتاح العلم والدراسات الإسلامية</div>
+                        <div class="arabic-school-title" style="font-size: 12px; margin: 2px 0;">مدرسة مفتاح العلم والدراسات الإسلامية</div>
                         <h3>Hotoro Kano State</h3>
                     </div>
                     <div class="cert-passport-box" id="adminFormPassportBox">PHOTO</div>
                 </div>
                 <div class="cert-grid-row">
-                    <div class="cert-field-group">
-                        <label>Sunan Dalibi:</label>
-                        <div class="cert-field-value" id="adminFormFirstName"></div>
-                    </div>
-                    <div class="cert-field-group">
-                        <label>Sunan Mahaifi:</label>
-                        <div class="cert-field-value" id="adminFormLastName"></div>
-                    </div>
+                    <div class="cert-field-group"><label>Sunan Dalibi:</label><div class="cert-field-value" id="adminFormFirstName"></div></div>
+                    <div class="cert-field-group"><label>Sunan Mahaifi:</label><div class="cert-field-value" id="adminFormLastName"></div></div>
                 </div>
                 <div class="cert-grid-row">
-                    <div class="cert-field-group">
-                        <label>Student ID:</label>
-                        <div class="cert-field-value" id="adminFormUserId" style="color: var(--primary); font-weight: bold;"></div>
-                    </div>
-                    <div class="cert-field-group">
-                        <label>Phone Number:</label>
-                        <div class="cert-field-value" id="adminFormPhone"></div>
-                    </div>
+                    <div class="cert-field-group"><label>Student ID:</label><div class="cert-field-value" id="adminFormUserId" style="color: var(--primary); font-weight: bold;"></div></div>
+                    <div class="cert-field-group"><label>Phone Number:</label><div class="cert-field-value" id="adminFormPhone"></div></div>
                 </div>
                 <div class="cert-grid-row" style="margin-bottom: 2px;">
                     <div class="cert-section-box" style="margin-bottom: 0;">
-                        <label>Select Section:</label>
-                        <div class="cert-sections-options">
-                            <div><span id="adminChkDr">🔲</span> DARE</div>
-                            <div><span id="adminChkOnl">🔲</span> ONLINE</div>
-                            <div><span id="adminChkAdl">🔲</span> ADULT</div>
+                        <label>Assigned Class & Code:</label>
+                        <div class="cert-sections-options" style="flex-direction: column; align-items: center; gap: 4px;">
+                            <div style="display: flex; gap: 10px; width: 100%; justify-content: space-around;">
+                                <div><span id="adminChkCl1">🔲</span> CL1</div>
+                                <div><span id="adminChkCl2">🔲</span> CL2</div>
+                                <div><span id="adminChkCl3">🔲</span> CL3</div>
+                                <div><span id="adminChkCl4">🔲</span> CL4</div>
+                                <div><span id="adminChkCl5">🔲</span> CL5</div>
+                            </div>
+                            <div style="font-size: 11px; color: #b45309; font-family: monospace;" id="adminFormUsedCode">Code: --</div>
                         </div>
                     </div>
-                    <div class="cert-field-group" style="margin-bottom: 0;">
-                        <label>Address:</label>
-                        <div class="cert-field-value" id="adminFormAddress" style="height: 25px; overflow: hidden;"></div>
-                    </div>
+                    <div class="cert-field-group" style="margin-bottom: 0;"><label>Address:</label><div class="cert-field-value" id="adminFormAddress" style="height: 25px; overflow: hidden;"></div></div>
                 </div>
                 <div class="cert-rules-box">
                     <div class="cert-rules-title">Sashen Cike Dokar Makaranta</div>
@@ -1081,23 +797,9 @@
                     </div>
                 </div>
                 <div class="cert-signatures-area">
-                    <div class="cert-sig-box">
-                        <div class="cert-sig-title">Student Sign</div>
-                        <div class="cert-sig-line" id="adminStudentSigLine">Sign</div>
-                        <div class="cert-date-line">DATE: <span id="adminFormDate1">--/--/--</span></div>
-                    </div>
-                    <div class="cert-stamp-container">
-                        <div class="cert-stamp">
-                            <span>Miftahul</span>
-                            <span>Official</span>
-                            <span>Stamp</span>
-                        </div>
-                    </div>
-                    <div class="cert-sig-box">
-                        <div class="cert-sig-title">Management Sign</div>
-                        <div class="cert-sig-line">Miftahul Admin</div>
-                        <div class="cert-date-line">DATE: <span id="adminFormDate2">--/--/--</span></div>
-                    </div>
+                    <div class="cert-sig-box"><div class="cert-sig-title">Student Sign</div><div class="cert-sig-line" id="adminStudentSigLine">Sign</div><div class="cert-date-line">DATE: <span id="adminFormDate1">--/--/--</span></div></div>
+                    <div class="cert-stamp-container"><div class="cert-stamp"><span>Miftahul</span><span>Official</span><span>Stamp</span></div></div>
+                    <div class="cert-sig-box"><div class="cert-sig-title">Management Sign</div><div class="cert-sig-line" id="adminFormAdmin">Miftahul Admin</div><div class="cert-date-line">DATE: <span id="adminFormDate2">--/--/--</span></div></div>
                 </div>
                 <div class="cert-footer-motto">ILMI &bull; IMANI &bull; IHSANI</div>
             </div>
@@ -1117,26 +819,49 @@
     if (!localStorage.getItem('admin_user')) localStorage.setItem('admin_user', 'Sirdique');
     if (!localStorage.getItem('admin_pass')) localStorage.setItem('admin_pass', '9781place');
 
-    let arabicTapCount = 0, arabicTapTimer = null, tempPassportBase64 = '', currentActiveFilter = 'ALL', selectedModalUserId = null;
+    let arabicTapCount = 0, arabicTapTimer = null, tempPassportBase64 = '', currentFormFilter = 'ALL', selectedModalUserId = null;
 
     document.getElementById('passportInput').addEventListener('change', function(e) {
         let file = e.target.files[0];
         if(file) {
             let reader = new FileReader();
-            reader.onload = function(event) { tempPassportBase64 = event.target.result; };
+            reader.onload = function(event) {
+                let img = new Image();
+                img.onload = function() {
+                    let canvas = document.createElement('canvas');
+                    let maxWidth = 150;
+                    let maxHeight = 180;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > maxWidth) {
+                            height *= maxWidth / width;
+                            width = maxWidth;
+                        }
+                    } else {
+                        if (height > maxHeight) {
+                            width *= maxHeight / height;
+                            height = maxHeight;
+                        }
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+                    let ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    tempPassportBase64 = canvas.toDataURL('image/jpeg', 0.6);
+                };
+                img.src = event.target.result;
+            };
             reader.readAsDataURL(file);
         }
     });
 
-    document.getElementById('arabicTitleTrigger').addEventListener('click', function(e) {
+    document.getElementById('arabicTitleTrigger').addEventListener('click', function() {
         arabicTapCount++;
         if(arabicTapTimer) clearTimeout(arabicTapTimer);
-        if(arabicTapCount === 5) {
-            arabicTapCount = 0;
-            showPage('pinPage');
-        } else {
-            arabicTapTimer = setTimeout(() => { arabicTapCount = 0; }, 800);
-        }
+        if(arabicTapCount === 5) { arabicTapCount = 0; showPage('pinPage'); }
+        else { arabicTapTimer = setTimeout(() => { arabicTapCount = 0; }, 800); }
     });
 
     function showPage(pageId) {
@@ -1148,16 +873,8 @@
         if(pageId === 'successPage') startBalloonsAndConfetti();
     }
 
-    function handlePinBack() {
-        document.getElementById('adminPin').value = '';
-        showPage('welcomePage');
-    }
-
-    function handleLoginBack() {
-        document.getElementById('adminUser').value = '';
-        document.getElementById('adminPass').value = '';
-        showPage('pinPage');
-    }
+    function handlePinBack() { document.getElementById('adminPin').value = ''; showPage('welcomePage'); }
+    function handleLoginBack() { document.getElementById('adminUser').value = ''; document.getElementById('adminPass').value = ''; showPage('pinPage'); }
 
     document.getElementById('logoutBtn').addEventListener('click', function() {
         document.getElementById('adminUser').value = '';
@@ -1167,10 +884,7 @@
     });
 
     document.querySelectorAll('.sidebar-menu li[data-tab]').forEach(li => {
-        li.addEventListener('click', function() {
-            let tabId = this.getAttribute('data-tab');
-            switchTab(tabId, this);
-        });
+        li.addEventListener('click', function() { switchTab(this.getAttribute('data-tab'), this); });
     });
 
     function switchTab(tabId, el) {
@@ -1181,104 +895,76 @@
         if(targetTab) targetTab.classList.add('active-tab');
         if(el) el.classList.add('active');
         
-        if (window.innerWidth <= 768) {
-            let sidebar = document.getElementById('appSidebar');
-            sidebar.classList.remove('sidebar-mobile-open');
-        }
+        document.getElementById('appSidebar').classList.remove('sidebar-open');
         loadDashboardData();
     }
 
-    document.getElementById('toggleSidebarBtn').addEventListener('click', function() {
+    document.getElementById('toggleSidebarBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
         let sidebar = document.getElementById('appSidebar');
-        let mainContent = document.getElementById('mainContentArea');
-        
-        if (window.innerWidth <= 768) {
-            sidebar.classList.toggle('sidebar-mobile-open');
-        } else {
-            sidebar.classList.toggle('sidebar-closed');
-            mainContent.classList.toggle('full-width');
-        }
+        sidebar.classList.toggle('sidebar-open');
     });
 
     document.getElementById('agreeCheck').addEventListener('change', function() {
         document.getElementById('rulesNextBtn').style.display = this.checked ? 'block' : 'none';
     });
 
-    document.querySelectorAll('.section-card').forEach(card => {
-        card.addEventListener('click', function() {
-            let secValue = this.getAttribute('data-section');
-            selectSection(secValue, this);
-        });
-    });
-
-    function selectSection(secValue, cardElement) {
-        document.getElementById('sectionSelect').value = secValue;
-        document.querySelectorAll('.section-card').forEach(c => c.classList.remove('selected'));
-        cardElement.classList.add('selected');
-        
-        let note = document.getElementById('feeNote');
-        let firstName = document.getElementById('firstName').value || 'Dalibi';
-        let whatsappMsg = `Assalamu Alaikum Admin, Sunana ${firstName}, na zabi sashen ${secValue}. Ina son samun Confirmation Code.`;
-        document.getElementById('whatsappLinkBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(whatsappMsg)}`;
-
-        if(secValue === 'ONL') note.innerText = '✨ Online Class: Rajista ₦1,500';
-        else if(secValue === 'DR') note.innerText = '🌙 Night Class: Rajista ₦1,000';
-        else if(secValue === 'ADL') note.innerText = '🧕 Married Women: Rajista ₦1,500';
-    }
-
     document.getElementById('regForm').addEventListener('submit', function(e) {
         e.preventDefault();
+        if(!tempPassportBase64) { alert('Don Allah ka zabi hoton passport tukuna!'); return; }
         
-        if(!tempPassportBase64) {
-            alert('Don Allah ka zabi hoton passport tukuna!');
-            return;
-        }
-        
-        if(!document.getElementById('sectionSelect').value) {
-            alert('Don Allah ka zaɓi sashen karatu!');
-            return;
-        }
-        
+        let firstName = document.getElementById('firstName').value || 'Dalibi';
+        let whatsappMsg = `Assalamu Alaikum Admin, Sunana ${firstName}. Ina son samun Confirmation Code din shiga makaranta.`;
+        document.getElementById('whatsappLinkBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(whatsappMsg)}`;
+
         showPage('codePage');
     });
 
-    function checkAndArchiveMonthlyRevenue(students) {
+    function getDaysInMonth(year, month) {
+        return new Date(year, month + 1, 0).getDate();
+    }
+
+    function checkAndArchiveRevenue(students) {
         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let now = new Date();
-        let currentMonthName = monthNames[now.getMonth()];
-        let currentYear = now.getFullYear();
-        let currentMonthKey = `${currentMonthName} ${currentYear}`;
+        let curMonthName = monthNames[now.getMonth()];
+        let curYear = now.getFullYear();
+        let curMonthKey = `${curMonthName} ${curYear}`;
 
         let archives = JSON.parse(localStorage.getItem('db_monthly_archives')) || [];
         let monthlyMap = {};
 
         students.forEach(s => {
-            let d = new Date(s.date || Date.now());
+            let d = new Date(s.timestamp || Date.now());
             let mName = monthNames[d.getMonth()];
             let yNum = d.getFullYear();
             let mKey = `${mName} ${yNum}`;
 
             if(!monthlyMap[mKey]) {
-                monthlyMap[mKey] = { dr: 0, onl: 0, adl: 0, total: 0, count: 0 };
+                monthlyMap[mKey] = { cl1: 0, cl2: 0, cl3: 0, cl4: 0, cl5: 0, total: 0, daysCount: getDaysInMonth(yNum, d.getMonth()) };
             }
-            let fee = (s.section === 'DR') ? 1000 : 1500;
-            if(s.section === 'DR') monthlyMap[mKey].dr += fee;
-            else if(s.section === 'ONL') monthlyMap[mKey].onl += fee;
-            else if(s.section === 'ADL') monthlyMap[mKey].adl += fee;
+            let fee = 1000;
+            if(s.section === 'CL1') monthlyMap[mKey].cl1 += fee;
+            else if(s.section === 'CL2') monthlyMap[mKey].cl2 += fee;
+            else if(s.section === 'CL3') monthlyMap[mKey].cl3 += fee;
+            else if(s.section === 'CL4') monthlyMap[mKey].cl4 += fee;
+            else if(s.section === 'CL5') monthlyMap[mKey].cl5 += fee;
             monthlyMap[mKey].total += fee;
-            monthlyMap[mKey].count += 1;
         });
 
-        for (let mKey in monthlyMap) {
-            if (mKey !== currentMonthKey) {
+        for(let mKey in monthlyMap) {
+            if(mKey !== curMonthKey) {
                 let exists = archives.find(a => a.monthKey === mKey);
-                if (!exists) {
+                if(!exists) {
                     archives.push({
                         monthKey: mKey,
-                        dr: monthlyMap[mKey].dr,
-                        onl: monthlyMap[mKey].onl,
-                        adl: monthlyMap[mKey].adl,
-                        total: monthlyMap[mKey].total
+                        cl1: monthlyMap[mKey].cl1,
+                        cl2: monthlyMap[mKey].cl2,
+                        cl3: monthlyMap[mKey].cl3,
+                        cl4: monthlyMap[mKey].cl4,
+                        cl5: monthlyMap[mKey].cl5,
+                        total: monthlyMap[mKey].total,
+                        days: monthlyMap[mKey].daysCount
                     });
                 }
             }
@@ -1288,23 +974,29 @@
 
     document.getElementById('finalizeRegBtn').addEventListener('click', function() {
         let codeInput = document.getElementById('confCodeInput').value.trim().toLowerCase();
-        let selectedSection = document.getElementById('sectionSelect').value;
         let codesObj = JSON.parse(localStorage.getItem('db_codes')) || [];
         let foundCode = codesObj.find(c => c.code.toLowerCase() === codeInput);
         
         if(!foundCode) { alert('Wannan Confirmation Code bai wanzu ba!'); return; }
-        let expectedPrefix = selectedSection === 'DR' ? 'dr' : (selectedSection === 'ONL' ? 'onl' : 'adl');
-        if(!foundCode.code.toLowerCase().startsWith(expectedPrefix)) {
-            alert('Wannan Code din ba na wannan sashen bane!'); return;
-        }
         if(foundCode.used) { alert('An riga an yi amfani da wannan code din!'); return; }
+
+        let detectedClass = '';
+        
+        if(codeInput.startsWith('cl1')) detectedClass = 'CL1';
+        else if(codeInput.startsWith('cl2')) detectedClass = 'CL2';
+        else if(codeInput.startsWith('cl3')) detectedClass = 'CL3';
+        else if(codeInput.startsWith('cl4')) detectedClass = 'CL4';
+        else if(codeInput.startsWith('cl5')) detectedClass = 'CL5';
+        else { alert('Wannan Code din bai fara da ingantattun kalmomi huɗu na wani aji ba (misali cl1_, cl2_, cl3_, cl4_, cl5_)!'); return; }
 
         foundCode.used = true;
         localStorage.setItem('db_codes', JSON.stringify(codesObj));
 
         let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        let userId = `MIF${Math.floor(Math.random()*90+10)}${selectedSection}${String(students.length+1).padStart(4,'0')}`;
-        let nowStr = new Date().toISOString();
+        let userId = `MIF${Math.floor(Math.random()*90+10)}${detectedClass}${String(students.length+1).padStart(4,'0')}`;
+        let now = new Date();
+        let timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        let dateStr = now.toLocaleDateString();
 
         let newStudent = {
             userId: userId,
@@ -1313,21 +1005,27 @@
             age: document.getElementById('age').value,
             address: document.getElementById('address').value,
             phone: document.getElementById('phone').value,
-            section: selectedSection,
+            section: detectedClass,
+            usedCode: foundCode.code,
             passport: tempPassportBase64,
-            date: nowStr,
-            formattedDate: new Date().toLocaleDateString()
+            time: timeStr,
+            date: dateStr,
+            timestamp: now.getTime()
         };
 
-        students.push(newStudent);
-        localStorage.setItem('db_students', JSON.stringify(students));
+        students.unshift(newStudent);
+        try {
+            localStorage.setItem('db_students', JSON.stringify(students));
+        } catch(e) {
+            alert('An samu matsalar cikar ma\'ajiya (localStorage full)!');
+            return;
+        }
 
-        checkAndArchiveMonthlyRevenue(students);
+        checkAndArchiveRevenue(students);
 
         let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
         notices.unshift({
             id: 'notice_' + Date.now() + '_' + Math.random(),
-            name: `${newStudent.firstName} ${newStudent.lastName}`,
             studentId: newStudent.userId,
             section: newStudent.section,
             unread: true
@@ -1335,12 +1033,10 @@
         localStorage.setItem('db_notices', JSON.stringify(notices));
 
         populateCertificateData(newStudent);
+        renderNotices();
         
         document.getElementById('regForm').reset();
         tempPassportBase64 = '';
-        document.querySelectorAll('.section-card').forEach(c => c.classList.remove('selected'));
-        document.getElementById('sectionSelect').value = '';
-        document.getElementById('feeNote').innerText = '';
         document.getElementById('confCodeInput').value = '';
         document.getElementById('agreeCheck').checked = false;
         document.getElementById('rulesNextBtn').style.display = 'none';
@@ -1355,21 +1051,19 @@
         document.getElementById('formCardPhone').innerText = s.phone;
         document.getElementById('formCardAddress').innerText = s.address;
         document.getElementById('studentSigLine').innerText = `${s.firstName} ${s.lastName}`;
-        document.getElementById('formCardDate1').innerText = s.formattedDate || s.date;
-        document.getElementById('formCardDate2').innerText = s.formattedDate || s.date;
+        document.getElementById('formCardDate1').innerText = s.date;
+        document.getElementById('formCardDate2').innerText = s.date;
+        document.getElementById('formCardUsedCode').innerText = `Code: ${s.usedCode || '--'}`;
 
         let pBox = document.getElementById('formCardPassportBox');
-        if(s.passport) {
-            pBox.innerHTML = `<img src="${s.passport}" alt="Passport">`;
-        } else {
-            pBox.innerText = 'PHOTO';
-        }
+        if(s.passport) pBox.innerHTML = `<img src="${s.passport}" alt="Passport">`; else pBox.innerText = 'PHOTO';
 
-        document.getElementById('chkDr').innerText = s.section === 'DR' ? '☑' : '🔲';
-        document.getElementById('chkOnl').innerText = s.section === 'ONL' ? '☑' : '🔲';
-        document.getElementById('chkAdl').innerText = s.section === 'ADL' ? '☑' : '🔲';
+        ['CL1','CL2','CL3','CL4','CL5'].forEach(cls => {
+            let el = document.getElementById(`chk${cls.charAt(0)}${cls.slice(1).toLowerCase()}`);
+            if(el) el.innerText = s.section === cls ? '☑' : '🔲';
+        });
 
-        let waText = `Assalamu Alaikum Admin, Ga fom dina na rajista Miftahul Ilmi:\n\n*Student ID:* ${s.userId}\n*Suna:* ${s.firstName} ${s.lastName}\n*Sashe:* ${s.section}`;
+        let waText = `Assalamu Alaikum Admin, Ga fom dina na rajista Miftahul Ilmi:\n\n*Student ID:* ${s.userId}\n*Suna:* ${s.firstName} ${s.lastName}\n*Aji:* ${s.section}\n*Code:* ${s.usedCode || '--'}`;
         document.getElementById('whatsappSendBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(waText)}`;
     }
 
@@ -1380,30 +1074,23 @@
         for(let i=0; i<10; i++) {
             let b = document.createElement('div'); b.className = 'balloon';
             b.style.left = Math.random() * 90 + '%'; b.style.backgroundColor = ['#ef4444','#fbbf24','#10b981'][i%3];
-            b.style.animation = 'floatBalloon 4s ease-in infinite';
             bContainer.appendChild(b);
         }
         for(let i=0; i<20; i++) {
             let c = document.createElement('div'); c.className = 'confetti';
             c.style.left = Math.random() * 100 + '%'; c.style.backgroundColor = ['#f59e0b','#10b981','#ef4444'][i%3];
-            c.style.animation = 'swingConfetti 3s linear infinite';
             cContainer.appendChild(c);
         }
     }
 
     document.getElementById('downloadFormBtn').addEventListener('click', function() {
-        let card = document.getElementById('printableFormCard');
-        html2canvas(card, { scale: 2 }).then(canvas => {
-            let link = document.createElement('a');
-            link.download = 'Miftahul_Ilmi_Form.png';
-            link.href = canvas.toDataURL('image/png');
-            link.click();
+        html2canvas(document.getElementById('printableFormCard'), { scale: 2 }).then(canvas => {
+            let link = document.createElement('a'); link.download = 'Miftahul_Ilmi_Form.png'; link.href = canvas.toDataURL('image/png'); link.click();
         });
     });
 
     document.getElementById('verifyPinBtn').addEventListener('click', function() {
-        if(document.getElementById('adminPin').value === '676767') showPage('loginPage');
-        else alert('PIN bai daidai ba!');
+        if(document.getElementById('adminPin').value === '676767') showPage('loginPage'); else alert('PIN bai daidai ba!');
     });
 
     document.getElementById('verifyLoginBtn').addEventListener('click', function() {
@@ -1412,50 +1099,64 @@
         if(u === localStorage.getItem('admin_user') && p === localStorage.getItem('admin_pass')) {
             document.getElementById('adminWelcomeUser').innerText = `Admin: ${u}`;
             showPage('adminDashboard');
-        } else {
-            alert('Username ko Password bai daidai ba!');
-        }
+        } else { alert('Username ko Password bai daidai ba!'); }
     });
 
     function loadDashboardData() {
         let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        checkAndArchiveMonthlyRevenue(students);
+        checkAndArchiveRevenue(students);
 
-        let totalRev = students.reduce((sum, s) => sum + (s.section === 'DR' ? 1000 : 1500), 0);
-
+        let totalRev = students.length * 1000;
         document.getElementById('statTotalStudents').innerText = students.length;
         document.getElementById('statTotalRevenue').innerText = `₦${totalRev.toLocaleString()}`;
 
+        let countAll = students.length;
+        let countCl1 = students.filter(s => s.section === 'CL1').length;
+        let countCl2 = students.filter(s => s.section === 'CL2').length;
+        let countCl3 = students.filter(s => s.section === 'CL3').length;
+        let countCl4 = students.filter(s => s.section === 'CL4').length;
+        let countCl5 = students.filter(s => s.section === 'CL5').length;
+
+        document.getElementById('badgeAllStudents').innerText = countAll;
+        document.getElementById('badgeClass1').innerText = countCl1;
+        document.getElementById('badgeClass2').innerText = countCl2;
+        document.getElementById('badgeClass3').innerText = countCl3;
+        document.getElementById('badgeClass4').innerText = countCl4;
+        document.getElementById('badgeClass5').innerText = countCl5;
+
         renderMonthlyRevenueTab(students);
-        renderFilteredStudents();
+        renderAllStudentsTable();
+        renderClassTables();
         renderFormsList();
         renderCodesEngines();
         renderNotices();
+        renderPromoDemo();
     }
 
     function renderMonthlyRevenueTab(students) {
         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let now = new Date();
-        let currentMonthName = monthNames[now.getMonth()];
-        let currentYear = now.getFullYear();
+        let curMonthName = monthNames[now.getMonth()];
+        let curYear = now.getFullYear();
+        let daysInCurMonth = getDaysInMonth(now.getFullYear(), now.getMonth());
         
-        document.getElementById('currentMonthTitleHeading').innerText = `Watan da ake ciki: ${currentMonthName} ${currentYear}`;
+        document.getElementById('currentMonthTitleHeading').innerText = `Watan da ake ciki: ${curMonthName} ${curYear} (Days: ${daysInCurMonth})`;
 
-        let curDr = 0, curOnl = 0, curAdl = 0;
+        let curRev = { CL1: 0, CL2: 0, CL3: 0, CL4: 0, CL5: 0 };
         students.forEach(s => {
-            let d = new Date(s.date || Date.now());
+            let d = new Date(s.timestamp || Date.now());
             if (d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear()) {
-                if (s.section === 'DR') curDr += 1000;
-                else if (s.section === 'ONL') curOnl += 1500;
-                else if (s.section === 'ADL') curAdl += 1500;
+                if(curRev[s.section] !== undefined) curRev[s.section] += 1000;
             }
         });
-        let curTotal = curDr + curOnl + curAdl;
+        let curTotal = Object.values(curRev).reduce((a,b)=>a+b, 0);
 
-        document.getElementById('currentMonthDrRev').innerText = `₦${curDr.toLocaleString()}`;
-        document.getElementById('currentMonthOnlRev').innerText = `₦${curOnl.toLocaleString()}`;
-        document.getElementById('currentMonthAdlRev').innerText = `₦${curAdl.toLocaleString()}`;
-        document.getElementById('currentMonthTotalRev').innerText = `₦${curTotal.toLocaleString()}`;
+        document.getElementById('curCl1Rev').innerText = `₦${curRev.CL1.toLocaleString()}`;
+        document.getElementById('curCl2Rev').innerText = `₦${curRev.CL2.toLocaleString()}`;
+        document.getElementById('curCl3Rev').innerText = `₦${curRev.CL3.toLocaleString()}`;
+        document.getElementById('curCl4Rev').innerText = `₦${curRev.CL4.toLocaleString()}`;
+        document.getElementById('curCl5Rev').innerText = `₦${curRev.CL5.toLocaleString()}`;
+        document.getElementById('curAllRev').innerText = `₦${curTotal.toLocaleString()}`;
 
         let archives = JSON.parse(localStorage.getItem('db_monthly_archives')) || [];
         let archiveContainer = document.getElementById('monthlyArchivesListContainer');
@@ -1463,33 +1164,41 @@
         archiveContainer.innerHTML = archives.length ? archives.map(a => `
             <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <div>
-                    <strong style="color: var(--primary); font-size: 15px;">${a.monthKey}</strong>
-                    <div style="font-size: 13px; color: #475569; margin-top: 4px;">
-                        Dare: ₦${a.dr.toLocaleString()} | Online: ₦${a.onl.toLocaleString()} | Adult: ₦${a.adl.toLocaleString()}
+                    <strong style="color: var(--primary); font-size: 15px;">${a.monthKey} (Days: ${a.days})</strong>
+                    <div style="font-size: 12.5px; color: #475569; margin-top: 4px;">
+                        cl1: ₦${a.cl1.toLocaleString()} | cl2: ₦${a.cl2.toLocaleString()} | cl3: ₦${a.cl3.toLocaleString()} | cl4: ₦${a.cl4.toLocaleString()} | cl5: ₦${a.cl5.toLocaleString()}
                     </div>
                 </div>
                 <div style="background: #f0fdf4; border: 1px solid #10b981; padding: 6px 14px; border-radius: 8px; font-weight: bold; color: #047857; font-size: 14px;">
                     All: ₦${a.total.toLocaleString()}
                 </div>
             </div>
-        `).join('') : '<p style="color: #64748b; font-size: 13.5px;">Babu tsofaffin watanni da aka adana a halin yanzu.</p>';
+        `).join('') : '<p style="color: #64748b; font-size: 13px;">Babu tsofaffin watanni da aka adana a halin yanzu.</p>';
     }
 
     document.getElementById('noticeBellWrapper').addEventListener('click', function(e) {
         e.stopPropagation();
-        let dropdown = document.getElementById('noticeDropdown');
-        dropdown.classList.toggle('show');
+        document.getElementById('noticeDropdown').classList.toggle('show');
     });
 
-    window.addEventListener('click', function() {
+    window.addEventListener('click', function(e) {
         let dropdown = document.getElementById('noticeDropdown');
-        if(dropdown && dropdown.classList.contains('show')) {
-            dropdown.classList.remove('show');
+        if(dropdown && dropdown.classList.contains('show')) dropdown.classList.remove('show');
+        
+        document.querySelectorAll('.promo-dropdown').forEach(d => d.classList.remove('show'));
+
+        let sidebar = document.getElementById('appSidebar');
+        let toggleBtn = document.getElementById('toggleSidebarBtn');
+        if (sidebar.classList.contains('sidebar-open')) {
+            if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+                sidebar.classList.remove('sidebar-open');
+            }
         }
     });
 
     function renderNotices() {
         let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
+        let students = JSON.parse(localStorage.getItem('db_students')) || [];
         let badge = document.getElementById('noticeBadgeCount');
         let container = document.getElementById('noticeListContainer');
 
@@ -1498,96 +1207,171 @@
         badge.style.display = unreadCount > 0 ? 'inline-block' : 'none';
 
         container.innerHTML = notices.length ? notices.map(n => {
-            let secName = n.section === 'DR' ? 'Dare' : (n.section === 'ONL' ? 'Online' : 'Adult');
+            let student = students.find(s => s.userId === n.studentId);
+            let displayName = student ? `${student.firstName} ${student.lastName}` : 'Dalibi';
             return `
-                <div class="notice-item ${n.unread ? 'unread' : ''}">
+                <div class="notice-item ${n.unread ? 'unread' : ''}" onclick="openStudentModal('${n.studentId}'); markNotice('${n.id}'); event.stopPropagation();">
                     <div>
-                        <div style="font-weight: bold; color: var(--primary);">${n.name}</div>
-                        <div style="font-size: 11px; color: #64748b;">ID: <b>${n.studentId}</b> | ${secName}</div>
+                        <div style="font-weight: bold; color: var(--primary); font-size: 13.5px;">ID: ${n.studentId}</div>
+                        <div style="font-size: 12px; color: #475569; margin-top: 2px;">
+                            ${displayName} | Aji: <b style="color:#d97706;">${n.section}</b>
+                        </div>
                     </div>
-                    <div class="notice-actions">
-                        ${n.unread ? `<button type="button" class="notice-btn notice-btn-mark" onclick="markNotice('${n.id}')">Mark</button>` : ''}
-                        <button type="button" class="notice-btn notice-btn-del" onclick="deleteNotice('${n.id}')">Delete</button>
+                    <div class="notice-actions" onclick="event.stopPropagation();">
+                        <button type="button" class="notice-btn" style="background:#ef4444;" onclick="deleteSingleNotice('${n.id}')">Delete</button>
                     </div>
                 </div>
             `;
-        }).join('') : '<div style="padding: 20px; text-align: center; color: #64748b; font-size: 12.5px;">Babu wata sabuwar sanarwa.</div>';
+        }).join('') : '<div style="padding: 20px; text-align: center; color: #64748b; font-size: 12px;">Babu wata sabuwar sanarwa.</div>';
     }
 
     function markNotice(id) {
         let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
         let notice = notices.find(n => n.id === id);
-        if(notice) {
-            notice.unread = false;
-            localStorage.setItem('db_notices', JSON.stringify(notices));
-            renderNotices();
-        }
+        if(notice) { notice.unread = false; localStorage.setItem('db_notices', JSON.stringify(notices)); renderNotices(); }
     }
 
-    function deleteNotice(id) {
+    function deleteSingleNotice(id) {
         let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
         let updated = notices.filter(n => n.id !== id);
         localStorage.setItem('db_notices', JSON.stringify(updated));
         renderNotices();
     }
 
-    document.getElementById('markAllNoticesBtn').addEventListener('click', function() {
+    document.getElementById('markAllNoticesBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
         let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
         notices.forEach(n => n.unread = false);
         localStorage.setItem('db_notices', JSON.stringify(notices));
         renderNotices();
     });
 
-    document.getElementById('delAllNoticesBtn').addEventListener('click', function() {
+    document.getElementById('delAllNoticesBtn').addEventListener('click', function(e) {
+        e.stopPropagation();
         localStorage.setItem('db_notices', JSON.stringify([]));
         renderNotices();
     });
 
-    function filterStudentTab(filterKey, el) {
-        currentActiveFilter = filterKey;
-        document.querySelectorAll('.student-filter-btn').forEach(btn => {
-            btn.style.background = '#e2e8f0';
-            btn.style.color = '#334155';
-        });
-        if(el) {
-            el.style.background = 'var(--primary)';
-            el.style.color = 'var(--accent)';
-        }
-        renderFilteredStudents();
+    document.getElementById('promoSearchInput').addEventListener('input', renderPromoDemo);
+
+    function renderPromoDemo() {
+        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+        let q = document.getElementById('promoSearchInput').value.trim().toUpperCase();
+        let container = document.getElementById('promoDemoContainer');
+
+        let filtered = students.filter(s => q === '' || s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q));
+
+        container.innerHTML = filtered.length ? filtered.map(s => `
+            <div class="promo-card">
+                <div class="promo-info">
+                    <h4>${s.firstName} ${s.lastName}</h4>
+                    <p>ID: <b>${s.userId}</b> | Current Class: <b style="color:var(--accent);">${s.section}</b></p>
+                </div>
+                <button type="button" class="promo-menu-btn" onclick="togglePromoMenu(event, '${s.userId}')">⋮</button>
+                <div class="promo-dropdown" id="promoDrop_${s.userId}">
+                    <button type="button" onclick="changeStudentClass('${s.userId}', 'PROMOTE')">⬆️ Promote (Aji na gaba)</button>
+                    <button type="button" onclick="changeStudentClass('${s.userId}', 'DEMOTE')">⬇️ Demote (Aji na baya)</button>
+                </div>
+            </div>
+        `).join('') : '<p style="text-align:center; color:#64748b; margin-top:20px;">Babu ɗalibai da aka samu.</p>';
     }
 
-    document.getElementById('studentSearchInput').addEventListener('input', renderFilteredStudents);
-
-    function renderFilteredStudents() {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        let searchQuery = document.getElementById('studentSearchInput').value.trim().toUpperCase();
-        
-        let filtered = students.filter(s => {
-            let matchesFilter = (currentActiveFilter === 'ALL') || (s.section === currentActiveFilter);
-            let matchesSearch = searchQuery === '' || s.userId.toUpperCase().includes(searchQuery) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(searchQuery);
-            return matchesFilter && matchesSearch;
+    function togglePromoMenu(e, userId) {
+        e.stopPropagation();
+        document.querySelectorAll('.promo-dropdown').forEach(d => {
+            if(d.id !== `promoDrop_${userId}`) d.classList.remove('show');
         });
+        let drop = document.getElementById(`promoDrop_${userId}`);
+        if(drop) drop.classList.toggle('show');
+    }
 
-        let tableContainer = document.getElementById('studentTableContainer');
-        tableContainer.innerHTML = filtered.length ? `
+    function changeStudentClass(userId, action) {
+        let classes = ['CL1', 'CL2', 'CL3', 'CL4', 'CL5'];
+        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+        let s = students.find(item => item.userId === userId);
+
+        if (!s) return;
+
+        let currentIndex = classes.indexOf(s.section);
+        if (currentIndex === -1) currentIndex = 0;
+
+        if (action === 'PROMOTE') {
+            if (currentIndex < classes.length - 1) {
+                s.section = classes[currentIndex + 1];
+                alert(`An daga ${s.firstName} zuwa ${s.section}!`);
+            } else {
+                alert(`${s.firstName} yana ajin karshe wato ${s.section}!`);
+                return;
+            }
+        } else if (action === 'DEMOTE') {
+            if (currentIndex > 0) {
+                s.section = classes[currentIndex - 1];
+                alert(`An dawo da ${s.firstName} zuwa ${s.section}!`);
+            } else {
+                alert(`${s.firstName} yana ajin farko wato ${s.section}!`);
+                return;
+            }
+        }
+
+        localStorage.setItem('db_students', JSON.stringify(students));
+        loadDashboardData();
+    }
+
+    document.getElementById('allStudentSearchInput').addEventListener('input', renderAllStudentsTable);
+
+    function renderAllStudentsTable() {
+        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+        let q = document.getElementById('allStudentSearchInput').value.trim().toUpperCase();
+        let filtered = students.filter(s => q === '' || s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q));
+
+        document.getElementById('allStudentTableContainer').innerHTML = filtered.length ? `
             <table>
-                <tr>
-                    <th>Student ID</th>
-                    <th>Name</th>
-                    <th>Section</th>
-                </tr>
-                ${filtered.map(s => {
-                    let sectionName = s.section === 'DR' ? 'Dare' : (s.section === 'ONL' ? 'Online' : 'Adult');
-                    return `
-                        <tr onclick="openStudentModal('${s.userId}')">
-                            <td><b>${s.userId}</b></td>
-                            <td>${s.firstName} ${s.lastName}</td>
-                            <td>${sectionName}</td>
-                        </tr>
-                    `;
-                }).join('')}
+                <tr><th>Student ID</th><th>Name</th><th>Class</th><th>Code</th><th>Phone Number</th></tr>
+                ${filtered.map(s => `
+                    <tr onclick="openStudentModal('${s.userId}')">
+                        <td><b>${s.userId}</b></td>
+                        <td>${s.firstName} ${s.lastName}</td>
+                        <td><b style="color:#d97706;">${s.section}</b></td>
+                        <td><span style="font-family:monospace; color:#047857;">${s.usedCode || '--'}</span></td>
+                        <td>${s.phone || '--'}</td>
+                    </tr>
+                `).join('')}
             </table>
-        ` : '<p style="text-align:center; color:#64748b; margin-top:20px;">Babu dalibai a ƙarƙashin wannan sashen ko binciken.</p>';
+        ` : '<p style="text-align:center; color:#64748b; margin-top:20px;">Babu dalibai.</p>';
+    }
+
+    function renderClassTables() {
+        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+        ['CL1', 'CL2', 'CL3', 'CL4', 'CL5'].forEach(cls => {
+            let filtered = students.filter(s => s.section === cls);
+            let container = document.getElementById(`class${cls.slice(2)}TableContainer`);
+            if(container) {
+                container.innerHTML = filtered.length ? `
+                    <table>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Code</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Date</th>
+                        </tr>
+                        ${filtered.map(s => `
+                            <tr onclick="openStudentModal('${s.userId}')">
+                                <td><b>${s.userId}</b></td>
+                                <td>${s.firstName} ${s.lastName}</td>
+                                <td>${s.age || '--'}</td>
+                                <td><span style="font-family:monospace; color:#047857;">${s.usedCode || '--'}</span></td>
+                                <td>${s.phone || '--'}</td>
+                                <td>${s.address || '--'}</td>
+                                <td>${s.date || '--'}</td>
+                            </tr>
+                        `).join('')}
+                    </table>
+                ` : '<p style="text-align:center; color:#64748b; margin-top:20px;">Babu dalibai a wannan ajin.</p>';
+            }
+        });
     }
 
     function openStudentModal(userId) {
@@ -1596,34 +1380,44 @@
         if(!s) return;
 
         selectedModalUserId = userId;
-        let sectionName = s.section === 'DR' ? 'Dare' : (s.section === 'ONL' ? 'Online' : 'Adult');
-        
         document.getElementById('modalStudentId').innerText = s.userId;
         document.getElementById('modalStudentName').innerText = `${s.firstName} ${s.lastName}`;
-        document.getElementById('modalStudentSection').innerText = sectionName;
-        
+        document.getElementById('modalStudentClass').innerText = s.section;
+        document.getElementById('modalStudentCode').innerText = s.usedCode || '--';
+        document.getElementById('modalStudentPhone').innerText = s.phone || '--';
+        document.getElementById('modalStudentAddress').innerText = s.address || '--';
+        document.getElementById('modalStudentTime').innerText = s.time || '--:--';
+        document.getElementById('modalStudentDate').innerText = s.date || '--/--/----';
         document.getElementById('studentModal').style.display = 'flex';
     }
 
-    document.getElementById('closeStudentModalBtn').addEventListener('click', closeStudentModal);
-
-    function closeStudentModal() {
+    document.getElementById('closeStudentModalBtn').addEventListener('click', function() {
         selectedModalUserId = null;
         document.getElementById('studentModal').style.display = 'none';
-    }
+    });
 
     document.getElementById('deleteStudentBtn').addEventListener('click', function() {
         if(!selectedModalUserId) return;
         if(!confirm('Shin kana tabbatar da kana son goge rajistar wannan dalibin har abada daga ko’ina?')) return;
 
         let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        let updatedStudents = students.filter(s => s.userId !== selectedModalUserId);
-        localStorage.setItem('db_students', JSON.stringify(updatedStudents));
+        let updated = students.filter(s => s.userId !== selectedModalUserId);
+        localStorage.setItem('db_students', JSON.stringify(updated));
 
-        closeStudentModal();
+        document.getElementById('studentModal').style.display = 'none';
+        selectedModalUserId = null;
         loadDashboardData();
         alert('An goge rajistar dalibin gaba ɗaya!');
     });
+
+    function filterFormTab(filterKey, el) {
+        currentFormFilter = filterKey;
+        document.querySelectorAll('.form-filter-btn').forEach(btn => {
+            btn.style.background = '#e2e8f0'; btn.style.color = '#334155';
+        });
+        if(el) { el.style.background = 'var(--primary)'; el.style.color = 'var(--accent)'; }
+        renderFormsList();
+    }
 
     document.getElementById('formsSearchInput').addEventListener('input', renderFormsList);
 
@@ -1631,30 +1425,24 @@
         let students = JSON.parse(localStorage.getItem('db_students')) || [];
         let q = document.getElementById('formsSearchInput').value.trim().toUpperCase();
 
-        let filtered = students.filter(s => q === '' || s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q));
-        let container = document.getElementById('formsListContainer');
+        let filtered = students.filter(s => {
+            let matchesFilter = currentFormFilter === 'ALL' || s.section === currentFormFilter;
+            let matchesSearch = q === '' || s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q);
+            return matchesFilter && matchesSearch;
+        });
 
-        container.innerHTML = filtered.length ? `
+        document.getElementById('formsListContainer').innerHTML = filtered.length ? `
             <table>
-                <tr>
-                    <th>Student ID</th>
-                    <th>Name</th>
-                    <th>Section</th>
-                    <th>Action</th>
-                </tr>
-                ${filtered.map(s => {
-                    let sectionName = s.section === 'DR' ? 'Dare' : (s.section === 'ONL' ? 'Online' : 'Adult');
-                    return `
-                        <tr>
-                            <td onclick="openAdminFormModal('${s.userId}')"><b>${s.userId}</b></td>
-                            <td onclick="openAdminFormModal('${s.userId}')">${s.firstName} ${s.lastName}</td>
-                            <td onclick="openAdminFormModal('${s.userId}')">${sectionName}</td>
-                            <td>
-                                <button type="button" onclick="openAdminFormModal('${s.userId}')" style="background:var(--primary); color:var(--accent); padding:5px 12px; font-size:11.5px; margin:0; width:auto; border-radius:6px;">📄 Duba Fom</button>
-                            </td>
-                        </tr>
-                    `;
-                }).join('')}
+                <tr><th>Student ID</th><th>Name</th><th>Class</th><th>Code</th><th>Action</th></tr>
+                ${filtered.map(s => `
+                    <tr>
+                        <td onclick="openAdminFormModal('${s.userId}')"><b>${s.userId}</b></td>
+                        <td onclick="openAdminFormModal('${s.userId}')">${s.firstName} ${s.lastName}</td>
+                        <td onclick="openAdminFormModal('${s.userId}')">${s.section}</td>
+                        <td onclick="openAdminFormModal('${s.userId}')"><span style="font-family:monospace; color:#047857;">${s.usedCode || '--'}</span></td>
+                        <td><button type="button" onclick="openAdminFormModal('${s.userId}')" style="background:var(--primary); color:var(--accent); padding:5px 12px; font-size:11px; margin:0; width:auto; border-radius:6px;">📄 Duba Fom</button></td>
+                    </tr>
+                `).join('')}
             </table>
         ` : '<p style="text-align:center; color:#64748b; margin-top:20px;">Babu fom ɗin rajista da aka samu.</p>';
     }
@@ -1670,108 +1458,102 @@
         document.getElementById('adminFormPhone').innerText = s.phone;
         document.getElementById('adminFormAddress').innerText = s.address;
         document.getElementById('adminStudentSigLine').innerText = `${s.firstName} ${s.lastName}`;
-        document.getElementById('adminFormDate1').innerText = s.formattedDate || s.date;
-        document.getElementById('adminFormDate2').innerText = s.formattedDate || s.date;
+        document.getElementById('adminFormDate1').innerText = s.date;
+        document.getElementById('adminFormDate2').innerText = s.date;
+        document.getElementById('adminFormUsedCode').innerText = `Code: ${s.usedCode || '--'}`;
 
         let pBox = document.getElementById('adminFormPassportBox');
-        if(s.passport) {
-            pBox.innerHTML = `<img src="${s.passport}" alt="Passport">`;
-        } else {
-            pBox.innerText = 'PHOTO';
-        }
+        if(s.passport) pBox.innerHTML = `<img src="${s.passport}" alt="Passport">`; else pBox.innerText = 'PHOTO';
 
-        document.getElementById('adminChkDr').innerText = s.section === 'DR' ? '☑' : '🔲';
-        document.getElementById('adminChkOnl').innerText = s.section === 'ONL' ? '☑' : '🔲';
-        document.getElementById('adminChkAdl').innerText = s.section === 'ADL' ? '☑' : '🔲';
+        ['CL1','CL2','CL3','CL4','CL5'].forEach(cls => {
+            let el = document.getElementById(`adminChk${cls.charAt(0)}${cls.slice(1).toLowerCase()}`);
+            if(el) el.innerText = s.section === cls ? '☑' : '🔲';
+        });
 
         document.getElementById('formViewModal').style.display = 'flex';
     }
 
-    document.getElementById('closeAdminFormModalBtn').addEventListener('click', closeAdminFormModal);
-
-    function closeAdminFormModal() {
+    document.getElementById('closeAdminFormModalBtn').addEventListener('click', function() {
         document.getElementById('formViewModal').style.display = 'none';
-    }
+    });
 
     document.getElementById('downloadAdminFormBtn').addEventListener('click', function() {
-        let card = document.getElementById('adminPrintableFormCard');
-        html2canvas(card, { scale: 2 }).then(canvas => {
-            let link = document.createElement('a');
-            link.download = 'Miftahul_Ilmi_Form.png';
-            link.href = canvas.toDataURL('image/png');
-            link.click();
+        html2canvas(document.getElementById('adminPrintableFormCard'), { scale: 2 }).then(canvas => {
+            let link = document.createElement('a'); link.download = 'Miftahul_Ilmi_Form.png'; link.href = canvas.toDataURL('image/png'); link.click();
         });
     });
 
     function renderCodesEngines() {
         let codesObj = JSON.parse(localStorage.getItem('db_codes')) || [];
-        
-        ['DR', 'ONL', 'ADL'].forEach(sec => {
-            let filtered = codesObj.filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase()));
+        ['CL1', 'CL2', 'CL3', 'CL4', 'CL5'].forEach(sec => {
+            let filtered = codesObj.filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase() + '_'));
             let container = document.getElementById(`listEngine${sec}`);
             let badge = document.getElementById(`countBadge${sec}`);
             if(badge) badge.innerText = `${filtered.length} codes`;
             
-            container.innerHTML = filtered.length ? filtered.map(c => `
-                <div style="background: white; border: 1.5px solid ${c.used ? '#fecaca' : '#a7f3d0'}; border-radius: 10px; padding: 12px; margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.02);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span style="font-family: monospace; font-size: 15px; font-weight: bold; color: ${c.used ? '#b91c1c' : '#047857'};">${c.code}</span>
-                        <span style="font-size: 11px; font-weight: bold; color: ${c.used ? '#ef4444' : '#10b981'};">● ${c.used ? 'Used' : 'Active'}</span>
+            if(container) {
+                container.innerHTML = filtered.length ? filtered.map(c => `
+                    <div style="background: white; border: 1px solid ${c.used ? '#fecaca' : '#a7f3d0'}; border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; font-size: 13px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <span style="font-family: monospace; font-weight: bold; color: ${c.used ? '#b91c1c' : '#047857'};">${c.code}</span>
+                            <span style="font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; background: ${c.used ? '#fee2e2' : '#d1fae5'}; color: ${c.used ? '#b91c1c' : '#047857'};">${c.used ? 'An yi amfani (Used)' : 'Active'}</span>
+                        </div>
+                        <div style="display: flex; gap: 4px;">
+                            <button type="button" onclick="copySingleCode('${c.code}')" style="background: #0284c7; color: white; padding: 4px; font-size: 11px; margin: 0; flex: 1; border-radius: 4px;">Copy</button>
+                            <button type="button" onclick="deleteSingleCode('${c.code}')" style="background: #ef4444; color: white; padding: 4px; font-size: 11px; margin: 0; flex: 1; border-radius: 4px;">Delete</button>
+                        </div>
                     </div>
-                    <div style="display: flex; gap: 6px;">
-                        <button type="button" onclick="copySingleCode('${c.code}')" style="background: #0284c7; color: white; padding: 6px; font-size: 12px; margin: 0; flex: 1; border-radius: 6px;">Copy</button>
-                        <button type="button" onclick="deleteSingleCode('${c.code}')" style="background: #ef4444; color: white; padding: 6px; font-size: 12px; margin: 0; flex: 1; border-radius: 6px;">Delete</button>
-                    </div>
-                </div>
-            `).join('') : '<p style="font-size:12.5px; text-align:center; color:#64748b; margin:20px 0;">Babu code a wannan sashen.</p>';
+                `).join('') : '<p style="font-size:12px; text-align:center; color:#64748b; margin:15px 0;">Babu code.</p>';
+            }
         });
     }
 
-    function generateCodesForSection(sec) {
+    function generateCodesForClass(sec) {
         let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
-        let prefix = sec.toLowerCase();
+        let prefix = sec.toLowerCase() + '_';
         
-        for(let i=0; i<10; i++) {
+        let classCodes = codes.filter(c => c.code.toLowerCase().startsWith(prefix));
+        
+        if (classCodes.length >= 40) {
+            alert(`Sashin ${sec} ya riga ya cika da adadin codes 40!\nDon Allah ka goge wadansu daga cikin tsofaffi/ambatattun codes din kafin ka sake generate din sabbi.`);
+            return;
+        }
+
+        for(let i = 0; i < 20; i++) {
             let codeStr = prefix + Math.random().toString(36).substring(2, 8);
             codes.push({ code: codeStr, used: false });
         }
+
         localStorage.setItem('db_codes', JSON.stringify(codes));
         renderCodesEngines();
-        alert(`An ƙirƙiri sabbin codes 10 na sashen ${sec}!`);
+        alert(`An ƙirƙiri sabbin codes 20 na ${sec} successfully!`);
     }
 
     function copySingleCode(codeStr) {
-        navigator.clipboard.writeText(codeStr).then(() => {
-            alert(`An yi copy na: ${codeStr}`);
-        });
+        navigator.clipboard.writeText(codeStr).then(() => { alert(`An yi copy: ${codeStr}`); });
     }
 
     function deleteSingleCode(codeStr) {
-        if(!confirm(`Shin kana son goge code din: ${codeStr}?`)) return;
+        if(!confirm(`Goge code: ${codeStr}?`)) return;
         let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
-        let updated = codes.filter(c => c.code !== codeStr);
-        localStorage.setItem('db_codes', JSON.stringify(updated));
+        localStorage.setItem('db_codes', JSON.stringify(codes.filter(c => c.code !== codeStr)));
         renderCodesEngines();
     }
 
     function copyAllCodes(sec) {
         let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
-        let filtered = codes.filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase()) && !c.used);
-        if(!filtered.length) { alert('Babu wani active code a wannan sashen da za a yi copying!'); return; }
-        
-        let textToCopy = filtered.map(c => c.code).join('\n');
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            alert(`An yi copy na active codes ${filtered.length} na sashen ${sec}!`);
+        let filtered = codes.filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase() + '_') && !c.used);
+        if(!filtered.length) { alert('Babu active code!'); return; }
+        navigator.clipboard.writeText(filtered.map(c => c.code).join('\n')).then(() => {
+            alert(`An yi copy na active codes ${filtered.length} na ${sec}!`);
         });
     }
 
     function deleteAllCodes(sec) {
-        if(!confirm(`Shin kana son share duk Confirmation Codes na sashen ${sec}?`)) return;
+        if(!confirm(`Share duk codes na ${sec}?`)) return;
         let codes = JSON.parse(localStorage.getItem('db_codes')) || [];
-        let remaining = codes.filter(c => !c.code.toLowerCase().startsWith(sec.toLowerCase()));
-        localStorage.setItem('db_codes', JSON.stringify(remaining));
+        localStorage.setItem('db_codes', JSON.stringify(codes.filter(c => !c.code.toLowerCase().startsWith(sec.toLowerCase() + '_'))));
         renderCodesEngines();
-        alert(`An share duk codes na sashen ${sec}!`);
     }
 
     document.getElementById('liveSearchInput').addEventListener('input', function() {
@@ -1780,9 +1562,9 @@
         let resArea = document.getElementById('searchDashboardResult');
         if(!q) { resArea.innerHTML = ''; return; }
         let matches = students.filter(s => s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q));
-        resArea.innerHTML = matches.map(s => `<div style="padding: 8px 12px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 5px; font-size: 13.5px;"><b>${s.userId}</b> - ${s.firstName} ${s.lastName}</div>`).join('');
+        resArea.innerHTML = matches.map(s => `<div onclick="openStudentModal('${s.userId}')" style="padding: 8px 12px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 5px; font-size: 13.5px; cursor: pointer;"><b>${s.userId}</b> - ${s.firstName} ${s.lastName} (${s.section})</div>`).join('');
     });
 </script>
 
 </body>
-</html>
+                </html>
