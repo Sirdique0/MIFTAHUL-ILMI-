@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miftahul Ilmi Waddurasatul Islamiyya - Hotoro</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Supabase JS Client -->
+    <!-- Supabase JS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root {
@@ -281,18 +281,6 @@
         .notice-actions { display: flex; gap: 6px; align-items: center; }
         .notice-btn { padding: 5px 10px; font-size: 11px; border-radius: 6px; border: none; cursor: pointer; font-weight: bold; width: auto; margin: 0; box-shadow: none; color: white; }
 
-        /* Modal za Zabin Camera ko Gallery */
-        #mediaChoiceModal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6); z-index: 2000; display: none;
-            justify-content: center; align-items: center; padding: 20px;
-        }
-        #cameraLiveModal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 2500; display: none;
-            flex-direction: column; justify-content: center; align-items: center; padding: 15px;
-        }
-
         @media (max-width: 768px) {
             .main-content { padding: 15px; }
             .form-grid-2 { grid-template-columns: 1fr; }
@@ -344,17 +332,15 @@
     <form id="regForm">
         <div style="display: flex; justify-content: space-between; align-items: center; background: #fdfbf7; padding: 14px 18px; border-radius: 12px; border: 1px solid rgba(245, 158, 11, 0.3); margin-bottom: 20px;">
             <div style="display: flex; align-items: center; gap: 12px;">
-                <img id="leftFormAvatar" src="https://raw.githubusercontent.com/sirdique/miftahul-ilmi/main/hoto.png" alt="Hoto" style="width: 50px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid var(--accent);">
+                <img src="hoto.png" alt="Logo" style="width: 50px; height: 50px; object-fit: contain; border-radius: 8px;">
                 <div>
-                    <div class="arabic-school-title" style="font-size: 13px; text-align: right;">مدرسة مفتاح العلم والدراسات الإسلامية</div>
-                    <div style="font-size: 10px; color: #d97706; text-align: right; font-weight: bold;">حطورو كاورو - كنو</div>
+                    <div class="arabic-school-title" style="font-size: 14px; text-align: left;">مدرسة مفتاح العلم</div>
+                    <div style="font-size: 10px; color: #d97706; font-weight: bold;">Hotoro Kano</div>
                 </div>
             </div>
             <div>
                 <label style="margin-bottom: 4px; font-size: 11px;">Hoton Passport *</label>
-                <!-- Hidden file input for Gallery -->
-                <input type="file" id="galleryFileInput" accept="image/*" style="display:none;">
-                <button type="button" id="openMediaChoiceBtn" style="padding: 8px 12px; font-size: 12px; margin:0; background:var(--primary); color:var(--accent);">📷 Zabi Hoto</button>
+                <button type="button" onclick="openPhotoPicker()" style="padding: 8px 12px; font-size: 12px; background: var(--primary); color: var(--accent); margin: 0; width: auto; border-radius: 8px;">📷 Zabi Hoto</button>
             </div>
         </div>
 
@@ -378,6 +364,33 @@
         <button type="submit" id="submitRegBtn">Yi Register ➔</button>
     </form>
     <button type="button" onclick="showPage('rulesPage')" style="background: #64748b; color: white; box-shadow: none; margin-top: 10px;">← Baya</button>
+</div>
+
+<!-- PHOTO SELECTION MODAL (Camera or Gallery) -->
+<div id="photoChoiceModal" class="page" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1100; display:none; justify-content:center; align-items:center; padding:20px;">
+    <div style="background:#fff; border-radius:16px; padding:25px; max-width:350px; width:100%; text-align:center;">
+        <h3>Zabi Hanyar Hoto</h3>
+        <p style="font-size:13px; color:#64748b; margin-bottom:20px;">Kuna son daukar hoto da Camera ko Zabi daga Gallery?</p>
+        <button type="button" onclick="startLiveCamera()" style="background:var(--primary); color:var(--accent);">📷 Live Camera</button>
+        <button type="button" onclick="document.getElementById('hiddenGalleryInput').click()" style="background:#0284c7; color:white;">🖼️ Gallery</button>
+        <button type="button" onclick="closePhotoChoiceModal()" style="background:#64748b; color:white; margin-top:10px;">Soke</button>
+        <input type="file" id="hiddenGalleryInput" accept="image/*" style="display:none;" onchange="handleGalleryUpload(event)">
+    </div>
+</div>
+
+<!-- LIVE CAMERA MODAL WITH SWITCH, GOOD & CANCEL -->
+<div id="cameraModal" class="page" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1200; display:none; flex-direction:column; justify-content:center; align-items:center; padding:15px;">
+    <div style="position:relative; max-width:400px; width:100%; background:#000; border-radius:12px; overflow:hidden; text-align:center;">
+        <video id="cameraVideo" autoplay playsinline style="width:100%; height:320px; object-fit:cover; display:block;"></video>
+        <canvas id="cameraCanvas" style="display:none;"></canvas>
+        <div style="position:absolute; top:10px; right:10px; display:flex; gap:8px;">
+            <button type="button" onclick="switchCamera()" style="background:rgba(0,0,0,0.6); color:white; border:none; padding:8px 12px; border-radius:8px; font-size:12px; margin:0; width:auto; cursor:pointer;">🔄 Switch</button>
+        </div>
+    </div>
+    <div style="display:flex; gap:15px; margin-top:20px; max-width:400px; width:100%;">
+        <button type="button" onclick="captureLivePhoto()" style="background:#10b981; color:white; flex:1; margin:0;">✅ Good (Capture)</button>
+        <button type="button" onclick="cancelLiveCamera()" style="background:#ef4444; color:white; flex:1; margin:0;">❌ Cancel</button>
+    </div>
 </div>
 
 <!-- 4. CONFIRMATION CODE INPUT PAGE -->
@@ -405,7 +418,7 @@
     <div class="official-certificate-card" id="printableFormCard">
         <div class="cert-outer-border">
             <div class="cert-header">
-                <div class="cert-badge-box"><img src="https://raw.githubusercontent.com/sirdique/miftahul-ilmi/main/hoto.png" alt="Hoto"></div>
+                <div class="cert-badge-box" id="formCardBadgeBox"><img src="hoto.png" alt="Logo"></div>
                 <div class="cert-title-area" style="text-align: center;">
                     <h2>Madrasatul Miftahul Ilmi Waddurasatul Islamiyya</h2>
                     <div class="arabic-school-title" style="font-size: 12px; margin: 2px 0;">مدرسة مفتاح العلم والدراسات الإسلامية</div>
@@ -570,6 +583,7 @@
             <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">Kowanne aji yana da nasa engine mai zaman kansa (generate zai bayar da guda 20 lokaci guda. Idan ya kai/ya wura 40 za ka goge wasu kafin ya sake yi).</p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px;">
+                
                 <!-- Class 1 Engine -->
                 <div style="background: #fdfbf7; border: 2px solid #d97706; border-radius: 14px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
@@ -585,6 +599,7 @@
                         <button type="button" onclick="deleteAllCodes('CL1')" style="background: #ef4444; color:white; margin:0; padding:10px;">🗑️ Delete All</button>
                     </div>
                 </div>
+
                 <!-- Class 2 Engine -->
                 <div style="background: #f0fdf4; border: 2px solid #10b981; border-radius: 14px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
@@ -600,6 +615,7 @@
                         <button type="button" onclick="deleteAllCodes('CL2')" style="background: #ef4444; color:white; margin:0; padding:10px;">🗑️ Delete All</button>
                     </div>
                 </div>
+
                 <!-- Class 3 Engine -->
                 <div style="background: #fdf2f8; border: 2px solid #db2777; border-radius: 14px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
@@ -615,6 +631,7 @@
                         <button type="button" onclick="deleteAllCodes('CL3')" style="background: #ef4444; color:white; margin:0; padding:10px;">🗑️ Delete All</button>
                     </div>
                 </div>
+
                 <!-- Class 4 Engine -->
                 <div style="background: #e0f2fe; border: 2px solid #0284c7; border-radius: 14px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
@@ -630,6 +647,7 @@
                         <button type="button" onclick="deleteAllCodes('CL4')" style="background: #ef4444; color:white; margin:0; padding:10px;">🗑️ Delete All</button>
                     </div>
                 </div>
+
                 <!-- Class 5 Engine -->
                 <div style="background: #fae8ff; border: 2px solid #a855f7; border-radius: 14px; padding: 15px; display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
@@ -645,6 +663,7 @@
                         <button type="button" onclick="deleteAllCodes('CL5')" style="background: #ef4444; color:white; margin:0; padding:10px;">🗑️ Delete All</button>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -687,33 +706,14 @@
     </div>
 </div>
 
-<!-- MODAL FOR MEDIA CHOICE (CAMERA OR GALLERY) -->
-<div id="mediaChoiceModal">
-    <div style="background:#fff; border-radius:16px; padding:25px; max-width:320px; width:100%; text-align:center; box-shadow:0 20px 40px rgba(0,0,0,0.2);">
-        <h3 style="margin-top:0; color:var(--primary);">Zabi Hanyar Daukar Hoto</h3>
-        <button type="button" id="chooseCameraBtn" style="background:#0284c7; color:white; margin-bottom:10px;">📷 Bude Camera (Live)</button>
-        <button type="button" id="chooseGalleryBtn" style="background:#10b981; color:white; margin-bottom:15px;">🖼️ Zabi daga Gallery</button>
-        <button type="button" onclick="closeMediaChoice()" style="background:#64748b; color:white; box-shadow:none; margin:0;">❌ Soke</button>
-    </div>
-</div>
-
-<!-- LIVE CAMERA MODAL -->
-<div id="cameraLiveModal">
-    <div style="position:relative; width:100%; max-width:400px; display:flex; flex-direction:column; align-items:center;">
-        <video id="liveVideoElement" autoplay playsinline style="width:100%; border-radius:12px; background:#000; max-height:400px; object-fit:cover;"></video>
-        <canvas id="liveCanvasElement" style="display:none;"></canvas>
-        <button type="button" id="switchCameraBtn" style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.6); color:white; border:none; border-radius:50%; width:45px; height:45px; font-size:18px; cursor:pointer; box-shadow:none; margin:0; display:flex; align-items:center; justify-content:center;">🔄</button>
-        <div style="display:flex; gap:15px; width:100%; margin-top:15px;">
-            <button type="button" id="captureGoodBtn" style="background:#10b981; color:white; flex:1; margin:0;">✅ Good (Capture)</button>
-            <button type="button" id="captureCancelBtn" style="background:#ef4444; color:white; flex:1; margin:0;">❌ Cancel</button>
-        </div>
-    </div>
-</div>
-
 <!-- MODAL FOR SHORT DETAILS / DELETE / CLOSE -->
 <div id="studentModal" class="page" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000; display:none; justify-content:center; align-items:center; padding:20px;">
     <div style="background:#fff; border-radius:16px; padding:30px; max-width:420px; width:100%; box-shadow: 0 20px 40px rgba(0,0,0,0.2);">
         <h3 style="margin-top:0; color:var(--primary); border-bottom: 2px solid var(--accent); padding-bottom: 12px;">Takaitaccen Bayanin Dalibi (Short Details)</h3>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:15px;">
+            <img src="hoto.png" alt="Logo" style="width:40px; height:40px; object-fit:contain;">
+            <span style="font-weight:bold; color:var(--primary);">Miftahul Ilmi Hotoro</span>
+        </div>
         <div style="margin: 20px 0; font-size: 14.5px; line-height: 2;">
             <div><strong>Student ID:</strong> <span id="modalStudentId" style="color:var(--primary); font-weight:bold;"></span></div>
             <div><strong>Name:</strong> <span id="modalStudentName"></span></div>
@@ -737,7 +737,7 @@
         <div class="official-certificate-card" id="adminPrintableFormCard" style="margin:0 auto; width:100%;">
             <div class="cert-outer-border">
                 <div class="cert-header">
-                    <div class="cert-badge-box"><img src="https://raw.githubusercontent.com/sirdique/miftahul-ilmi/main/hoto.png" alt="Hoto"></div>
+                    <div class="cert-badge-box" id="adminFormBadgeBox"><img src="hoto.png" alt="Logo"></div>
                     <div class="cert-title-area" style="text-align: center;">
                         <h2>Madrasatul Miftahul Ilmi Waddurasatul Islamiyya</h2>
                         <div class="arabic-school-title" style="font-size: 12px; margin: 2px 0;">مدرسة مفتاح العلم والدراسات الإسلامية</div>
@@ -796,97 +796,93 @@
     // Supabase Configuration
     const SUPABASE_URL = 'https://rwplgnnnspbzdjizimrt.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_0hCtfEs8Y4FnDmN07J4Brw_xOL8ECSY';
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     if (!localStorage.getItem('admin_user')) localStorage.setItem('admin_user', 'Sirdique');
     if (!localStorage.getItem('admin_pass')) localStorage.setItem('admin_pass', '9781place');
 
-    let arabicTapCount = 0, arabicTapTimer = null, tempPassportFile = null, currentFormFilter = 'ALL', selectedModalUserId = null;
+    let arabicTapCount = 0, arabicTapTimer = null, tempPassportBase64 = '', currentFormFilter = 'ALL', selectedModalUserId = null;
     let mediaStream = null, useFrontCamera = true;
 
-    // Media Choice & Camera Logic
-    document.getElementById('openMediaChoiceBtn').addEventListener('click', function() {
-        document.getElementById('mediaChoiceModal').style.display = 'flex';
-    });
-    function closeMediaChoice() {
-        document.getElementById('mediaChoiceModal').style.display = 'none';
+    function openPhotoPicker() {
+        document.getElementById('photoChoiceModal').style.display = 'flex';
+    }
+    function closePhotoChoiceModal() {
+        document.getElementById('photoChoiceModal').style.display = 'none';
     }
 
-    document.getElementById('chooseGalleryBtn').addEventListener('click', function() {
-        closeMediaChoice();
-        document.getElementById('galleryFileInput').click();
-    });
-
-    document.getElementById('galleryFileInput').addEventListener('change', function(e) {
+    function handleGalleryUpload(e) {
         let file = e.target.files[0];
         if(file) {
-            tempPassportFile = file;
-            document.getElementById('openMediaChoiceBtn').innerText = '✅ An zabi hoto';
-            document.getElementById('openMediaChoiceBtn').style.background = '#10b981';
+            let reader = new FileReader();
+            reader.onload = function(event) {
+                processAndSaveImage(event.target.result);
+            };
+            reader.readAsDataURL(file);
         }
-    });
-
-    document.getElementById('chooseCameraBtn').addEventListener('click', function() {
-        closeMediaChoice();
-        openLiveCamera();
-    });
-
-    function openLiveCamera() {
-        document.getElementById('cameraLiveModal').style.display = 'flex';
-        startCameraStream();
+        closePhotoChoiceModal();
     }
 
-    function startCameraStream() {
-        if(mediaStream) {
-            mediaStream.getTracks().forEach(track => track.stop());
-        }
-        let constraints = {
-            video: { facingMode: useFrontCamera ? 'user' : 'environment' },
-            audio: false
-        };
-        navigator.mediaDevices.getUserMedia(constraints)
-        .then(stream => {
-            mediaStream = stream;
-            document.getElementById('liveVideoElement').srcObject = stream;
-        })
-        .catch(err => {
+    async function startLiveCamera() {
+        closePhotoChoiceModal();
+        document.getElementById('cameraModal').style.display = 'flex';
+        try {
+            if(mediaStream) {
+                mediaStream.getTracks().forEach(track => track.stop());
+            }
+            let constraints = { video: { facingMode: useFrontCamera ? 'user' : 'environment' } };
+            mediaStream = await navigator.mediaDevices.getUserMedia(constraints);
+            document.getElementById('cameraVideo').srcObject = mediaStream;
+        } catch(err) {
             alert('Ba a sami damar bude camera ba: ' + err.message);
-            closeCameraModal();
-        });
+            cancelLiveCamera();
+        }
     }
 
-    document.getElementById('switchCameraBtn').addEventListener('click', function() {
+    function switchCamera() {
         useFrontCamera = !useFrontCamera;
-        startCameraStream();
-    });
+        startLiveCamera();
+    }
 
-    document.getElementById('captureCancelBtn').addEventListener('click', function() {
-        closeCameraModal();
-    });
+    function captureLivePhoto() {
+        let video = document.getElementById('cameraVideo');
+        let canvas = document.getElementById('cameraCanvas');
+        canvas.width = video.videoWidth || 300;
+        canvas.height = video.videoHeight || 300;
+        let ctx = canvas.getContext('2d');
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        let dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+        processAndSaveImage(dataUrl);
+        cancelLiveCamera();
+    }
 
-    function closeCameraModal() {
+    function cancelLiveCamera() {
         if(mediaStream) {
             mediaStream.getTracks().forEach(track => track.stop());
             mediaStream = null;
         }
-        document.getElementById('cameraLiveModal').style.display = 'none';
+        document.getElementById('cameraModal').style.display = 'none';
     }
 
-    document.getElementById('captureGoodBtn').addEventListener('click', function() {
-        let video = document.getElementById('liveVideoElement');
-        let canvas = document.getElementById('liveCanvasElement');
-        canvas.width = video.videoWidth || 300;
-        canvas.height = video.videoHeight || 400;
-        let ctx = canvas.getContext('2d');
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        
-        canvas.toBlob(blob => {
-            tempPassportFile = new File([blob], "camera_capture.jpg", { type: "image/jpeg" });
-            document.getElementById('openMediaChoiceBtn').innerText = '✅ An dauki hoto';
-            document.getElementById('openMediaChoiceBtn').style.background = '#10b981';
-            closeCameraModal();
-        }, 'image/jpeg', 0.8);
-    });
+    function processAndSaveImage(dataUrl) {
+        let img = new Image();
+        img.onload = function() {
+            let canvas = document.createElement('canvas');
+            let maxWidth = 150, maxHeight = 180;
+            let width = img.width, height = img.height;
+            if (width > height) {
+                if (width > maxWidth) { height *= maxWidth / width; width = maxWidth; }
+            } else {
+                if (height > maxHeight) { width *= maxHeight / height; height = maxHeight; }
+            }
+            canvas.width = width; canvas.height = height;
+            let ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            tempPassportBase64 = canvas.toDataURL('image/jpeg', 0.6);
+            alert('An yi nasarar daukar hoton passport!');
+        };
+        img.src = dataUrl;
+    }
 
     document.getElementById('arabicTitleTrigger').addEventListener('click', function() {
         arabicTapCount++;
@@ -897,10 +893,10 @@
 
     function showPage(pageId) {
         document.querySelectorAll('.page').forEach(p => { 
-            if(p.id !== 'studentModal' && p.id !== 'formViewModal') p.classList.remove('active-page'); 
+            if(p.id !== 'studentModal' && p.id !== 'formViewModal' && p.id !== 'photoChoiceModal' && p.id !== 'cameraModal') p.classList.remove('active-page'); 
         });
         document.getElementById(pageId).classList.add('active-page');
-        if(pageId === 'adminDashboard') loadDashboardData();
+        if(pageId === 'adminDashboard') loadDashboardDataFromSupabase();
         if(pageId === 'successPage') startBalloonsAndConfetti();
     }
 
@@ -927,7 +923,7 @@
         if(el) el.classList.add('active');
         
         document.getElementById('appSidebar').classList.remove('sidebar-open');
-        loadDashboardData();
+        loadDashboardDataFromSupabase();
     }
 
     document.getElementById('toggleSidebarBtn').addEventListener('click', function(e) {
@@ -942,7 +938,7 @@
 
     document.getElementById('regForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        if(!tempPassportFile) { alert('Don Allah ka zabi ko ka dauki hoton passport tukuna!'); return; }
+        if(!tempPassportBase64) { alert('Don Allah ka zabi ko daukar hoton passport tukuna!'); return; }
         
         let firstName = document.getElementById('firstName').value || 'Dalibi';
         let whatsappMsg = `Assalamu Alaikum Admin, Sunana ${firstName}. Ina son samun Confirmation Code din shiga makaranta.`;
@@ -955,59 +951,12 @@
         return new Date(year, month + 1, 0).getDate();
     }
 
-    function checkAndArchiveRevenue(students) {
-        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        let now = new Date();
-        let curMonthName = monthNames[now.getMonth()];
-        let curYear = now.getFullYear();
-        let curMonthKey = `${curMonthName} ${curYear}`;
-
-        let archives = JSON.parse(localStorage.getItem('db_monthly_archives')) || [];
-        let monthlyMap = {};
-
-        students.forEach(s => {
-            let d = new Date(s.timestamp || Date.now());
-            let mName = monthNames[d.getMonth()];
-            let yNum = d.getFullYear();
-            let mKey = `${mName} ${yNum}`;
-
-            if(!monthlyMap[mKey]) {
-                monthlyMap[mKey] = { cl1: 0, cl2: 0, cl3: 0, cl4: 0, cl5: 0, total: 0, daysCount: getDaysInMonth(yNum, d.getMonth()) };
-            }
-            let fee = 1000;
-            if(s.section === 'CL1') monthlyMap[mKey].cl1 += fee;
-            else if(s.section === 'CL2') monthlyMap[mKey].cl2 += fee;
-            else if(s.section === 'CL3') monthlyMap[mKey].cl3 += fee;
-            else if(s.section === 'CL4') monthlyMap[mKey].cl4 += fee;
-            else if(s.section === 'CL5') monthlyMap[mKey].cl5 += fee;
-            monthlyMap[mKey].total += fee;
-        });
-
-        for(let mKey in monthlyMap) {
-            if(mKey !== curMonthKey) {
-                let exists = archives.find(a => a.monthKey === mKey);
-                if(!exists) {
-                    archives.push({
-                        monthKey: mKey,
-                        cl1: monthlyMap[mKey].cl1,
-                        cl2: monthlyMap[mKey].cl2,
-                        cl3: monthlyMap[mKey].cl3,
-                        cl4: monthlyMap[mKey].cl4,
-                        cl5: monthlyMap[mKey].cl5,
-                        total: monthlyMap[mKey].total,
-                        days: monthlyMap[mKey].daysCount
-                    });
-                }
-            }
-        }
-        localStorage.setItem('db_monthly_archives', JSON.stringify(archives));
-    }
-
-    document.getElementById('finalizeRegBtn').addEventListener('click', async function() {
+    // SUPABASE DATABASE OPERATIONS
+    async function finalizeRegistration() {
         let codeInput = document.getElementById('confCodeInput').value.trim().toLowerCase();
         
         // Fetch codes from Supabase
-        let { data: codesObj, error: codeErr } = await supabaseClient.from('codes').select('*');
+        let { data: codesObj, error: codeErr } = await _supabase.from('codes').select('*');
         if(codeErr) { alert('Matsala wajen karanta codes daga Supabase: ' + codeErr.message); return; }
 
         let foundCode = codesObj.find(c => c.code.toLowerCase() === codeInput);
@@ -1020,116 +969,73 @@
         else if(codeInput.startsWith('cl3')) detectedClass = 'CL3';
         else if(codeInput.startsWith('cl4')) detectedClass = 'CL4';
         else if(codeInput.startsWith('cl5')) detectedClass = 'CL5';
-        else { alert('Wannan Code din bai fara da ingantattun kalmomi huɗu na wani aji ba!'); return; }
+        else { alert('Wannan Code din bai fara da ingantattun kalmomi huɗu ba (cl1_, cl2_, cl3_, cl4_, cl5_)!'); return; }
 
         // Update code status in Supabase
-        await supabaseClient.from('codes').update({ used: true }).eq('id', foundCode.id);
+        await _supabase.from('codes').update({ used: true }).eq('id', foundCode.id);
 
-        // Upload Passport to Supabase Storage
-        let fileName = 'passport_' + Date.now() + '_' + Math.random().toString(36).substring(2,7) + '.jpg';
-        let { data: uploadData, error: uploadErr } = await supabaseClient.storage.from('passports').upload(fileName, tempPassportFile);
-        
-        let passportUrl = '';
-        if(!uploadErr) {
-            let { data: publicURLData } = supabaseClient.storage.from('passports').getPublicUrl(fileName);
-            passportUrl = publicURLData.publicUrl;
-        } else {
-            // Fallback to local base64 if storage fails
-            let reader = new FileReader();
-            reader.readAsDataURL(tempPassportFile);
-            await new Promise(resolve => reader.onload = resolve);
-            passportUrl = reader.result;
-        }
+        let { data: students, error: studErr } = await _supabase.from('students').select('*');
+        if(studErr) students = [];
 
-        let { data: existingStudents } = await supabaseClient.from('students').select('*');
-        let totalCount = existingStudents ? existingStudents.length : 0;
-        let userId = `MIF${Math.floor(Math.random()*90+10)}${detectedClass}${String(totalCount+1).padStart(4,'0')}`;
-        
+        let userId = `MIF${Math.floor(Math.random()*90+10)}${detectedClass}${String((students ? students.length : 0)+1).padStart(4,'0')}`;
         let now = new Date();
         let timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         let dateStr = now.toLocaleDateString();
 
         let newStudent = {
-            userid: userId,
-            firstname: document.getElementById('firstName').value,
-            lastname: document.getElementById('lastName').value,
-            age: parseInt(document.getElementById('age').value) || 0,
+            user_id: userId,
+            first_name: document.getElementById('firstName').value,
+            last_name: document.getElementById('lastName').value,
+            age: document.getElementById('age').value,
             address: document.getElementById('address').value,
             phone: document.getElementById('phone').value,
             section: detectedClass,
-            usedcode: foundCode.code,
-            passport: passportUrl,
-            time: timeStr,
-            date: dateStr,
+            used_code: foundCode.code,
+            passport: tempPassportBase64,
+            time_str: timeStr,
+            date_str: dateStr,
             timestamp: now.getTime()
         };
 
-        let { error: insertErr } = await supabaseClient.from('students').insert([newStudent]);
+        let { error: insertErr } = await _supabase.from('students').insert([newStudent]);
         if(insertErr) { alert('Matsala wajen adana dalibi a Supabase: ' + insertErr.message); return; }
 
-        // Also save to localStorage for offline cache
-        let localStudents = JSON.parse(localStorage.getItem('db_students')) || [];
-        localStudents.unshift({
-            userId: newStudent.userid,
-            firstName: newStudent.firstname,
-            lastName: newStudent.lastname,
-            age: newStudent.age,
-            address: newStudent.address,
-            phone: newStudent.phone,
-            section: newStudent.section,
-            usedCode: newStudent.usedcode,
-            passport: newStudent.passport,
-            time: newStudent.time,
-            date: newStudent.date,
-            timestamp: newStudent.timestamp
-        });
-        localStorage.setItem('db_students', JSON.stringify(localStudents));
-
-        checkAndArchiveRevenue(localStudents);
-
-        let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
-        notices.unshift({
-            id: 'notice_' + Date.now() + '_' + Math.random(),
-            studentId: userId,
+        // Insert notice
+        await _supabase.from('notices').insert([{
+            student_id: userId,
             section: detectedClass,
             unread: true
-        });
-        localStorage.setItem('db_notices', JSON.stringify(notices));
+        }]);
 
-        populateCertificateData({
-            firstName: newStudent.firstname,
-            lastName: newStudent.lastname,
-            userId: newStudent.userid,
-            phone: newStudent.phone,
-            address: newStudent.address,
-            section: newStudent.section,
-            usedCode: newStudent.usedcode,
-            passport: newStudent.passport,
-            date: newStudent.date
-        });
-        renderNotices();
+        populateCertificateData(newStudent);
         
         document.getElementById('regForm').reset();
-        tempPassportFile = null;
-        document.getElementById('openMediaChoiceBtn').innerText = '📷 Zabi Hoto';
-        document.getElementById('openMediaChoiceBtn').style.background = 'var(--primary)';
+        tempPassportBase64 = '';
         document.getElementById('confCodeInput').value = '';
         document.getElementById('agreeCheck').checked = false;
         document.getElementById('rulesNextBtn').style.display = 'none';
 
         showPage('successPage');
-    });
+    }
+
+    document.getElementById('finalizeRegBtn').addEventListener('click', finalizeRegistration);
 
     function populateCertificateData(s) {
-        document.getElementById('formCardFirstName').innerText = s.firstName;
-        document.getElementById('formCardLastName').innerText = s.lastName;
-        document.getElementById('formCardUserId').innerText = s.userId;
+        let fName = s.first_name || s.firstName;
+        let lName = s.last_name || s.lastName;
+        let uId = s.user_id || s.userId;
+        let uCode = s.used_code || s.usedCode;
+        let dStr = s.date_str || s.date;
+
+        document.getElementById('formCardFirstName').innerText = fName;
+        document.getElementById('formCardLastName').innerText = lName;
+        document.getElementById('formCardUserId').innerText = uId;
         document.getElementById('formCardPhone').innerText = s.phone;
         document.getElementById('formCardAddress').innerText = s.address;
-        document.getElementById('studentSigLine').innerText = `${s.firstName} ${s.lastName}`;
-        document.getElementById('formCardDate1').innerText = s.date;
-        document.getElementById('formCardDate2').innerText = s.date;
-        document.getElementById('formCardUsedCode').innerText = `Code: ${s.usedCode || '--'}`;
+        document.getElementById('studentSigLine').innerText = `${fName} ${lName}`;
+        document.getElementById('formCardDate1').innerText = dStr;
+        document.getElementById('formCardDate2').innerText = dStr;
+        document.getElementById('formCardUsedCode').innerText = `Code: ${uCode || '--'}`;
 
         let pBox = document.getElementById('formCardPassportBox');
         if(s.passport) pBox.innerHTML = `<img src="${s.passport}" alt="Passport">`; else pBox.innerText = 'PHOTO';
@@ -1139,7 +1045,7 @@
             if(el) el.innerText = s.section === cls ? '☑' : '🔲';
         });
 
-        let waText = `Assalamu Alaikum Admin, Ga fom dina na rajista Miftahul Ilmi:\n\n*Student ID:* ${s.userId}\n*Suna:* ${s.firstName} ${s.lastName}\n*Aji:* ${s.section}\n*Code:* ${s.usedCode || '--'}`;
+        let waText = `Assalamu Alaikum Admin, Ga fom dina na rajista Miftahul Ilmi:\n\n*Student ID:* ${uId}\n*Suna:* ${fName} ${lName}\n*Aji:* ${s.section}\n*Code:* ${uCode || '--'}`;
         document.getElementById('whatsappSendBtn').href = `https://wa.me/2347056845435?text=${encodeURIComponent(waText)}`;
     }
 
@@ -1160,7 +1066,7 @@
     }
 
     document.getElementById('downloadFormBtn').addEventListener('click', function() {
-        html2canvas(document.getElementById('printableFormCard'), { scale: 2, useCORS: true }).then(canvas => {
+        html2canvas(document.getElementById('printableFormCard'), { scale: 2 }).then(canvas => {
             let link = document.createElement('a'); link.download = 'Miftahul_Ilmi_Form.png'; link.href = canvas.toDataURL('image/png'); link.click();
         });
     });
@@ -1178,30 +1084,9 @@
         } else { alert('Username ko Password bai daidai ba!'); }
     });
 
-    async function loadDashboardData() {
-        let { data: studentsData, error } = await supabaseClient.from('students').select('*');
-        let students = [];
-        if(!error && studentsData) {
-            students = studentsData.map(s => ({
-                userId: s.userid,
-                firstName: s.firstname,
-                lastName: s.lastname,
-                age: s.age,
-                address: s.address,
-                phone: s.phone,
-                section: s.section,
-                usedCode: s.usedcode,
-                passport: s.passport,
-                time: s.time,
-                date: s.date,
-                timestamp: s.timestamp
-            }));
-            localStorage.setItem('db_students', JSON.stringify(students));
-        } else {
-            students = JSON.parse(localStorage.getItem('db_students')) || [];
-        }
-
-        checkAndArchiveRevenue(students);
+    async function loadDashboardDataFromSupabase() {
+        let { data: students, error } = await _supabase.from('students').select('*');
+        if(error) students = [];
 
         let totalRev = students.length * 1000;
         document.getElementById('statTotalStudents').innerText = students.length;
@@ -1222,12 +1107,12 @@
         document.getElementById('badgeClass5').innerText = countCl5;
 
         renderMonthlyRevenueTab(students);
-        renderAllStudentsTable();
-        renderClassTables();
-        renderFormsList();
-        await renderCodesEngines();
-        renderNotices();
-        renderPromoDemo();
+        renderAllStudentsTable(students);
+        renderClassTables(students);
+        renderFormsList(students);
+        renderCodesEngines();
+        renderNotices(students);
+        renderPromoDemo(students);
     }
 
     function renderMonthlyRevenueTab(students) {
@@ -1254,23 +1139,6 @@
         document.getElementById('curCl4Rev').innerText = `₦${curRev.CL4.toLocaleString()}`;
         document.getElementById('curCl5Rev').innerText = `₦${curRev.CL5.toLocaleString()}`;
         document.getElementById('curAllRev').innerText = `₦${curTotal.toLocaleString()}`;
-
-        let archives = JSON.parse(localStorage.getItem('db_monthly_archives')) || [];
-        let archiveContainer = document.getElementById('monthlyArchivesListContainer');
-
-        archiveContainer.innerHTML = archives.length ? archives.map(a => `
-            <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 15px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                <div>
-                    <strong style="color: var(--primary); font-size: 15px;">${a.monthKey} (Days: ${a.days})</strong>
-                    <div style="font-size: 12.5px; color: #475569; margin-top: 4px;">
-                        cl1: ₦${a.cl1.toLocaleString()} | cl2: ₦${a.cl2.toLocaleString()} | cl3: ₦${a.cl3.toLocaleString()} | cl4: ₦${a.cl4.toLocaleString()} | cl5: ₦${a.cl5.toLocaleString()}
-                    </div>
-                </div>
-                <div style="background: #f0fdf4; border: 1px solid #10b981; padding: 6px 14px; border-radius: 8px; font-weight: bold; color: #047857; font-size: 14px;">
-                    All: ₦${a.total.toLocaleString()}
-                </div>
-            </div>
-        `).join('') : '<p style="color: #64748b; font-size: 13px;">Babu tsofaffin watanni da aka adana a halin yanzu.</p>';
     }
 
     document.getElementById('noticeBellWrapper').addEventListener('click', function(e) {
@@ -1282,8 +1150,6 @@
         let dropdown = document.getElementById('noticeDropdown');
         if(dropdown && dropdown.classList.contains('show')) dropdown.classList.remove('show');
         
-        document.querySelectorAll('.promo-dropdown').forEach(d => d.classList.remove('show'));
-
         let sidebar = document.getElementById('appSidebar');
         let toggleBtn = document.getElementById('toggleSidebarBtn');
         if (sidebar.classList.contains('sidebar-open')) {
@@ -1293,9 +1159,9 @@
         }
     });
 
-    function renderNotices() {
-        let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+    async function renderNotices(students) {
+        let { data: notices, error } = await _supabase.from('notices').select('*');
+        if(error) notices = [];
         let badge = document.getElementById('noticeBadgeCount');
         let container = document.getElementById('noticeListContainer');
 
@@ -1304,12 +1170,12 @@
         badge.style.display = unreadCount > 0 ? 'inline-block' : 'none';
 
         container.innerHTML = notices.length ? notices.map(n => {
-            let student = students.find(s => s.userId === n.studentId);
-            let displayName = student ? `${student.firstName} ${student.lastName}` : 'Dalibi';
+            let student = students.find(s => (s.user_id || s.userId) === n.student_id);
+            let displayName = student ? `${student.first_name || student.firstName} ${student.last_name || student.lastName}` : 'Dalibi';
             return `
-                <div class="notice-item ${n.unread ? 'unread' : ''}" onclick="openStudentModal('${n.studentId}'); markNotice('${n.id}'); event.stopPropagation();">
+                <div class="notice-item ${n.unread ? 'unread' : ''}" onclick="openStudentModal('${n.student_id}'); markNotice('${n.id}'); event.stopPropagation();">
                     <div>
-                        <div style="font-weight: bold; color: var(--primary); font-size: 13.5px;">ID: ${n.studentId}</div>
+                        <div style="font-weight: bold; color: var(--primary); font-size: 13.5px;">ID: ${n.student_id}</div>
                         <div style="font-size: 12px; color: #475569; margin-top: 2px;">
                             ${displayName} | Aji: <b style="color:#d97706;">${n.section}</b>
                         </div>
@@ -1322,70 +1188,67 @@
         }).join('') : '<div style="padding: 20px; text-align: center; color: #64748b; font-size: 12px;">Babu wata sabuwar sanarwa.</div>';
     }
 
-    function markNotice(id) {
-        let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
-        let notice = notices.find(n => n.id === id);
-        if(notice) { notice.unread = false; localStorage.setItem('db_notices', JSON.stringify(notices)); renderNotices(); }
+    async function markNotice(id) {
+        await _supabase.from('notices').update({ unread: false }).eq('id', id);
+        loadDashboardDataFromSupabase();
     }
 
-    function deleteSingleNotice(id) {
-        let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
-        let updated = notices.filter(n => n.id !== id);
-        localStorage.setItem('db_notices', JSON.stringify(updated));
-        renderNotices();
+    async function deleteSingleNotice(id) {
+        await _supabase.from('notices').delete().eq('id', id);
+        loadDashboardDataFromSupabase();
     }
 
-    document.getElementById('markAllNoticesBtn').addEventListener('click', function(e) {
+    document.getElementById('markAllNoticesBtn').addEventListener('click', async function(e) {
         e.stopPropagation();
-        let notices = JSON.parse(localStorage.getItem('db_notices')) || [];
-        notices.forEach(n => n.unread = false);
-        localStorage.setItem('db_notices', JSON.stringify(notices));
-        renderNotices();
+        await _supabase.from('notices').update({ unread: false }).neq('id', 0);
+        loadDashboardDataFromSupabase();
     });
 
-    document.getElementById('delAllNoticesBtn').addEventListener('click', function(e) {
+    document.getElementById('delAllNoticesBtn').addEventListener('click', async function(e) {
         e.stopPropagation();
-        localStorage.setItem('db_notices', JSON.stringify([]));
-        renderNotices();
+        await _supabase.from('notices').delete().neq('id', 0);
+        loadDashboardDataFromSupabase();
     });
 
-    document.getElementById('promoSearchInput').addEventListener('input', renderPromoDemo);
+    document.getElementById('promoSearchInput').addEventListener('input', async function() {
+        let { data: students } = await _supabase.from('students').select('*');
+        renderPromoDemo(students || []);
+    });
 
-    function renderPromoDemo() {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+    function renderPromoDemo(students) {
         let q = document.getElementById('promoSearchInput').value.trim().toUpperCase();
         let container = document.getElementById('promoDemoContainer');
 
-        let filtered = students.filter(s => q === '' || s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q));
-
-        container.innerHTML = filtered.length ? filtered.map(s => `
-            <div class="promo-card">
-                <div class="promo-info">
-                    <h4>${s.firstName} ${s.lastName}</h4>
-                    <p>ID: <b>${s.userId}</b> | Current Class: <b style="color:var(--accent);">${s.section}</b></p>
-                </div>
-                <button type="button" class="promo-menu-btn" onclick="togglePromoMenu(event, '${s.userId}')">⋮</button>
-                <div class="promo-dropdown" id="promoDrop_${s.userId}">
-                    <button type="button" onclick="changeStudentClass('${s.userId}', 'PROMOTE')">⬆️ Promote (Aji na gaba)</button>
-                    <button type="button" onclick="changeStudentClass('${s.userId}', 'DEMOTE')">⬇️ Demote (Aji na baya)</button>
-                </div>
-            </div>
-        `).join('') : '<p style="text-align:center; color:#64748b; margin-top:20px;">Babu ɗalibai da aka samu.</p>';
-    }
-
-    function togglePromoMenu(e, userId) {
-        e.stopPropagation();
-        document.querySelectorAll('.promo-dropdown').forEach(d => {
-            if(d.id !== `promoDrop_${userId}`) d.classList.remove('show');
+        let filtered = students.filter(s => {
+            let uId = s.user_id || s.userId;
+            let fName = s.first_name || s.firstName;
+            let lName = s.last_name || s.lastName;
+            return q === '' || uId.toUpperCase().includes(q) || `${fName} ${lName}`.toUpperCase().includes(q);
         });
-        let drop = document.getElementById(`promoDrop_${userId}`);
-        if(drop) drop.classList.toggle('show');
+
+        container.innerHTML = filtered.length ? filtered.map(s => {
+            let uId = s.user_id || s.userId;
+            let fName = s.first_name || s.firstName;
+            let lName = s.last_name || s.lastName;
+            return `
+                <div style="background:#fff; border:1px solid #cbd5e1; border-radius:10px; padding:12px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <strong>${fName} ${lName}</strong>
+                        <div style="font-size:12px; color:#64748b;">ID: ${uId} | Aji: <b style="color:var(--accent);">${s.section}</b></div>
+                    </div>
+                    <div style="display:flex; gap:6px;">
+                        <button type="button" onclick="changeStudentClass('${uId}', 'PROMOTE')" style="padding:6px 10px; font-size:11px; background:#059669; color:white; width:auto; margin:0;">⬆️ Promote</button>
+                        <button type="button" onclick="changeStudentClass('${uId}', 'DEMOTE')" style="padding:6px 10px; font-size:11px; background:#dc2626; color:white; width:auto; margin:0;">⬇️ Demote</button>
+                    </div>
+                </div>
+            `;
+        }).join('') : '<p style="text-align:center; color:#64748b; margin-top:20px;">Babu ɗalibai da aka samu.</p>';
     }
 
     async function changeStudentClass(userId, action) {
         let classes = ['CL1', 'CL2', 'CL3', 'CL4', 'CL5'];
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        let s = students.find(item => item.userId === userId);
+        let { data: students } = await _supabase.from('students').select('*');
+        let s = students.find(item => (item.user_id || item.userId) === userId);
         if (!s) return;
 
         let currentIndex = classes.indexOf(s.section);
@@ -1394,90 +1257,100 @@
         if (action === 'PROMOTE') {
             if (currentIndex < classes.length - 1) {
                 s.section = classes[currentIndex + 1];
-            } else { alert('Yana ajin karshe!'); return; }
+            } else { return; }
         } else if (action === 'DEMOTE') {
             if (currentIndex > 0) {
                 s.section = classes[currentIndex - 1];
-            } else { alert('Yana ajin farko!'); return; }
+            } else { return; }
         }
 
-        // Update in Supabase
-        await supabaseClient.from('students').update({ section: s.section }).eq('userid', userId);
-        localStorage.setItem('db_students', JSON.stringify(students));
-        loadDashboardData();
+        await _supabase.from('students').update({ section: s.section }).eq('user_id', userId);
+        loadDashboardDataFromSupabase();
     }
 
-    document.getElementById('allStudentSearchInput').addEventListener('input', renderAllStudentsTable);
+    document.getElementById('allStudentSearchInput').addEventListener('input', async function() {
+        let { data: students } = await _supabase.from('students').select('*');
+        renderAllStudentsTable(students || []);
+    });
 
-    function renderAllStudentsTable() {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+    function renderAllStudentsTable(students) {
         let q = document.getElementById('allStudentSearchInput').value.trim().toUpperCase();
-        let filtered = students.filter(s => q === '' || s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q));
+        let filtered = students.filter(s => {
+            let uId = s.user_id || s.userId;
+            let fName = s.first_name || s.firstName;
+            let lName = s.last_name || s.lastName;
+            return q === '' || uId.toUpperCase().includes(q) || `${fName} ${lName}`.toUpperCase().includes(q);
+        });
 
         document.getElementById('allStudentTableContainer').innerHTML = filtered.length ? `
             <table>
                 <tr><th>Student ID</th><th>Name</th><th>Class</th><th>Code</th><th>Phone Number</th></tr>
-                ${filtered.map(s => `
-                    <tr onclick="openStudentModal('${s.userId}')">
-                        <td><b>${s.userId}</b></td>
-                        <td>${s.firstName} ${s.lastName}</td>
-                        <td><b style="color:#d97706;">${s.section}</b></td>
-                        <td><span style="font-family:monospace; color:#047857;">${s.usedCode || '--'}</span></td>
-                        <td>${s.phone || '--'}</td>
-                    </tr>
-                `).join('')}
+                ${filtered.map(s => {
+                    let uId = s.user_id || s.userId;
+                    let fName = s.first_name || s.firstName;
+                    let lName = s.last_name || s.lastName;
+                    return `
+                        <tr onclick="openStudentModal('${uId}')">
+                            <td><b>${uId}</b></td>
+                            <td>${fName} ${lName}</td>
+                            <td><b style="color:#d97706;">${s.section}</b></td>
+                            <td><span style="font-family:monospace; color:#047857;">${s.used_code || s.usedCode || '--'}</span></td>
+                            <td>${s.phone || '--'}</td>
+                        </tr>
+                    `;
+                }).join('')}
             </table>
         ` : '<p style="text-align:center; color:#64748b; margin-top:20px;">Babu dalibai.</p>';
     }
 
-    function renderClassTables() {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+    function renderClassTables(students) {
         ['CL1', 'CL2', 'CL3', 'CL4', 'CL5'].forEach(cls => {
             let filtered = students.filter(s => s.section === cls);
             let container = document.getElementById(`class${cls.slice(2)}TableContainer`);
             if(container) {
                 container.innerHTML = filtered.length ? `
                     <table>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Code</th>
-                            <th>Phone</th>
-                            <th>Address</th>
-                            <th>Date</th>
-                        </tr>
-                        ${filtered.map(s => `
-                            <tr onclick="openStudentModal('${s.userId}')">
-                                <td><b>${s.userId}</b></td>
-                                <td>${s.firstName} ${s.lastName}</td>
-                                <td>${s.age || '--'}</td>
-                                <td><span style="font-family:monospace; color:#047857;">${s.usedCode || '--'}</span></td>
-                                <td>${s.phone || '--'}</td>
-                                <td>${s.address || '--'}</td>
-                                <td>${s.date || '--'}</td>
-                            </tr>
-                        `).join('')}
+                        <tr><th>Student ID</th><th>Name</th><th>Age</th><th>Code</th><th>Phone</th><th>Address</th><th>Date</th></tr>
+                        ${filtered.map(s => {
+                            let uId = s.user_id || s.userId;
+                            let fName = s.first_name || s.firstName;
+                            let lName = s.last_name || s.lastName;
+                            return `
+                                <tr onclick="openStudentModal('${uId}')">
+                                    <td><b>${uId}</b></td>
+                                    <td>${fName} ${lName}</td>
+                                    <td>${s.age || '--'}</td>
+                                    <td><span style="font-family:monospace; color:#047857;">${s.used_code || s.usedCode || '--'}</span></td>
+                                    <td>${s.phone || '--'}</td>
+                                    <td>${s.address || '--'}</td>
+                                    <td>${s.date_str || s.date || '--'}</td>
+                                </tr>
+                            `;
+                        }).join('')}
                     </table>
                 ` : '<p style="text-align:center; color:#64748b; margin-top:20px;">Babu dalibai a wannan ajin.</p>';
             }
         });
     }
 
-    function openStudentModal(userId) {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        let s = students.find(item => item.userId === userId);
+    async function openStudentModal(userId) {
+        let { data: students } = await _supabase.from('students').select('*');
+        let s = students.find(item => (item.user_id || item.userId) === userId);
         if(!s) return;
 
-        selectedModalUserId = userId;
-        document.getElementById('modalStudentId').innerText = s.userId;
-        document.getElementById('modalStudentName').innerText = `${s.firstName} ${s.lastName}`;
+        let uId = s.user_id || s.userId;
+        let fName = s.first_name || s.firstName;
+        let lName = s.last_name || s.lastName;
+
+        selectedModalUserId = uId;
+        document.getElementById('modalStudentId').innerText = uId;
+        document.getElementById('modalStudentName').innerText = `${fName} ${lName}`;
         document.getElementById('modalStudentClass').innerText = s.section;
-        document.getElementById('modalStudentCode').innerText = s.usedCode || '--';
+        document.getElementById('modalStudentCode').innerText = s.used_code || s.usedCode || '--';
         document.getElementById('modalStudentPhone').innerText = s.phone || '--';
         document.getElementById('modalStudentAddress').innerText = s.address || '--';
-        document.getElementById('modalStudentTime').innerText = s.time || '--:--';
-        document.getElementById('modalStudentDate').innerText = s.date || '--/--/----';
+        document.getElementById('modalStudentTime').innerText = s.time_str || s.time || '--:--';
+        document.getElementById('modalStudentDate').innerText = s.date_str || s.date || '--/--/----';
         document.getElementById('studentModal').style.display = 'flex';
     }
 
@@ -1488,17 +1361,12 @@
 
     document.getElementById('deleteStudentBtn').addEventListener('click', async function() {
         if(!selectedModalUserId) return;
-        if(!confirm('Shin kana tabbatar da kana son goge rajistar wannan dalibin?')) return;
+        if(!confirm('Shin kana tabbatar da kana son goge rajistar wannan dalibin har abada?')) return;
 
-        await supabaseClient.from('students').delete().eq('userid', selectedModalUserId);
-
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        let updated = students.filter(s => s.userId !== selectedModalUserId);
-        localStorage.setItem('db_students', JSON.stringify(updated));
-
+        await _supabase.from('students').delete().eq('user_id', selectedModalUserId);
         document.getElementById('studentModal').style.display = 'none';
         selectedModalUserId = null;
-        loadDashboardData();
+        loadDashboardDataFromSupabase();
         alert('An goge rajistar dalibin gaba ɗaya!');
     });
 
@@ -1508,51 +1376,65 @@
             btn.style.background = '#e2e8f0'; btn.style.color = '#334155';
         });
         if(el) { el.style.background = 'var(--primary)'; el.style.color = 'var(--accent)'; }
-        renderFormsList();
+        loadDashboardDataFromSupabase();
     }
 
-    document.getElementById('formsSearchInput').addEventListener('input', renderFormsList);
+    document.getElementById('formsSearchInput').addEventListener('input', async function() {
+        let { data: students } = await _supabase.from('students').select('*');
+        renderFormsList(students || []);
+    });
 
-    function renderFormsList() {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+    function renderFormsList(students) {
         let q = document.getElementById('formsSearchInput').value.trim().toUpperCase();
 
         let filtered = students.filter(s => {
+            let uId = s.user_id || s.userId;
+            let fName = s.first_name || s.firstName;
+            let lName = s.last_name || s.lastName;
             let matchesFilter = currentFormFilter === 'ALL' || s.section === currentFormFilter;
-            let matchesSearch = q === '' || s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q);
+            let matchesSearch = q === '' || uId.toUpperCase().includes(q) || `${fName} ${lName}`.toUpperCase().includes(q);
             return matchesFilter && matchesSearch;
         });
 
         document.getElementById('formsListContainer').innerHTML = filtered.length ? `
             <table>
                 <tr><th>Student ID</th><th>Name</th><th>Class</th><th>Code</th><th>Action</th></tr>
-                ${filtered.map(s => `
-                    <tr>
-                        <td onclick="openAdminFormModal('${s.userId}')"><b>${s.userId}</b></td>
-                        <td onclick="openAdminFormModal('${s.userId}')">${s.firstName} ${s.lastName}</td>
-                        <td onclick="openAdminFormModal('${s.userId}')">${s.section}</td>
-                        <td onclick="openAdminFormModal('${s.userId}')"><span style="font-family:monospace; color:#047857;">${s.usedCode || '--'}</span></td>
-                        <td><button type="button" onclick="openAdminFormModal('${s.userId}')" style="background:var(--primary); color:var(--accent); padding:5px 12px; font-size:11px; margin:0; width:auto; border-radius:6px;">📄 Duba Fom</button></td>
-                    </tr>
-                `).join('')}
+                ${filtered.map(s => {
+                    let uId = s.user_id || s.userId;
+                    let fName = s.first_name || s.firstName;
+                    let lName = s.last_name || s.lastName;
+                    return `
+                        <tr>
+                            <td onclick="openAdminFormModal('${uId}')"><b>${uId}</b></td>
+                            <td onclick="openAdminFormModal('${uId}')">${fName} ${lName}</td>
+                            <td onclick="openAdminFormModal('${uId}')">${s.section}</td>
+                            <td onclick="openAdminFormModal('${uId}')"><span style="font-family:monospace; color:#047857;">${s.used_code || s.usedCode || '--'}</span></td>
+                            <td><button type="button" onclick="openAdminFormModal('${uId}')" style="background:var(--primary); color:var(--accent); padding:5px 12px; font-size:11px; margin:0; width:auto; border-radius:6px;">📄 Duba Fom</button></td>
+                        </tr>
+                    `;
+                }).join('')}
             </table>
         ` : '<p style="text-align:center; color:#64748b; margin-top:20px;">Babu fom ɗin rajista da aka samu.</p>';
     }
 
-    function openAdminFormModal(userId) {
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
-        let s = students.find(item => item.userId === userId);
+    async function openAdminFormModal(userId) {
+        let { data: students } = await _supabase.from('students').select('*');
+        let s = students.find(item => (item.user_id || item.userId) === userId);
         if(!s) return;
 
-        document.getElementById('adminFormFirstName').innerText = s.firstName;
-        document.getElementById('adminFormLastName').innerText = s.lastName;
-        document.getElementById('adminFormUserId').innerText = s.userId;
+        let fName = s.first_name || s.firstName;
+        let lName = s.last_name || s.lastName;
+        let uId = s.user_id || s.userId;
+
+        document.getElementById('adminFormFirstName').innerText = fName;
+        document.getElementById('adminFormLastName').innerText = lName;
+        document.getElementById('adminFormUserId').innerText = uId;
         document.getElementById('adminFormPhone').innerText = s.phone;
         document.getElementById('adminFormAddress').innerText = s.address;
-        document.getElementById('adminStudentSigLine').innerText = `${s.firstName} ${s.lastName}`;
-        document.getElementById('adminFormDate1').innerText = s.date;
-        document.getElementById('adminFormDate2').innerText = s.date;
-        document.getElementById('adminFormUsedCode').innerText = `Code: ${s.usedCode || '--'}`;
+        document.getElementById('adminStudentSigLine').innerText = `${fName} ${lName}`;
+        document.getElementById('adminFormDate1').innerText = s.date_str || s.date;
+        document.getElementById('adminFormDate2').innerText = s.date_str || s.date;
+        document.getElementById('adminFormUsedCode').innerText = `Code: ${s.used_code || s.usedCode || '--'}`;
 
         let pBox = document.getElementById('adminFormPassportBox');
         if(s.passport) pBox.innerHTML = `<img src="${s.passport}" alt="Passport">`; else pBox.innerText = 'PHOTO';
@@ -1570,14 +1452,14 @@
     });
 
     document.getElementById('downloadAdminFormBtn').addEventListener('click', function() {
-        html2canvas(document.getElementById('adminPrintableFormCard'), { scale: 2, useCORS: true }).then(canvas => {
+        html2canvas(document.getElementById('adminPrintableFormCard'), { scale: 2 }).then(canvas => {
             let link = document.createElement('a'); link.download = 'Miftahul_Ilmi_Form.png'; link.href = canvas.toDataURL('image/png'); link.click();
         });
     });
 
     async function renderCodesEngines() {
-        let { data: codesObj } = await supabaseClient.from('codes').select('*');
-        if(!codesObj) codesObj = [];
+        let { data: codesObj, error } = await _supabase.from('codes').select('*');
+        if(error) codesObj = [];
 
         ['CL1', 'CL2', 'CL3', 'CL4', 'CL5'].forEach(sec => {
             let filtered = codesObj.filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase() + '_'));
@@ -1590,11 +1472,11 @@
                     <div style="background: white; border: 1px solid ${c.used ? '#fecaca' : '#a7f3d0'}; border-radius: 8px; padding: 8px 10px; margin-bottom: 6px; font-size: 13px;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
                             <span style="font-family: monospace; font-weight: bold; color: ${c.used ? '#b91c1c' : '#047857'};">${c.code}</span>
-                            <span style="font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; background: ${c.used ? '#fee2e2' : '#d1fae5'}; color: ${c.used ? '#b91c1c' : '#047857'};">${c.used ? 'An yi amfani (Used)' : 'Active'}</span>
+                            <span style="font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; background: ${c.used ? '#fee2e2' : '#d1fae5'}; color: ${c.used ? '#b91c1c' : '#047857'};">${c.used ? 'Used' : 'Active'}</span>
                         </div>
                         <div style="display: flex; gap: 4px;">
                             <button type="button" onclick="copySingleCode('${c.code}')" style="background: #0284c7; color: white; padding: 4px; font-size: 11px; margin: 0; flex: 1; border-radius: 4px;">Copy</button>
-                            <button type="button" onclick="deleteSingleCode('${c.id}', '${c.code}')" style="background: #ef4444; color: white; padding: 4px; font-size: 11px; margin: 0; flex: 1; border-radius: 4px;">Delete</button>
+                            <button type="button" onclick="deleteSingleCode('${c.id}')" style="background: #ef4444; color: white; padding: 4px; font-size: 11px; margin: 0; flex: 1; border-radius: 4px;">Delete</button>
                         </div>
                     </div>
                 `).join('') : '<p style="font-size:12px; text-align:center; color:#64748b; margin:15px 0;">Babu code.</p>';
@@ -1603,23 +1485,21 @@
     }
 
     async function generateCodesForClass(sec) {
-        let { data: codes } = await supabaseClient.from('codes').select('*');
-        if(!codes) codes = [];
+        let { data: codesObj } = await _supabase.from('codes').select('*');
         let prefix = sec.toLowerCase() + '_';
+        let classCodes = (codesObj || []).filter(c => c.code.toLowerCase().startsWith(prefix));
         
-        let classCodes = codes.filter(c => c.code.toLowerCase().startsWith(prefix));
         if (classCodes.length >= 40) {
-            alert(`Sashin ${sec} ya cika da adadin codes 40! Goge wadansu kafin ka sake generate.`);
+            alert(`Sashin ${sec} ya cika da adadin codes 40! Goge wasu kafin a sake generate.`);
             return;
         }
 
-        let newBatch = [];
+        let newEntries = [];
         for(let i = 0; i < 20; i++) {
-            let codeStr = prefix + Math.random().toString(36).substring(2, 8);
-            newBatch.push({ code: codeStr, used: false });
+            newEntries.push({ code: prefix + Math.random().toString(36).substring(2, 8), used: false });
         }
 
-        await supabaseClient.from('codes').insert(newBatch);
+        await _supabase.from('codes').insert(newEntries);
         renderCodesEngines();
         alert(`An ƙirƙiri sabbin codes 20 na ${sec} successfully!`);
     }
@@ -1628,16 +1508,15 @@
         navigator.clipboard.writeText(codeStr).then(() => { alert(`An yi copy: ${codeStr}`); });
     }
 
-    async function deleteSingleCode(id, codeStr) {
-        if(!confirm(`Goge code: ${codeStr}?`)) return;
-        await supabaseClient.from('codes').delete().eq('id', id);
+    async function deleteSingleCode(id) {
+        if(!confirm(`Goge wannan code din?`)) return;
+        await _supabase.from('codes').delete().eq('id', id);
         renderCodesEngines();
     }
 
     async function copyAllCodes(sec) {
-        let { data: codes } = await supabaseClient.from('codes').select('*');
-        if(!codes) codes = [];
-        let filtered = codes.filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase() + '_') && !c.used);
+        let { data: codesObj } = await _supabase.from('codes').select('*');
+        let filtered = (codesObj || []).filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase() + '_') && !c.used);
         if(!filtered.length) { alert('Babu active code!'); return; }
         navigator.clipboard.writeText(filtered.map(c => c.code).join('\n')).then(() => {
             alert(`An yi copy na active codes ${filtered.length} na ${sec}!`);
@@ -1646,22 +1525,31 @@
 
     async function deleteAllCodes(sec) {
         if(!confirm(`Share duk codes na ${sec}?`)) return;
-        let { data: codes } = await supabaseClient.from('codes').select('*');
-        if(!codes) codes = [];
-        let toDelete = codes.filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase() + '_'));
+        let { data: codesObj } = await _supabase.from('codes').select('*');
+        let toDelete = (codesObj || []).filter(c => c.code.toLowerCase().startsWith(sec.toLowerCase() + '_'));
         for(let c of toDelete) {
-            await supabaseClient.from('codes').delete().eq('id', c.id);
+            await _supabase.from('codes').delete().eq('id', c.id);
         }
         renderCodesEngines();
     }
 
-    document.getElementById('liveSearchInput').addEventListener('input', function() {
+    document.getElementById('liveSearchInput').addEventListener('input', async function() {
         let q = this.value.trim().toUpperCase();
-        let students = JSON.parse(localStorage.getItem('db_students')) || [];
+        let { data: students } = await _supabase.from('students').select('*');
         let resArea = document.getElementById('searchDashboardResult');
         if(!q) { resArea.innerHTML = ''; return; }
-        let matches = students.filter(s => s.userId.toUpperCase().includes(q) || `${s.firstName} ${s.lastName}`.toUpperCase().includes(q));
-        resArea.innerHTML = matches.map(s => `<div onclick="openStudentModal('${s.userId}')" style="padding: 8px 12px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 5px; font-size: 13.5px; cursor: pointer;"><b>${s.userId}</b> - ${s.firstName} ${s.lastName} (${s.section})</div>`).join('');
+        let matches = (students || []).filter(s => {
+            let uId = s.user_id || s.userId;
+            let fName = s.first_name || s.firstName;
+            let lName = s.last_name || s.lastName;
+            return uId.toUpperCase().includes(q) || `${fName} ${lName}`.toUpperCase().includes(q);
+        });
+        resArea.innerHTML = matches.map(s => {
+            let uId = s.user_id || s.userId;
+            let fName = s.first_name || s.firstName;
+            let lName = s.last_name || s.lastName;
+            return `<div onclick="openStudentModal('${uId}')" style="padding: 8px 12px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 5px; font-size: 13.5px; cursor: pointer;"><b>${uId}</b> - ${fName} ${lName} (${s.section})</div>`;
+        }).join('');
     });
 </script>
 
